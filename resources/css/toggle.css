@@ -1,0 +1,30 @@
+#toggle{
+    position: relative;
+    display: block;
+    width: 52px;
+    height: 26px;
+    border-radius: 160px;
+    background-color: #cccc;
+    transition: 500ms;
+    box-shadow: inset 0 8px 60px rgba(0,0,0,0.1),
+                inset 0 8px 8px rgba(0,0,0,0.1),
+                inset 0 -4px -4px rgba(0,0,0,0.1);
+    cursor: pointer;
+}
+
+#toggle .indicator{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 26px;
+    height: 26px;
+    background: white;
+    border-radius: 50%;
+    transform: scale(0.9);
+    transition: 500ms;
+}
+
+#toggle.active .indicator{
+    left: 26px;
+    @apply bg-indigo-600;
+}   
