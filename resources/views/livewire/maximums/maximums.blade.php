@@ -32,7 +32,7 @@
                                         <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                             RM Actual
                                         </th>
-                                        <th scope="col" class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider hidden md:block">
+                                        <th scope="col" class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
                                             Acciones
                                         </th>
                                     </tr>
@@ -43,7 +43,7 @@
                                         <td class="px-6 py-4 whitespace-nowrap">
                                             <p>{{$mre->excercise->name}}</p>
                                         </td>
-                                        <td class="px-6 py-4 whitespace-nowrap hidden md:block">
+                                        <td class="px-6 py-4 whitespace-nowrap">
                                             @php
                                                 $maxRep = $mre->maximum_reps()->orderBy('weight', 'desc')->limit(1)->get();
                                                 $maxRep  = json_decode($maxRep, true);
