@@ -39,7 +39,7 @@
             <div class="col-span-10 md:col-span-4 lg:col-span-2">
                 <div class="flex flex-col items-start">
                     <x-jet-label>Peso</x-jet-label>
-                    <x-jet-input type="number" min="0" class="w-full" wire:model="weight"></x-jet-input>
+                    <x-jet-input type="number" class="w-full" wire:model="weight"></x-jet-input>
                     <x-jet-input-error for="weight" />
                 </div>
             </div>

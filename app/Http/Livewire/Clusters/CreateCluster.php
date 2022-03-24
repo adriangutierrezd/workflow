@@ -19,7 +19,7 @@ class CreateCluster extends Component{
         'name' => 'required',
         'sets' => 'required|numeric|min:1',
         'reps' => 'required|numeric|min:1',
-        'weight' => 'numeric|min:0',
+        'weight' => 'numeric',
     ];
 
     public function mount(Workout $workout){

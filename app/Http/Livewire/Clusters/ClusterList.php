@@ -22,7 +22,7 @@ class ClusterList extends Component{
         'nameEdit' => 'required',
         'setsEdit' => 'required|numeric|min:1',
         'repsEdit' => 'required|numeric|min:1',
-        'weightEdit' => 'numeric|min:0',
+        'weightEdit' => 'numeric',
     ];
 
     public function mount(Workout $workout){

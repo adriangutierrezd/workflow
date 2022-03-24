@@ -193,7 +193,7 @@
             {{-- Peso --}}
             <div class="flex flex-col items-start w-full mb-4">
                 <x-jet-label>Peso</x-jet-label>
-                <x-jet-input type="number" min="0" class="w-full" wire:model="weightEdit"></x-jet-input>
+                <x-jet-input type="number" class="w-full" wire:model="weightEdit"></x-jet-input>
                 <x-jet-input-error for="weightEdit" />
             </div>
             {{-- Nota --}}
