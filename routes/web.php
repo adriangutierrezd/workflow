@@ -60,15 +60,17 @@ Route::get('/google-callback', function () {
     if($userExists){
         Auth::login($userExists);
     }else{
-        $userNew = User::create([
-            'name' => $user->name,
-            'email' => $user->email,
-            'avatar' => $user->avatar,
-            'external_id' => $user->id,
-            'external_auth' => 'google'
-        ]);
-
-        Auth::login($userNew);
+        $emailExists = User::where('email', $user->email)->first();
+        if(!$emailExists){
+            $userNew = User::create([
+                'name' => $user->name,
+                'email' => $user->email,
+                'avatar' => $user->avatar,
+                'external_id' => $user->id,
+                'external_auth' => 'google'
+            ]);
+            Auth::login($userNew);
+        }
     }
 
     return redirect('/workouts');
