@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Role extends Model
+class WorkoutStatus extends Model
 {
     use HasFactory;
 
@@ -13,8 +13,8 @@ class Role extends Model
         'name'
     ];
 
-    public function users(){
-        return $this->hasMany(User::class);
+    public function workouts(){
+        return $this->hasMany(Workout::class, 'status_id');
     }
 
 }
