@@ -47,7 +47,7 @@ class WorkoutController extends Controller
             return redirect()->back();
         }
 
-        if(isset(getallheaders()['Accept']) && getallheaders()['Accept'] == 'application/json'){
+        if(isJsonRequest()){
             return response()->json([
                 'message' => 'Workout created successfully',
                 'workout' => $newWorkout
@@ -61,7 +61,8 @@ class WorkoutController extends Controller
         $workouts = Workout::where('user_id', Auth::user()->id)->with('status')->get();
 
         return response()->json([
-            $workouts
+            'data' => $workouts,
+            'msg' => 'Workouts retrieved successfully'
         ]);
     }
 
@@ -78,7 +79,10 @@ class WorkoutController extends Controller
      */
     public function edit(Workout $workout)
     {
-        return view('workouts.edit', compact('workout'));
+
+        $workoutStatuses = WorkoutStatus::all();
+
+        return view('workouts.edit', compact('workout', 'workoutStatuses'));
     }
 
     /**
@@ -86,7 +90,41 @@ class WorkoutController extends Controller
      */
     public function update(UpdateWorkoutRequest $request, Workout $workout)
     {
-        //
+        
+        try{
+
+            $updateData = [
+                'title' => $request->title
+            ];
+
+            if($request->date){
+                $updateData['date'] = $request->date;
+            }
+
+            if($request->status_id){
+                $updateData['status_id'] = $request->status_id;
+            }
+
+            $workout->update($updateData);
+
+        }catch(QueryException $e){
+            if(isJsonRequest()){
+                return response()->json([
+                    'message' => 'An error ocurred while updating the workout'
+                ], 500);
+            }else{
+                return redirect()->route('workouts.edit', ['workout' => $workout->id]);
+            }
+
+        }
+
+        if(isJsonRequest()){
+            return response()->json([
+                'message' => 'Workout updated successfully'
+            ]);
+        }
+
+        return redirect()->route('workouts.edit', ['workout' => $workout->id]);
     }
 
     /**
@@ -94,6 +132,26 @@ class WorkoutController extends Controller
      */
     public function destroy(Workout $workout)
     {
-        //
+
+        try{
+            $workout->delete();
+        }catch(QueryException $e){
+            if(isJsonRequest()){
+                return response()->json([
+                    'message' => 'An error ocurred while deleting the workout'
+                ], 500);
+            }else{
+                return redirect()->route('workouts.edit', ['workout' => $workout->id]);
+            }
+        }
+
+        if(isJsonRequest()){
+            return response()->json([
+                'message' => 'Workout deleted successfully'
+            ]);
+        }
+
+        return redirect()->route('dashboard');
+
     }
 }

@@ -1,4 +1,4 @@
-import { DEFAULT_TD_CLASSES } from './constants.js'
+import { DEFAULT_TD_CLASSES, SPINNER } from './constants.js'
 
 export const createRow = (info) => {
 
@@ -18,7 +18,6 @@ export const createRow = (info) => {
     return row
 
 }
-
 
 export const createCell = (info) => {
 
@@ -50,5 +49,47 @@ export const createCell = (info) => {
     }
 
     return cell
+
+}
+
+export const createFullTd = (info) => {
+
+    const { colSpan, innerHTML, classes } = info
+
+    const td = document.createElement('td')
+    td.colSpan = colSpan
+    if (classes !== undefined) td.className = classes
+    if (typeof innerHTML === 'string') {
+        td.innerHTML = innerHTML
+    } else if (typeof innerHTML === 'object') {
+        td.appendChild(innerHTML)
+    }
+
+    return td
+
+}
+
+export const showTableLoading = (info) => {
+
+    const { table } = info
+
+    const spinnerParentDiv = document.createElement('div')
+    spinnerParentDiv.className = 'flex justify-center w-full'
+    spinnerParentDiv.innerHTML = SPINNER
+
+    const td = createFullTd({
+        colSpan: table.children[0].children[0].children.length,
+        innerHTML: spinnerParentDiv,
+        classes: 'p-2'
+    })
+
+    const vars = {
+        id: `wk_0`
+    }
+
+    const tr = createRow(vars)
+    tr.appendChild(td)
+    table.children[1].innerHTML = ''
+    table.children[1].appendChild(tr)
 
 }

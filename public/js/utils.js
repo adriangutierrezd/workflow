@@ -12,3 +12,18 @@ export const generateProgressBar = (info) => {
     div.appendChild(div2)
     return div
 }
+
+export const changeButtonStatus = (info) => {
+
+    const { button, disabled, inner } = info
+
+    if (disabled) {
+        button.setAttribute('disabled', true)
+        button.classList.add('cursor-not-allowed')
+    } else {
+        button.classList.remove('cursor-not-allowed')
+        button.removeAttribute('disabled')
+    }
+
+    button.innerHTML = inner
+}
