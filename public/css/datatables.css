@@ -1,0 +1,5 @@
+div.dataTables_filter > label > input {
+
+    @apply bg-blue-600;
+
+}

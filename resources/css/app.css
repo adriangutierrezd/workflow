@@ -1,3 +1,63 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+/** Styles for Datatable  */
+div.dataTables_filter{
+    @apply flex justify-end items-center px-4 py-2;
+}
+
+div.dataTables_filter > label > input {
+    @apply  my-2 border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm;
+}
+
+div.dataTables_paginate{
+    @apply flex justify-between items-center px-4 py-2;
+}
+
+div.dataTables_paginate > a.paginate_button{
+    @apply flex cursor-pointer items-center px-5 py-2 text-sm text-gray-700 capitalize transition-colors duration-200 bg-white border rounded-md gap-x-2 hover:bg-gray-100 dark:bg-gray-900 dark:text-gray-200 dark:border-gray-700 dark:hover:bg-gray-800;
+}
+
+div.dataTables_paginate > span{
+    @apply items-center hidden md:flex gap-x-3;
+}
+
+div.dataTables_paginate > span > a.paginate_button.current{
+    @apply px-2 py-1 text-sm text-blue-500 rounded-md dark:bg-gray-800 bg-blue-100/60;
+}
+
+div.dataTables_paginate > span > a.paginate_button{
+    @apply px-2 py-1 text-sm text-gray-500 rounded-md dark:hover:bg-gray-800 dark:text-gray-300 hover:bg-gray-100;
+}
+
+div.dataTables_length{
+    @apply hidden;
+}
+
+
+/** Styles for status badges */
+.badge-status{
+    @apply inline px-3 py-1 text-sm font-normal rounded-full gap-x-2;
+}
+
+.badge-status-borrador{
+    @apply text-gray-500 bg-gray-100/60 dark:bg-gray-800;
+}
+
+.badge-status-pendiente{
+    @apply text-yellow-500 bg-yellow-100/60 dark:bg-gray-800;
+}
+
+.badge-status-en-progreso{
+    @apply text-blue-500 bg-blue-100/60 dark:bg-gray-800;
+}
+
+.badge-status-completado{
+    @apply text-emerald-500 bg-emerald-100/60 dark:bg-gray-800;
+}
+
+.badge-status-cancelado{
+    @apply text-red-500 bg-red-100/60 dark:bg-gray-800;
+}
