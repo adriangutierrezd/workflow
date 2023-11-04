@@ -69,6 +69,18 @@ class ClusterController extends Controller
      */
     public function destroy(Cluster $cluster)
     {
-        //
+        
+        try{
+            $cluster->delete();
+        }catch(QueryException $e){
+            return response()->json([
+                'message' => 'An error ocurred while deleting the cluster'
+            ], 500);
+        }
+
+        return response()->json([
+            'message' => 'Workout deleted successfully'
+        ]);
+
     }
 }

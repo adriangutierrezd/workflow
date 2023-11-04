@@ -1,7 +1,7 @@
 import { createRow, createCell, createFullTd, showTableLoading } from './tablesService.js'
-import { changeButtonStatus, closeModal } from './utils.js'
+import { changeButtonStatus, closeModal, openModal } from './utils.js'
 import { OPTIONS_DOTS, TRASH_ICON, EDIT_ICON, SPINNER, HTTP_STATUS } from './constants.js'
-import { getClusterByWorkout, createCluster } from './clusterService.js'
+import { getClusterByWorkout, createCluster, deleteCluster } from './clusterService.js'
 
 
 const getWorkoutId = () => {
@@ -112,8 +112,63 @@ const loadClusters = async () => {
                 optionsDiv.setAttribute('aria-labelledby', 'options-menu')
                 optionsDiv.setAttribute('tabindex', '-1')
 
+                const optionsList = document.createElement('ul')
+                optionsList.className = 'py-1'
+                optionsList.setAttribute('role', 'none')
+
+
+                const optionsEdit = document.createElement('li')
+                optionsEdit.className = 'flex items-center cursor-pointer px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900'
+                optionsEdit.setAttribute('role', 'menuitem')
+                optionsEdit.setAttribute('tabindex', '-1')
+                optionsEdit.setAttribute('id', 'options-menu-1')
+                optionsEdit.innerHTML = EDIT_ICON
+
+                optionsEdit.addEventListener('click', () => {
+                    openModal('editClusterModal')
+                })
+
+                const optionsEditText = document.createElement('span')
+                optionsEditText.className = 'ml-2'
+                optionsEditText.innerText = 'Editar'
+                optionsEdit.appendChild(optionsEditText)
+
+                const optionsDelete = document.createElement('li')
+                optionsDelete.className = 'flex items-center cursor-pointer px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900'
+                optionsDelete.setAttribute('role', 'menuitem')
+                optionsDelete.setAttribute('tabindex', '-1')
+                optionsDelete.setAttribute('id', 'options-menu-1')
+                optionsDelete.innerHTML = TRASH_ICON
+
+                optionsDelete.addEventListener('click', () => {
+                    openModal('deleteClusterModal')
+                    document.querySelector('input[name=clusterDeleteId').value = cluster.id
+                })
+
+                const optionsDeleteText = document.createElement('span')
+                optionsDeleteText.className = 'ml-2'
+                optionsDeleteText.innerText = 'Eliminar'
+                optionsDelete.appendChild(optionsDeleteText)
+
+                optionsList.appendChild(optionsEdit)
+                optionsList.appendChild(optionsDelete)
+
+                optionsDiv.appendChild(optionsList)
+
+
                 parentOptionsDiv.appendChild(optionsButton)
                 parentOptionsDiv.appendChild(optionsDiv)
+
+                optionsButton.addEventListener('click', () => {
+                    optionsDiv.classList.toggle('hidden')
+                })
+
+                document.addEventListener('click', (e) => {
+                    if (!parentOptionsDiv.contains(e.target)) {
+                        optionsDiv.classList.add('hidden')
+                    }
+                })
+
 
                 const tdActions = createCell({
                     text: parentOptionsDiv,
@@ -163,6 +218,39 @@ document.getElementById('newClusterForm').addEventListener('submit', async (even
     } finally {
         changeButtonStatus({ button: submitBtn, disabled: false, inner: submitBtnText })
     }
+
+})
+
+document.getElementById('deleteClusterBtn').addEventListener('click', async (event) => {
+
+    event.preventDefault()
+
+    const previousInnerHTML = event.target.innerHTML
+    changeButtonStatus({
+        button: event.target,
+        disabled: true,
+        inner: SPINNER
+    })
+
+    try {
+        const clusterId = document.getElementById('clusterDeleteId').value
+        await deleteCluster(clusterId)
+    } catch (error) {
+        alert(error.message)
+    } finally {
+
+        closeModal('deleteClusterModal')
+
+        setTimeout(() => {
+            changeButtonStatus({
+                button: event.target,
+                disabled: false,
+                inner: previousInnerHTML
+            })
+        }, 500)
+        loadClusters()
+    }
+
 
 })
 

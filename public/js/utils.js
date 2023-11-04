@@ -30,6 +30,14 @@ export const changeButtonStatus = (info) => {
 
 export const closeModal = (modalId) => {
     const targetModal = document.getElementById(modalId)
+    if (!targetModal) return
     const closeModalEv = new Event('closeModal')
     targetModal.dispatchEvent(closeModalEv)
+}
+
+export const openModal = (modalId) => {
+    const targetModal = document.getElementById(modalId)
+    if (!targetModal) return
+    const openModalEv = new Event('openModal')
+    targetModal.dispatchEvent(openModalEv)
 }

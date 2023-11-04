@@ -1,3 +1,5 @@
+import { HTTP_STATUS } from './constants.js'
+
 export const getClusterByWorkout = async (workoutId) => {
     try {
         const response = await fetch(`/api/clusters/${workoutId}`)
@@ -9,7 +11,6 @@ export const getClusterByWorkout = async (workoutId) => {
 }
 
 export const createCluster = async ({ workout_id, excercise_id, sets, reps, weight }) => {
-
     try {
         const requestOptions = {
             method: 'POST',
@@ -23,10 +24,29 @@ export const createCluster = async ({ workout_id, excercise_id, sets, reps, weig
 
         const response = await fetch(`/api/clusters`, requestOptions)
         const data = await response.json()
-        if (response.status !== 200) throw new Error(data.message)
+        if (response.status !== HTTP_STATUS.OK) throw new Error(data.message)
         return { ...data, status: response.status }
     } catch (error) {
         throw new Error(error.message)
     }
+}
 
+export const deleteCluster = async (clusterId) => {
+    try {
+        const requestOptions = {
+            method: 'DELETE',
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+        }
+
+        const response = await fetch(`/api/clusters/${clusterId}`, requestOptions)
+        const data = await response.json()
+        if (response.status !== HTTP_STATUS.OK) throw new Error(data.message)
+        return { ...data, status: response.status }
+    } catch (error) {
+        throw new Error(error.message)
+    }
 }

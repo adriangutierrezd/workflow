@@ -210,7 +210,7 @@
                 <div class="flex items-center justify-end my-3">
                     <x-new-cluster-dialog :workout="$workout" :excercises="$excercises"/>
                 </div>
-                <x-clusters-table/>
+                <x-clusters-table :workout="$workout" :excercises="$excercises"/>
 
             </div>
         </div>
