@@ -31,4 +31,8 @@ class Workout extends Model
         return $this->belongsTo(WorkoutStatus::class, 'status_id');
     }
 
+    public function clusters(){
+        return $this->hasMany(Cluster::class);
+    }
+
 }

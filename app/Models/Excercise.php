@@ -13,4 +13,8 @@ class Excercise extends Model
         'name'
     ];
 
+    public function clusters(){
+        return $this->hasMany(Cluster::class);
+    }
+
 }

@@ -8,6 +8,7 @@ use App\Models\Workout;
 use Illuminate\Support\Facades\Auth;
 use App\Models\WorkoutStatus;
 use Illuminate\Database\QueryException;
+use App\Models\Excercise;
 
 class WorkoutController extends Controller
 {
@@ -81,8 +82,9 @@ class WorkoutController extends Controller
     {
 
         $workoutStatuses = WorkoutStatus::all();
+        $excercises = Excercise::all();
 
-        return view('workouts.edit', compact('workout', 'workoutStatuses'));
+        return view('workouts.edit', compact('workout', 'workoutStatuses', 'excercises'));
     }
 
     /**

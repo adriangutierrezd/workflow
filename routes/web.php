@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WorkoutController;
+use App\Http\Controllers\ClusterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,6 +28,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/workout/edit/{workout}', [WorkoutController::class, 'edit'])->name('workouts.edit');
     Route::put('/workouts/{workout}', [WorkoutController::class, 'update'])->name('workouts.update');
     Route::delete('/workouts/{workout}', [WorkoutController::class, 'destroy'])->name('workouts.destroy');
+
+
+    Route::get('/clusters/{workout}', [ClusterController::class, 'getByWorkout'])->name('clusters.getByWorkout');
+    Route::post('/clusters', [ClusterController::class, 'store'])->name('clusters.store');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
