@@ -30,7 +30,6 @@ Route::middleware('auth')->group(function () {
     Route::delete('/workouts/{workout}', [WorkoutController::class, 'destroy'])->name('workouts.destroy');
 
 
-    Route::get('/clusters/{workout}', [ClusterController::class, 'getByWorkout'])->name('clusters.getByWorkout');
     Route::post('/clusters', [ClusterController::class, 'store'])->name('clusters.store');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

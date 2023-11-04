@@ -18,3 +18,13 @@ export const SPINNER = `<svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" 
 </svg>`
 
 
+export const HTTP_STATUS = {
+    OK: 200,
+    CREATED: 201,
+    NO_CONTENT: 204,
+    BAD_REQUEST: 400,
+    UNAUTHORIZED: 401,
+    NOT_FOUND: 404,
+    INTERNAL_SERVER_ERROR: 500
+}
+

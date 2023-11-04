@@ -50,7 +50,7 @@ class ClusterController extends Controller
             return response()->json([
                 'message' => 'Cluster created successfully',
                 'cluster' => $newClustrer
-            ]);
+            ], 201);
         }
 
         return redirect()->back();

@@ -27,3 +27,9 @@ export const changeButtonStatus = (info) => {
 
     button.innerHTML = inner
 }
+
+export const closeModal = (modalId) => {
+    const targetModal = document.getElementById(modalId)
+    const closeModalEv = new Event('closeModal')
+    targetModal.dispatchEvent(closeModalEv)
+}
