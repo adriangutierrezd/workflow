@@ -120,31 +120,29 @@
                         <div class="my-2">
                             <h3 class="text-lg text-center font-medium leading-6 text-gray-800 dark:text-white" id="modal-title">Editar cluster</h3>
 
-                            <form >
-                                @csrf
+                            <form id="updateClusterForm">
+                                <input type="hidden" name="updateClusterId">
 
-                                <input type="hidden" name="workout_id" value="{{ $workout->id }}">
-
-                                <label class="form-label" for="excercise_id">Ejercicio</label>
+                                <label class="form-label" for="updateExcerciseId">Ejercicio</label>
                                 <select 
                                 class="form-field mb-4" 
-                                name="excercise_id" required>
+                                name="updateExcerciseId" required>
                                     <option value="" selected disabled>Escoge un ejercicio</option>
                                     @foreach ($excercises as $excercise)
                                         <option value="{{ $excercise->id }}">{{ $excercise->name }}</option>
                                     @endforeach
                                 </select>
 
-                                <label class="form-label" for="sets">Series</label>
-                                <input type="number" step="1" min="1" max="255" name="sets"
+                                <label class="form-label" for="updateSets">Series</label>
+                                <input type="number" step="1" min="1" max="255" name="updateSets"
                                 class="form-field mb-4" required>
 
-                                <label class="form-label" for="reps">Repeticiones</label>
-                                <input type="number" step="1" min="1" max="65535" name="reps"
+                                <label class="form-label" for="updateReps">Repeticiones</label>
+                                <input type="number" step="1" min="1" max="65535" name="updateReps"
                                 class="form-field mb-4" required>
 
-                                <label class="form-label" for="weight">Peso</label>
-                                <input type="number" step="0.1" min="0" max="99999.99" name="weight"
+                                <label class="form-label" for="updateWeight">Peso</label>
+                                <input type="number" step="0.1" min="0" max="99999.99" name="updateWeight"
                                 class="form-field mb-4" required>
 
                                 <div class="mt-5 flex items-center justify-end">

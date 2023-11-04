@@ -61,7 +61,28 @@ class ClusterController extends Controller
      */
     public function update(UpdateClusterRequest $request, Cluster $cluster)
     {
-        //
+        try{
+            $cluster->update([
+                'user_id' => $request->user_id ?? Auth::user()->id,
+                'owner_id' => Auth::user()->id,
+                'workout_id' => $request->workout_id,
+                'excercise_id' => $request->excercise_id,
+                'reps' => $request->reps,
+                'sets' => $request->sets,
+                'weight' => $request->weight,
+                'done' => $request->done ?? false,
+                'unit' => $request->units ?? 'kg'
+            ]);
+        }catch(QueryException $e){
+            return response()->json([
+                'message' => 'An error ocurred while updating the cluster'
+            ], 500);
+        }
+
+        return response()->json([
+            'message' => 'Cluster updated successfully',
+            'cluster' => $cluster
+        ]);
     }
 
     /**

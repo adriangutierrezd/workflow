@@ -30,6 +30,7 @@ Route::middleware(['auth:sanctum'])->group(function(){
 
     Route::get('/clusters/{workout}', [ClusterController::class, 'getByWorkout'])->name('clusters.getByWorkout');
     Route::post('/clusters', [ClusterController::class, 'store'])->name('clusters.store');
+    Route::put('/clusters/{cluster}', [ClusterController::class, 'update'])->name('clusters.update');
     Route::delete('/clusters/{cluster}', [ClusterController::class, 'destroy'])->name('clusters.destroy');
 
 

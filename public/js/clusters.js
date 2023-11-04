@@ -1,7 +1,7 @@
 import { createRow, createCell, createFullTd, showTableLoading } from './tablesService.js'
 import { changeButtonStatus, closeModal, openModal } from './utils.js'
 import { OPTIONS_DOTS, TRASH_ICON, EDIT_ICON, SPINNER, HTTP_STATUS } from './constants.js'
-import { getClusterByWorkout, createCluster, deleteCluster } from './clusterService.js'
+import { getClusterByWorkout, createCluster, deleteCluster, updateCluster } from './clusterService.js'
 
 
 const getWorkoutId = () => {
@@ -125,6 +125,11 @@ const loadClusters = async () => {
                 optionsEdit.innerHTML = EDIT_ICON
 
                 optionsEdit.addEventListener('click', () => {
+                    document.querySelector('input[name=updateClusterId]').value = cluster.id
+                    document.querySelector(`select[name=updateExcerciseId] option[value="${cluster.excercise_id}"]`).selected = true
+                    document.querySelector('input[name=updateSets]').value = cluster.sets
+                    document.querySelector('input[name=updateReps]').value = cluster.reps
+                    document.querySelector('input[name=updateWeight]').value = cluster.weight
                     openModal('editClusterModal')
                 })
 
@@ -249,6 +254,46 @@ document.getElementById('deleteClusterBtn').addEventListener('click', async (eve
             })
         }, 500)
         loadClusters()
+    }
+
+
+})
+
+document.getElementById('updateClusterForm').addEventListener('submit', async (event) => {
+
+    event.preventDefault()
+
+    const submitBtn = event.target.querySelector('button[type=submit]')
+    const previousInnerHTML = submitBtn.innerHTML
+
+    try {
+
+        changeButtonStatus({ button: submitBtn, disabled: true, inner: SPINNER })
+
+        const clusterId = document.querySelector('input[name=updateClusterId]').value
+        const excercise_id = document.querySelector('select[name=updateExcerciseId]')
+        const sets = document.querySelector('input[name=updateSets]')
+        const reps = document.querySelector('input[name=updateReps]')
+        const weight = document.querySelector('input[name=updateWeight]')
+        const workout_id = getWorkoutId()
+
+        const { status, message } = await updateCluster({ clusterId, workout_id, excercise_id: excercise_id.value, sets: sets.value, reps: reps.value, weight: weight.value })
+
+        if (status === HTTP_STATUS.OK) {
+            loadClusters()
+            closeModal('editClusterModal')
+        } else {
+            alert(message)
+        }
+
+    } catch (error) {
+        alert(error.message)
+    } finally {
+        changeButtonStatus({
+            button: submitBtn,
+            disabled: false,
+            inner: previousInnerHTML
+        })
     }
 
 

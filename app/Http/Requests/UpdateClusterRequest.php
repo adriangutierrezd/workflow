@@ -11,7 +11,7 @@ class UpdateClusterRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return auth()->check();
     }
 
     /**
@@ -22,7 +22,14 @@ class UpdateClusterRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'user_id' => 'integer|exists:users,id',
+            'workout_id' => 'required|integer|exists:workouts,id',
+            'excercise_id' => 'required|integer|exists:excercises,id',
+            'reps' => 'required|integer|min:1',
+            'sets' => 'required|integer|min:1',
+            'weight' => 'required|min:0',
+            'done' => 'boolean',
+            'units' => 'string'
         ];
     }
 }
