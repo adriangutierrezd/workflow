@@ -1,5 +1,5 @@
 import { createRow, createCell, createFullTd, showTableLoading } from './tablesService.js'
-import { changeButtonStatus, closeModal, openModal } from './utils.js'
+import { changeButtonStatus, closeModal, openModal, createDialogDropDownItem, createDialogDropDownContainer, createDialogDroDownBtn } from './utils.js'
 import { OPTIONS_DOTS, TRASH_ICON, EDIT_ICON, SPINNER, HTTP_STATUS } from './constants.js'
 import { getClusterByWorkout, createCluster, deleteCluster, updateCluster } from './clusterService.js'
 
@@ -67,7 +67,7 @@ const loadClusters = async () => {
                 checkBoxSelect.type = 'checkbox'
                 checkBoxSelect.name = 'clusters[]'
                 checkBoxSelect.dataset.cluster = cluster.id
-                checkBoxSelect.className = 'h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-600'
+                checkBoxSelect.className = 'form-checkbox'
                 const tdSelectCheckBox = createCell({
                     text: checkBoxSelect,
                     type: 'td',
@@ -98,32 +98,15 @@ const loadClusters = async () => {
                 const parentOptionsDiv = document.createElement('div')
                 parentOptionsDiv.className = 'relative'
 
-                const optionsButton = document.createElement('button')
-                optionsButton.className = 'px-1 py-1 text-gray-500 transition-colors duration-200 rounded-lg dark:text-gray-300 hover:bg-gray-100'
-                optionsButton.innerHTML = OPTIONS_DOTS
-                optionsButton.setAttribute('aria-haspopup', 'true')
-                optionsButton.setAttribute('aria-expanded', 'true')
-                optionsButton.setAttribute('type', 'button')
-
-                const optionsDiv = document.createElement('div')
-                optionsDiv.className = 'hidden absolute right-0 z-10 w-48 mt-2 origin-top-right rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5'
-                optionsDiv.setAttribute('role', 'menu')
-                optionsDiv.setAttribute('aria-orientation', 'vertical')
-                optionsDiv.setAttribute('aria-labelledby', 'options-menu')
-                optionsDiv.setAttribute('tabindex', '-1')
+                const optionsButton = createDialogDroDownBtn({ icon: OPTIONS_DOTS })
+                const optionsDiv = createDialogDropDownContainer()
 
                 const optionsList = document.createElement('ul')
                 optionsList.className = 'py-1'
                 optionsList.setAttribute('role', 'none')
 
 
-                const optionsEdit = document.createElement('li')
-                optionsEdit.className = 'flex items-center cursor-pointer px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900'
-                optionsEdit.setAttribute('role', 'menuitem')
-                optionsEdit.setAttribute('tabindex', '-1')
-                optionsEdit.setAttribute('id', 'options-menu-1')
-                optionsEdit.innerHTML = EDIT_ICON
-
+                const optionsEdit = createDialogDropDownItem({ icon: EDIT_ICON, text: 'Editar' })
                 optionsEdit.addEventListener('click', () => {
                     document.querySelector('input[name=updateClusterId]').value = cluster.id
                     document.querySelector(`select[name=updateExcerciseId] option[value="${cluster.excercise_id}"]`).selected = true
@@ -133,27 +116,12 @@ const loadClusters = async () => {
                     openModal('editClusterModal')
                 })
 
-                const optionsEditText = document.createElement('span')
-                optionsEditText.className = 'ml-2'
-                optionsEditText.innerText = 'Editar'
-                optionsEdit.appendChild(optionsEditText)
-
-                const optionsDelete = document.createElement('li')
-                optionsDelete.className = 'flex items-center cursor-pointer px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900'
-                optionsDelete.setAttribute('role', 'menuitem')
-                optionsDelete.setAttribute('tabindex', '-1')
-                optionsDelete.setAttribute('id', 'options-menu-1')
-                optionsDelete.innerHTML = TRASH_ICON
-
+                const optionsDelete = createDialogDropDownItem({ icon: TRASH_ICON, text: 'Eliminar' })
                 optionsDelete.addEventListener('click', () => {
                     openModal('deleteClusterModal')
                     document.querySelector('input[name=clusterDeleteId').value = cluster.id
                 })
 
-                const optionsDeleteText = document.createElement('span')
-                optionsDeleteText.className = 'ml-2'
-                optionsDeleteText.innerText = 'Eliminar'
-                optionsDelete.appendChild(optionsDeleteText)
 
                 optionsList.appendChild(optionsEdit)
                 optionsList.appendChild(optionsDelete)

@@ -41,3 +41,41 @@ export const openModal = (modalId) => {
     const openModalEv = new Event('openModal')
     targetModal.dispatchEvent(openModalEv)
 }
+
+export const createDialogDropDownItem = ({ icon, text }) => {
+
+    const dialogDropDownItem = document.createElement('li')
+    dialogDropDownItem.className = 'dialog-dropdown-item'
+    dialogDropDownItem.setAttribute('role', 'menuitem')
+    dialogDropDownItem.setAttribute('tabindex', '-1')
+    dialogDropDownItem.setAttribute('id', 'options-menu-1')
+    dialogDropDownItem.innerHTML = icon
+
+    const dropDownDialogText = document.createElement('span')
+    dropDownDialogText.className = 'ml-2'
+    dropDownDialogText.innerText = text
+    dialogDropDownItem.appendChild(dropDownDialogText)
+
+    return dialogDropDownItem
+
+}
+
+export const createDialogDropDownContainer = () => {
+    const dialogDropDownContainer = document.createElement('div')
+    dialogDropDownContainer.className = 'hidden dialog-dropdown-container'
+    dialogDropDownContainer.setAttribute('role', 'menu')
+    dialogDropDownContainer.setAttribute('aria-orientation', 'vertical')
+    dialogDropDownContainer.setAttribute('aria-labelledby', 'options-menu')
+    dialogDropDownContainer.setAttribute('tabindex', '-1')
+    return dialogDropDownContainer
+}
+
+export const createDialogDroDownBtn = ({ icon }) => {
+    const optionsButton = document.createElement('button')
+    optionsButton.className = 'dropdown-dots-button'
+    optionsButton.innerHTML = icon
+    optionsButton.setAttribute('aria-haspopup', 'true')
+    optionsButton.setAttribute('aria-expanded', 'true')
+    optionsButton.setAttribute('type', 'button')
+    return optionsButton
+}

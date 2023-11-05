@@ -1,3 +1,5 @@
+import { HTTP_STATUS } from './constants.js'
+
 export const getWorkouts = async () => {
     try {
         const response = await fetch('/api/workouts')
@@ -8,7 +10,7 @@ export const getWorkouts = async () => {
     }
 }
 
-export const deleteWorkout = async (id) => {
+export const deleteWorkout = async (workoutId) => {
 
     try {
         const requestOptions = {
@@ -20,9 +22,9 @@ export const deleteWorkout = async (id) => {
             },
         }
 
-        const response = await fetch(`/api/workouts/${id}`, requestOptions)
+        const response = await fetch(`/api/workouts/${workoutId}`, requestOptions)
         const data = await response.json()
-        if (response.status !== 200) throw new Error(data.message)
+        if (response.status !== HTTP_STATUS.OK) throw new Error(data.message)
         return { ...data, status: response.status }
     } catch (error) {
         throw new Error(error.message)
