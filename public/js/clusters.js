@@ -277,7 +277,18 @@ document.getElementById('updateClusterForm').addEventListener('submit', async (e
         const weight = document.querySelector('input[name=updateWeight]')
         const workout_id = getWorkoutId()
 
-        const { status, message } = await updateCluster({ clusterId, workout_id, excercise_id: excercise_id.value, sets: sets.value, reps: reps.value, weight: weight.value })
+        const params = {
+            clusterId,
+            props: {
+                workout_id,
+                excercise_id: excercise_id.value,
+                sets: sets.value,
+                reps: reps.value,
+                weight: weight.value
+            }
+        }
+
+        const { status, message } = await updateCluster(params)
 
         if (status === HTTP_STATUS.OK) {
             loadClusters()

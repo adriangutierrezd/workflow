@@ -23,11 +23,11 @@ class UpdateClusterRequest extends FormRequest
     {
         return [
             'user_id' => 'integer|exists:users,id',
-            'workout_id' => 'required|integer|exists:workouts,id',
-            'excercise_id' => 'required|integer|exists:excercises,id',
-            'reps' => 'required|integer|min:1',
-            'sets' => 'required|integer|min:1',
-            'weight' => 'required|min:0',
+            'workout_id' => 'integer|exists:workouts,id',
+            'excercise_id' => 'integer|exists:excercises,id',
+            'reps' => 'integer|min:1',
+            'sets' => 'integer|min:1',
+            'weight' => 'min:0',
             'done' => 'boolean',
             'units' => 'string'
         ];

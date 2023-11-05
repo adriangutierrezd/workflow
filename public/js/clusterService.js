@@ -51,11 +51,11 @@ export const deleteCluster = async (clusterId) => {
     }
 }
 
-export const updateCluster = async ({ clusterId, workout_id, excercise_id, sets, reps, weight }) => {
+export const updateCluster = async ({ clusterId, props }) => {
     try {
         const requestOptions = {
             method: 'PUT',
-            body: JSON.stringify({ workout_id, excercise_id, sets, reps, weight }),
+            body: JSON.stringify(props),
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
                 'Content-Type': 'application/json',
