@@ -18,6 +18,9 @@ class Workout extends Model
         'date'
     ];
 
+    protected $appends = [
+        'completition'
+    ];
 
     public function user(){
         return $this->belongsTo(User::class);
@@ -33,6 +36,12 @@ class Workout extends Model
 
     public function clusters(){
         return $this->hasMany(Cluster::class);
+    }
+
+    public function getCompletitionAttribute(){
+        $total = $this->clusters()->count();
+        $done = $this->clusters()->where('done', true)->count();
+        return round(($done / $total) * 100, 2);
     }
 
 }

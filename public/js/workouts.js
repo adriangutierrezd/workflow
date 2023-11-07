@@ -80,7 +80,7 @@ const loadWorkouts = async () => {
 
                 const progressBar = generateProgressBar({
                     classes: 'w-48 h-1.5 overflow-hidden rounded-full',
-                    progress: Math.random() * 100,
+                    progress: workout.completition,
                     bgColor: 'bg-blue-200',
                     color: 'bg-blue-500'
                 })
