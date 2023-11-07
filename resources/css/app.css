@@ -100,3 +100,8 @@ div.dataTables_length{
 .dropdown-dots-button{
     @apply px-1 py-1 text-gray-500 transition-colors duration-200 rounded-lg dark:text-gray-300 hover:bg-gray-100;
 }
+
+/** Styles for tables **/
+.non-prioritary-row > td{
+    @apply text-gray-700;
+}

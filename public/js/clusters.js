@@ -1,6 +1,6 @@
 import { createRow, createCell, createFullTd, showTableLoading } from './tablesService.js'
 import { changeButtonStatus, closeModal, openModal, createDialogDropDownItem, createDialogDropDownContainer, createDialogDroDownBtn } from './utils.js'
-import { OPTIONS_DOTS, TRASH_ICON, EDIT_ICON, SPINNER, HTTP_STATUS } from './constants.js'
+import { OPTIONS_DOTS, TRASH_ICON, EDIT_ICON, SPINNER, HTTP_STATUS, CHECK_ICON } from './constants.js'
 import { getClusterByWorkout, createCluster, deleteCluster, updateCluster } from './clusterService.js'
 
 
@@ -55,6 +55,7 @@ const loadClusters = async () => {
 
                 const info = {
                     id: `cl_${cluster.id}`,
+                    classes: `${cluster.done ? 'non-prioritary-row' : ''}`,
                     datasets: {
                         workout: cluster.workout_id
                     }
@@ -115,20 +116,39 @@ const loadClusters = async () => {
                     document.querySelector('input[name=updateWeight]').value = cluster.weight
                     openModal('editClusterModal')
                 })
+                optionsList.appendChild(optionsEdit)
+
+
+                const clusterStatusProps = !cluster.done ? {
+                    icon: CHECK_ICON, text: 'Marcar (hecho)'
+                } : {
+                    icon: CHECK_ICON, text: 'Marcar (pendiente)'
+                }
+
+                const optionsMarkAsDone = createDialogDropDownItem(clusterStatusProps)
+                optionsMarkAsDone.addEventListener('click', async () => {
+
+                    await updateCluster({
+                        clusterId: cluster.id,
+                        props: {
+                            done: !cluster.done
+                        }
+                    })
+
+                    loadClusters()
+
+                })
+                optionsList.appendChild(optionsMarkAsDone)
 
                 const optionsDelete = createDialogDropDownItem({ icon: TRASH_ICON, text: 'Eliminar' })
                 optionsDelete.addEventListener('click', () => {
                     openModal('deleteClusterModal')
                     document.querySelector('input[name=clusterDeleteId').value = cluster.id
                 })
-
-
-                optionsList.appendChild(optionsEdit)
                 optionsList.appendChild(optionsDelete)
 
+
                 optionsDiv.appendChild(optionsList)
-
-
                 parentOptionsDiv.appendChild(optionsButton)
                 parentOptionsDiv.appendChild(optionsDiv)
 
