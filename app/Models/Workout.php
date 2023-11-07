@@ -40,6 +40,11 @@ class Workout extends Model
 
     public function getCompletitionAttribute(){
         $total = $this->clusters()->count();
+
+        if($total == 0){
+            return 0;
+        }
+
         $done = $this->clusters()->where('done', true)->count();
         return round(($done / $total) * 100, 2);
     }
