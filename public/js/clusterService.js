@@ -24,7 +24,7 @@ export const createCluster = async ({ workout_id, excercise_id, sets, reps, weig
 
         const response = await fetch(`/api/clusters`, requestOptions)
         const data = await response.json()
-        if (response.status !== HTTP_STATUS.OK) throw new Error(data.message)
+        if (response.status !== HTTP_STATUS.CREATED) throw new Error(data.message)
         return { ...data, status: response.status }
     } catch (error) {
         throw new Error(error.message)
