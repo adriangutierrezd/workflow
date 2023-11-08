@@ -11,7 +11,9 @@ class UpdateClusterRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return auth()->check();
+        return 
+            auth()->check() 
+            && ($this->user_id === auth()->user()->id || $this->owner_id === auth()->user()->id);
     }
 
     /**
