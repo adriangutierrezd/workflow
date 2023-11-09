@@ -37,7 +37,7 @@ class WorkoutPolicy
      */
     public function update(User $user, Workout $workout): bool
     {
-        //
+        return $user->id === $workout->owner_id || $user->id === $workout->owner_id;
     }
 
     /**
@@ -45,7 +45,7 @@ class WorkoutPolicy
      */
     public function delete(User $user, Workout $workout): bool
     {
-        //
+        return $user->id === $workout->owner_id || $user->id === $workout->owner_id;
     }
 
     /**

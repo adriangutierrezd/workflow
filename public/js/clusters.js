@@ -21,7 +21,9 @@ const loadClusters = async () => {
     try {
 
         const table = document.getElementById('clusters-list')
-        $('#clusters-list').DataTable().destroy();
+        if ($.fn.DataTable.isDataTable('#clusters-list')) {
+            dataTable.clear().destroy();
+        }
 
         showTableLoading({ table })
 

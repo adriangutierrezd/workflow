@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained();
             $table->foreignId('owner_id')->constrained(table: 'users', indexName: 'cluster_owner_id');
-            $table->foreignId('workout_id')->constrained();
+            $table->foreignId('workout_id')->constrained()->onDelete('cascade');
             $table->foreignId('excercise_id')->constrained();
             $table->unsignedTinyInteger('sets');
             $table->unsignedSmallInteger('reps');
