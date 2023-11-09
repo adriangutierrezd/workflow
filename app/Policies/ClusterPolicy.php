@@ -7,13 +7,6 @@ use App\Models\Cluster;
 
 class ClusterPolicy
 {
-    /**
-     * Create a new policy instance.
-     */
-    public function __construct()
-    {
-        //
-    }
 
     public function update(User $user, Cluster $cluster): bool
     {
@@ -24,6 +17,5 @@ class ClusterPolicy
     {
         return $user->id === $cluster->owner_id || $user->id === $cluster->owner_id;
     }
-
 
 }

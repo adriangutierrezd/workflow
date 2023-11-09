@@ -4,29 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreWorkoutRequest;
 use App\Http\Requests\UpdateWorkoutRequest;
+use App\Models\Excercise;
 use App\Models\Workout;
-use Illuminate\Support\Facades\Auth;
 use App\Models\WorkoutStatus;
 use Illuminate\Database\QueryException;
-use App\Models\Excercise;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class WorkoutController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -45,34 +31,30 @@ class WorkoutController extends Controller
                 'status_id' => $draftStatus[0]->id
             ]);
         }catch(QueryException $e){
+            Log::error('Error storing workout: ' . $e->getMessage());
             return redirect()->back();
         }
 
         if(isJsonRequest()){
             return response()->json([
                 'message' => 'Workout created successfully',
-                'workout' => $newWorkout
+                'data' => $newWorkout
             ]);
         }
 
         return redirect()->route('workouts.edit', $newWorkout);
     }
 
+    /**
+     * Retrieves all workouts from the authenticated user
+     */
     public function get(){
         $workouts = Workout::where('user_id', Auth::user()->id)->with('status')->get();
 
         return response()->json([
             'data' => $workouts,
-            'msg' => 'Workouts retrieved successfully'
+            'message' => 'Workouts retrieved successfully'
         ]);
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Workout $workout)
-    {
-        //
     }
 
     /**
@@ -81,6 +63,7 @@ class WorkoutController extends Controller
     public function edit(Workout $workout)
     {
 
+        $this->authorize('view', $workout);
         $workoutStatuses = WorkoutStatus::all();
         $excercises = Excercise::all();
 
@@ -95,21 +78,15 @@ class WorkoutController extends Controller
         
         try{
 
-            $updateData = [
-                'title' => $request->title
-            ];
-
-            if($request->date){
-                $updateData['date'] = $request->date;
-            }
-
-            if($request->status_id){
-                $updateData['status_id'] = $request->status_id;
-            }
-
+            $updateData = $request->only(['title', 'date', 'status_id']);
+            $updateData = array_filter($updateData, function ($value) {
+                return $value !== null;
+            });
+            
             $workout->update($updateData);
 
         }catch(QueryException $e){
+            Log::error('Error updating workout: ' . $e->getMessage());
             if(isJsonRequest()){
                 return response()->json([
                     'message' => 'An error ocurred while updating the workout'
@@ -122,7 +99,8 @@ class WorkoutController extends Controller
 
         if(isJsonRequest()){
             return response()->json([
-                'message' => 'Workout updated successfully'
+                'message' => 'Workout updated successfully', 
+                'data' => $workout
             ]);
         }
 
@@ -138,6 +116,7 @@ class WorkoutController extends Controller
         try{
             $workout->delete();
         }catch(QueryException $e){
+            Log::error('Error deleting workout: ' . $e->getMessage());
             if(isJsonRequest()){
                 return response()->json([
                     'message' => 'An error ocurred while deleting the workout'
@@ -156,4 +135,5 @@ class WorkoutController extends Controller
         return redirect()->route('dashboard');
 
     }
+    
 }
