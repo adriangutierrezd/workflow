@@ -56,4 +56,12 @@ class User extends Authenticatable
         return $this->hasMany(Cluster::class);
     }
 
+    public function trainer(){
+        return $this->hasOneThrough(User::class, TrainerUser::class, 'user_id', 'id', 'id', 'trainer_id');
+    }
+
+    public function clients(){
+        return $this->hasManyThrough(User::class, TrainerUser::class, 'trainer_id', 'id', 'id', 'user_id');
+    }
+
 }
