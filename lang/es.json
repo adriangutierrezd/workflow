@@ -71,6 +71,8 @@
     "Previous": "Anterior",
     "Update your account's profile information and email address.": "Actualice la información de perfil y la dirección de correo electrónico de su cuenta.",
     "Are you sure you want to delete your account?": "¿Seguro que quieres eliminar tu cuenta?",
-    "Once your account is deleted, all of its resources and data will be permanently deleted. Please enter your password to confirm you would like to permanently delete your account.": "Una vez eliminada su cuenta, todos sus recursos y datos se borrarán permanentemente. Introduzca su contraseña para confirmar que desea eliminar definitivamente su cuenta."
-
+    "Once your account is deleted, all of its resources and data will be permanently deleted. Please enter your password to confirm you would like to permanently delete your account.": "Una vez eliminada su cuenta, todos sus recursos y datos se borrarán permanentemente. Introduzca su contraseña para confirmar que desea eliminar definitivamente su cuenta.",
+    "Clients": "Clientes",
+    "Your clients": "Tus clientes",
+    "Incorporation": "Incorporación"
 }

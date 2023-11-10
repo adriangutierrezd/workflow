@@ -1,6 +1,6 @@
 <div>
     <section class="container px-4 mx-auto">
-        <h2 class="text-lg font-medium text-gray-800 dark:text-white">Entrenamientos</h2>
+        <h2 class="card-heading-2">Entrenamientos</h2>
     
         <div class="flex flex-col mt-6">
             <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">

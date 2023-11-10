@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+/** Styles for headings **/
+
+.card-heading-2{
+    @apply text-lg font-medium text-gray-800 dark:text-white;
+}
+
 /** Styles for Datatable  */
 div.dataTables_filter{
     @apply flex justify-end items-center px-4 py-2;
