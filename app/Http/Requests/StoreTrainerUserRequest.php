@@ -11,7 +11,7 @@ class StoreTrainerUserRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return auth()->check() && $this->user()->can('store', $this->trainerUser);
     }
 
     /**
@@ -22,7 +22,8 @@ class StoreTrainerUserRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'user_id' => 'integer|exists:users,id',
+            'trainer_id' => 'integer|exists:users,id',
         ];
     }
 }

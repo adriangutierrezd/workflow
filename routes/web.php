@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\ClientController;
+use App\Http\Controllers\TrainerUserController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WorkoutController;
@@ -38,7 +38,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
 
-    Route::get('/clients', [ClientController::class, 'index'])->name('clients.index');
+    Route::get('/clients', [TrainerUserController::class, 'index'])->name('clients.index');
 
 
 });

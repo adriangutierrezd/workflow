@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WorkoutController;
 use App\Http\Controllers\ClusterController;
+use App\Http\Controllers\TrainerUserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +33,11 @@ Route::middleware(['auth:sanctum'])->group(function(){
     Route::post('/clusters', [ClusterController::class, 'store'])->name('clusters.store');
     Route::put('/clusters/{cluster}', [ClusterController::class, 'update'])->name('clusters.update');
     Route::delete('/clusters/{cluster}', [ClusterController::class, 'destroy'])->name('clusters.destroy');
+
+
+    Route::get('/trainer/clients/{user}', [TrainerUserController::class, 'getClientsByTrainer'])->name('trainer.clients');
+    Route::post('/trainer/clients', [TrainerUserController::class, 'store'])->name('trainer.clients.store');
+    Route::delete('/trainer/clients/{trainerUser}', [TrainerUserController::class, 'destroy'])->name('trainer.clients.destroy');
 
 
 });

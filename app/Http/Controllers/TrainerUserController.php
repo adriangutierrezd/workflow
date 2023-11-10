@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreTrainerUserRequest;
-use App\Http\Requests\UpdateTrainerUserRequest;
 use App\Models\TrainerUser;
+use Illuminate\Database\QueryException;
+use Illuminate\Support\Facades\Log;
+use App\Models\User;
+use Illuminate\Http\Request;
 
 class TrainerUserController extends Controller
 {
@@ -13,15 +16,7 @@ class TrainerUserController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        return view('trainer.clients');
     }
 
     /**
@@ -29,38 +24,73 @@ class TrainerUserController extends Controller
      */
     public function store(StoreTrainerUserRequest $request)
     {
-        //
+
+        try{
+            TrainerUser::create([
+                'user_id' => $request->user_id ?? auth()->user()->id,
+                'trainer_id' => $request->trainer_id
+            ]);
+        }catch(QueryException $e){
+            Log::error('Error storing trainer user relation: ' . $e->getMessage());
+            return response()->json([
+                'message' => 'Error creating relationship',
+                'data' => null
+            ], 500);
+        }
+
+        return response()->json([
+            'message' => 'Relationship created successfully',
+            'data' => null
+        ]);
+        
     }
 
     /**
-     * Display the specified resource.
+     * Retrieves all clients from the authenticated trainer
      */
-    public function show(TrainerUser $trainerUser)
-    {
-        //
-    }
+    public function getClientsByTrainer(Request $request, User $user){
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(TrainerUser $trainerUser)
-    {
-        //
-    }
+        if($request->user()->cannot('retrieve', [TrainerUser::class, $user])){
+            return response()->json([
+                'message' => 'Unauthorized',
+                'data' => null
+            ], 401);
+        }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateTrainerUserRequest $request, TrainerUser $trainerUser)
-    {
-        //
+        $clients = TrainerUser::where('trainer_id', $user->id)->get();
+        return response()->json([
+            'message' => 'Clients retrieved successfully',
+            'data' => $clients
+        ]);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(TrainerUser $trainerUser)
+    public function destroy(Request $request, TrainerUser $trainerUser)
     {
-        //
+
+        if($request->user()->cannot('destroy', [TrainerUser::class, $trainerUser])){
+            return response()->json([
+                'message' => 'Unauthorized',
+                'data' => null
+            ], 401);
+        }
+
+        try{
+            $trainerUser->delete();
+        }catch(QueryException $e){
+            Log::error('Error deleting trainer user relation: ' . $e->getMessage());
+            return response()->json([
+                'message' => 'Error deleting relationship',
+                'data' => null
+            ], 500);
+        }
+
+        return response()->json([
+            'message' => 'Relationship deleted successfully',
+            'data' => null
+        ]);
     }
+
 }
