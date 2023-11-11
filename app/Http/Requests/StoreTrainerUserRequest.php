@@ -11,7 +11,7 @@ class StoreTrainerUserRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return auth()->check() && $this->user()->can('store', $this->trainerUser);
+        return auth()->check() && $this->user()->can('store', [TrainerUser::class, $this->user()]);
     }
 
     /**

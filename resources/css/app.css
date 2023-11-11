@@ -14,7 +14,7 @@ div.dataTables_filter{
 }
 
 div.dataTables_filter > label > input {
-    @apply  my-2 border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm;
+    @apply  text-black my-2 border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm;
 }
 
 div.dataTables_paginate{
@@ -110,4 +110,10 @@ div.dataTables_length{
 /** Styles for tables **/
 .non-prioritary-row > td{
     @apply text-gray-700;
+}
+
+/** Styles for select2 **/
+.select2{
+    width: 100% !important;
+    margin: 0.5rem 0rem;
 }

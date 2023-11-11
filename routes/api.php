@@ -39,5 +39,6 @@ Route::middleware(['auth:sanctum'])->group(function(){
     Route::post('/trainer/clients', [TrainerUserController::class, 'store'])->name('trainer.clients.store');
     Route::delete('/trainer/clients/{trainerUser}', [TrainerUserController::class, 'destroy'])->name('trainer.clients.destroy');
 
+    Route::get('/trainer/possible-clients/{search?}', [TrainerUserController::class, 'getPossibleClients'])->name('trainer.possible-clients');
 
 });

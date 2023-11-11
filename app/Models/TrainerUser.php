@@ -14,4 +14,17 @@ class TrainerUser extends Model
         'trainer_id'
     ];
 
+     public function getCreatedAtAttribute($value)
+    {
+        return \Carbon\Carbon::parse($value)->format('d/m/Y');
+    }
+
+    public function trainer(){
+        return $this->belongsTo(User::class, 'id', 'trainer_id');
+    }
+
+    public function clients(){
+        return $this->hasMany(User::class, 'id', 'user_id');
+    }
+
 }

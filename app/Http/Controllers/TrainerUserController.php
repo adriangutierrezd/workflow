@@ -14,8 +14,13 @@ class TrainerUserController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
+
+        if($request->user()->cannot('view', [TrainerUser::class])){
+            abort(403);
+        }
+
         return view('trainer.clients');
     }
 
@@ -41,7 +46,7 @@ class TrainerUserController extends Controller
         return response()->json([
             'message' => 'Relationship created successfully',
             'data' => null
-        ]);
+        ], 201);
         
     }
 
@@ -57,7 +62,7 @@ class TrainerUserController extends Controller
             ], 401);
         }
 
-        $clients = TrainerUser::where('trainer_id', $user->id)->get();
+        $clients = TrainerUser::where('trainer_id', $user->id)->with('clients')->get();
         return response()->json([
             'message' => 'Clients retrieved successfully',
             'data' => $clients
@@ -91,6 +96,32 @@ class TrainerUserController extends Controller
             'message' => 'Relationship deleted successfully',
             'data' => null
         ]);
+    }
+
+    public function getPossibleClients(Request $request, $search = null){
+
+        if($request->user()->cannot('getPossibleClients', [TrainerUser::class])){
+            return response()->json([
+                'message' => 'Unauthorized',
+                'data' => null
+            ], 401);
+        }
+
+        $trainerUsers = TrainerUser::all();
+        $trainerUsersIds = $trainerUsers->pluck('user_id');
+        $trainerUsersIds[] = $request->user()->id;
+        $possibleClients = User::whereRelation('role', 'name', 'USER')
+            ->whereNotIn('id', $trainerUsersIds)
+            ->where('name', 'like', '%' . $search . '%')
+            ->select('id', 'name')
+            ->get();
+
+
+        return response()->json([
+            'message' => 'Possible clients retrieved successfully',
+            'data' => $possibleClients
+        ]);
+
     }
 
 }
