@@ -52,7 +52,7 @@
             x-transition:leave="transition duration-150 ease-in"
             x-transition:leave-start="translate-y-0 opacity-100 sm:scale-100"
             x-transition:leave-end="translate-y-4 opacity-0 sm:translate-y-0 sm:scale-95"
-            class="fixed inset-0 z-10 overflow-y-auto" 
+            class="dark-overlay" 
             aria-labelledby="modal-title" role="dialog" aria-modal="true"
         >
             <div class="flex items-end justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">

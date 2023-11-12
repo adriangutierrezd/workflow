@@ -49,7 +49,7 @@
                                     x-transition:leave="transition duration-150 ease-in"
                                     x-transition:leave-start="translate-y-0 opacity-100 sm:scale-100"
                                     x-transition:leave-end="translate-y-4 opacity-0 sm:translate-y-0 sm:scale-95"
-                                    class="fixed inset-0 z-10 overflow-y-auto" 
+                                    class="dark-overlay" 
                                     aria-labelledby="modal-title" role="dialog" aria-modal="true">
                                     <div class="flex items-end justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">
                                         <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
@@ -147,7 +147,7 @@
                                     x-transition:leave="transition duration-150 ease-in"
                                     x-transition:leave-start="translate-y-0 opacity-100 sm:scale-100"
                                     x-transition:leave-end="translate-y-4 opacity-0 sm:translate-y-0 sm:scale-95"
-                                    class="fixed inset-0 z-10 overflow-y-auto" 
+                                    class="dark-overlay" 
                                     aria-labelledby="modal-title" role="dialog" aria-modal="true"
                                 >
                                     <div class="flex items-end justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">
@@ -206,8 +206,8 @@
                             </div>
                             @endcan
 
-                            <div x-data="{ isDeleteModalOPen: false }" class="relative flex justify-center">
-                                <button @click="isDeleteModalOPen = true" 
+                            <div x-data="{ idDeleteModalOpen: false }" class="relative flex justify-center">
+                                <button @click="idDeleteModalOpen = true" 
                                 class="flex w-full items-center p-3 text-sm text-gray-600 capitalize 
                                 transition-colors duration-300 transform dark:text-gray-300 hover:bg-gray-100 
                                 dark:hover:bg-gray-700 dark:hover:text-white">
@@ -220,14 +220,15 @@
                                     </span>
                                 </button>
                             
-                                <div x-show="isDeleteModalOPen" 
+                                <div 
+                                    x-show="idDeleteModalOpen" 
                                     x-transition:enter="transition duration-300 ease-out"
                                     x-transition:enter-start="translate-y-4 opacity-0 sm:translate-y-0 sm:scale-95"
                                     x-transition:enter-end="translate-y-0 opacity-100 sm:scale-100"
                                     x-transition:leave="transition duration-150 ease-in"
                                     x-transition:leave-start="translate-y-0 opacity-100 sm:scale-100"
                                     x-transition:leave-end="translate-y-4 opacity-0 sm:translate-y-0 sm:scale-95"
-                                    class="fixed inset-0 z-10 overflow-y-auto" 
+                                    class="dark-overlay" 
                                     aria-labelledby="modal-title" role="dialog" aria-modal="true"
                                 >
                                     <div class="flex items-end justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">
@@ -252,7 +253,7 @@
                                             <div class="mt-5 flex items-center justify-center">
                             
                                                 <div class="sm:flex sm:items-center ">
-                                                    <button @click="isDeleteModalOPen = false" class="w-full px-4 py-2 mt-2 text-sm font-medium tracking-wide text-gray-700 capitalize transition-colors duration-300 transform border border-gray-200 rounded-md sm:mt-0 sm:w-auto sm:mx-2 dark:text-gray-200 dark:border-gray-700 dark:hover:bg-gray-800 hover:bg-gray-100 focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-40">
+                                                    <button @click="idDeleteModalOpen = false" class="w-full px-4 py-2 mt-2 text-sm font-medium tracking-wide text-gray-700 capitalize transition-colors duration-300 transform border border-gray-200 rounded-md sm:mt-0 sm:w-auto sm:mx-2 dark:text-gray-200 dark:border-gray-700 dark:hover:bg-gray-800 hover:bg-gray-100 focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-40">
                                                         Cancelar
                                                     </button>
                             
