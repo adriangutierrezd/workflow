@@ -35,6 +35,7 @@
 
                 <label class="form-label" for="excercise_id">Ejercicio</label>
                 <select 
+                id="excercise_selector"
                 class="form-field mb-4" 
                 name="excercise_id" required>
                     <option value="" selected disabled>Escoge un ejercicio</option>
