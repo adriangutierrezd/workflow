@@ -45,6 +45,8 @@ const loadWorkouts = async () => {
                     }
                 }
 
+                console.log(workout)
+
                 const tr = createRow(info)
                 table.children[1].appendChild(tr)
 
@@ -72,7 +74,7 @@ const loadWorkouts = async () => {
 
 
                 const tdPeople = createCell({
-                    text: `<img class="object-cover w-6 h-6 -mx-1 border-2 border-white rounded-full dark:border-gray-700 shrink-0" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=256&q=80" alt="">`,
+                    text: `<img class="object-cover w-6 h-6 -mx-1 border-2 border-white rounded-full dark:border-gray-700 shrink-0" src="${workout.user.image_url}" alt="">`,
                     html: true,
                     type: 'td'
                 })

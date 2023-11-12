@@ -64,12 +64,11 @@ class WorkoutController extends Controller
         if(Auth::user()->isTrainer()){
             $trainerUsers = TrainerUser::where('trainer_id', Auth::user()->id)->get();
             $userIds = $trainerUsers->pluck('user_id');
-
-        }else{
-            $userIds = [Auth::user()->id];
         }
 
-        $workouts = Workout::whereIn('user_id', $userIds)->with('status')->get();
+        $userIds[] = Auth::user()->id;
+
+        $workouts = Workout::whereIn('user_id', $userIds)->with('status', 'owner', 'user')->get();
 
         return response()->json([
             'data' => $workouts,

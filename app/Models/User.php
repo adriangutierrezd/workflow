@@ -22,6 +22,11 @@ class User extends Authenticatable
         'email',
         'role_id',
         'password',
+        'photo_path'
+    ];
+
+    protected $appends = [
+        'image_url'
     ];
 
     /**
@@ -66,6 +71,19 @@ class User extends Authenticatable
 
     public function isTrainer(){
         return $this->role->name === 'TRAINER';
+    }
+
+    public function getImageUrlAttribute(){
+        return $this->photo_path ? asset('storage/app/public/' . $this->photo_path) : $this->defaultProfilePhotoUrl();
+    }
+
+    private function defaultProfilePhotoUrl()
+    {
+        $name = trim(collect(explode(' ', $this->name))->map(function ($segment) {
+            return mb_substr($segment, 0, 1);
+        })->join(' '));
+
+        return 'https://ui-avatars.com/api/?name='.urlencode($name).'&color=7F9CF5&background=EBF4FF';
     }
 
 }
