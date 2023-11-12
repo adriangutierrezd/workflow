@@ -10,18 +10,28 @@ use App\Models\WorkoutStatus;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
+use App\Models\TrainerUser;
+use stdClass;
 
 class WorkoutController extends Controller
 {
+
+    public function index(){
+        if(Auth::user()->isTrainer()){
+            return view('trainer.workouts.index');
+        }else{
+            throw new \Error('Pendiente de implementación');
+        }
+    }
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(StoreWorkoutRequest $request)
     {
-        
+
         $draftStatus = WorkoutStatus::where('name', 'Borrador')->get();
-        
+
         try{
             $newWorkout = Workout::create([
                 'user_id' => Auth::user()->id,
@@ -49,7 +59,17 @@ class WorkoutController extends Controller
      * Retrieves all workouts from the authenticated user
      */
     public function get(){
-        $workouts = Workout::where('user_id', Auth::user()->id)->with('status')->get();
+
+        $userIds = [];
+        if(Auth::user()->isTrainer()){
+            $trainerUsers = TrainerUser::where('trainer_id', Auth::user()->id)->get();
+            $userIds = $trainerUsers->pluck('user_id');
+
+        }else{
+            $userIds = [Auth::user()->id];
+        }
+
+        $workouts = Workout::whereIn('user_id', $userIds)->with('status')->get();
 
         return response()->json([
             'data' => $workouts,
@@ -66,8 +86,18 @@ class WorkoutController extends Controller
         $this->authorize('view', $workout);
         $workoutStatuses = WorkoutStatus::all();
         $excercises = Excercise::all();
+        $clients = [];
+        if(Auth::user()->isTrainer()){
+            $clients = Auth::user()->clients->map(function($client){
+                $newClient = new stdClass();
+                $newClient->id = $client->id;
+                $newClient->name = $client->name;
+                return $newClient;
+            });
+        }
 
-        return view('workouts.edit', compact('workout', 'workoutStatuses', 'excercises'));
+
+        return view('workouts.edit', compact('workout', 'workoutStatuses', 'excercises', 'clients'));
     }
 
     /**
@@ -75,14 +105,14 @@ class WorkoutController extends Controller
      */
     public function update(UpdateWorkoutRequest $request, Workout $workout)
     {
-        
+
         try{
 
-            $updateData = $request->only(['title', 'date', 'status_id']);
+            $updateData = $request->only(['title', 'date', 'status_id', 'user_id']);
             $updateData = array_filter($updateData, function ($value) {
                 return $value !== null;
             });
-            
+
             $workout->update($updateData);
 
         }catch(QueryException $e){
@@ -99,7 +129,7 @@ class WorkoutController extends Controller
 
         if(isJsonRequest()){
             return response()->json([
-                'message' => 'Workout updated successfully', 
+                'message' => 'Workout updated successfully',
                 'data' => $workout
             ]);
         }
@@ -135,5 +165,5 @@ class WorkoutController extends Controller
         return redirect()->route('dashboard');
 
     }
-    
+
 }

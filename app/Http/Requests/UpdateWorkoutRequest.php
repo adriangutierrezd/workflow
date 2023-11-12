@@ -23,9 +23,10 @@ class UpdateWorkoutRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => 'required|string|max:20',
+            'title' => 'string|max:20',
             'date' => 'date',
-            'status_id' => 'integer|exists:workout_statuses,id' 
+            'status_id' => 'integer|exists:workout_statuses,id',
+            'user_id' => 'integer|exists:users,id'
         ];
     }
 }

@@ -10,7 +10,7 @@
             <div class="p-6 bg-white dark:bg-gray-800 shadow-sm sm:rounded-lg">
 
                 <div class="flex items-center justify-end">
-                    <div x-data="{ isOptionsOpen: false }" class="relative inline-block">
+                    <div x-data="{ isOptionsOpen: false }" @close-modal.camel="isOptionsOpen = false" id="optionsDropdown" class="relative inline-block">
                         <!-- Dropdown toggle button -->
                         <button @click="isOptionsOpen = !isOptionsOpen" class="relative z-10 block p-2 text-gray-700 bg-white border border-transparent rounded-md dark:text-white focus:border-blue-500 focus:ring-opacity-40 dark:focus:ring-opacity-40 focus:ring-blue-300 dark:focus:ring-blue-400 focus:ring dark:bg-gray-800 focus:outline-none">
                             <svg class="w-5 h-5 text-gray-800 dark:text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
@@ -124,8 +124,12 @@
                             </div>
 
 
-
-                            <a href="#" class="flex items-center p-3 text-sm text-gray-600 capitalize transition-colors duration-300 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white">
+                            @can('assign', $workout)
+                            <div x-data="{ isAsignModalOpen: false }" @close-modal.camel="isAsignModalOpen = false" @open-modal.camel="isAsignModalOpen = true" id="assignWorkoutModal" class="relative flex justify-center">
+                                <button @click="isAsignModalOpen = true" 
+                                class="flex w-full items-center p-3 text-sm text-gray-600 capitalize 
+                                transition-colors duration-300 transform dark:text-gray-300 hover:bg-gray-100 
+                                dark:hover:bg-gray-700 dark:hover:text-white">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
                                   </svg>
@@ -134,7 +138,73 @@
                                 <span class="mx-2">
                                     Asignar
                                 </span>
-                            </a>
+                                </button>
+                            
+                                <div x-show="isAsignModalOpen" 
+                                    x-transition:enter="transition duration-300 ease-out"
+                                    x-transition:enter-start="translate-y-4 opacity-0 sm:translate-y-0 sm:scale-95"
+                                    x-transition:enter-end="translate-y-0 opacity-100 sm:scale-100"
+                                    x-transition:leave="transition duration-150 ease-in"
+                                    x-transition:leave-start="translate-y-0 opacity-100 sm:scale-100"
+                                    x-transition:leave-end="translate-y-4 opacity-0 sm:translate-y-0 sm:scale-95"
+                                    class="fixed inset-0 z-10 overflow-y-auto" 
+                                    aria-labelledby="modal-title" role="dialog" aria-modal="true"
+                                >
+                                    <div class="flex items-end justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">
+                                        <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+                            
+                                        <form id="assignWorkoutForm" class="relative inline-block px-4 pt-5 pb-4 overflow-hidden text-left align-bottom transition-all transform bg-white rounded-lg shadow-xl rtl:text-right dark:bg-gray-900 sm:my-8 sm:align-middle sm:max-w-sm sm:w-full sm:p-6">
+                                            <div>
+                                                <div class="flex items-center justify-center text-white">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+                                                      </svg>
+                                                </div>
+                            
+                                                <div class="mt-2 text-center">
+                                                    <h3 class="text-lg font-medium leading-6 text-gray-800 capitalize dark:text-white" id="modal-title">Asignar entrenamiento</h3>
+                                                    <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">
+                                                        Al asignar el entrenamiento a esta persona, su antiguo propietario (en caso de haberlo) perderá los accesos.
+                                                    </p>
+                                                </div>
+                                            </div>
+
+                                            <input type="hidden" name="workout_id" id="workout_id" value="{{$workout->id}}">
+
+                                            <select 
+                                            id="client_selector"
+                                            class="form-field mb-4" 
+                                            name="user_id" required>
+                                                <option value="" selected disabled>Escoge un usuario</option>
+                                                @foreach($clients as $client)
+                                                    <option @php echo $workout->user_id === $client->id ? 'selected' : '' @endphp value="{{$client->id}}">{{$client->name}}</option>
+                                                @endforeach
+                                            </select>
+
+                                            </select>
+                            
+                                            <div class="mt-5 flex items-center justify-end">
+                            
+                                                <div class="sm:flex sm:items-center ">
+                                                    <button 
+                                                        type="button"
+                                                        @click="isAsignModalOpen = false" 
+                                                        class="outline-btn">
+                                                        Cancelar
+                                                    </button>
+                            
+                                                    <button 
+                                                        type="submit"
+                                                        class="primary-btn">
+                                                        Asignar
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            @endcan
 
                             <div x-data="{ isDeleteModalOPen: false }" class="relative flex justify-center">
                                 <button @click="isDeleteModalOPen = true" 
@@ -215,4 +285,11 @@
             </div>
         </div>
     </div>
+
+    @push('scripts')
+
+        @if(Auth::user()->isTrainer())
+            <script src="{{ asset('js/assign-workout.js') }}" defer type="module"></script>
+        @endif
+    @endpush
 </x-app-layout>

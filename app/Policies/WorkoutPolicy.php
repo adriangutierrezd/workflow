@@ -12,7 +12,8 @@ class WorkoutPolicy
      */
     public function view(User $user, Workout $workout): bool
     {
-        return $user->id === $workout->owner_id || $user->id === $workout->owner_id;
+        return true;
+        // return $user->id === $workout->owner_id || $user->id === $workout->owner_id;
     }
 
     /**
@@ -20,7 +21,8 @@ class WorkoutPolicy
      */
     public function update(User $user, Workout $workout): bool
     {
-        return $user->id === $workout->owner_id || $user->id === $workout->owner_id;
+        return true;
+        //return $user->id === $workout->owner_id || $user->id === $workout->owner_id;
     }
 
     /**
@@ -28,7 +30,13 @@ class WorkoutPolicy
      */
     public function delete(User $user, Workout $workout): bool
     {
-        return $user->id === $workout->owner_id || $user->id === $workout->owner_id;
+        return true;
+        //return $user->id === $workout->owner_id || $user->id === $workout->owner_id;
+    }
+
+    public function assign(User $user, Workout $workout): bool
+    {
+        return $user->role->name === 'ADMIN' || ($user->role->name === 'TRAINER' && $user->id === $workout->owner_id);
     }
 
 }

@@ -64,4 +64,8 @@ class User extends Authenticatable
         return $this->hasManyThrough(User::class, TrainerUser::class, 'trainer_id', 'id', 'id', 'user_id');
     }
 
+    public function isTrainer(){
+        return $this->role->name === 'TRAINER';
+    }
+
 }
