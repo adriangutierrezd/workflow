@@ -1,4 +1,4 @@
-import { DEFAULT_TD_CLASSES, SPINNER } from './constants.js'
+import { SPINNER } from './constants.js'
 
 export const createRow = (info) => {
 
@@ -27,8 +27,6 @@ export const createCell = (info) => {
     if (id !== undefined) cell.setAttribute('id', id)
     if (classes !== undefined) {
         cell.className = classes
-    } else {
-        cell.className = DEFAULT_TD_CLASSES
     }
     if (text !== undefined) {
         if (html === true) {

@@ -70,9 +70,6 @@ const loadWorkouts = async () => {
                 })
                 tr.appendChild(tdStatus)
 
-                console.log(workout.user)
-                console.log(workout.owner)
-
                 let avatarText = `<img class="object-cover w-6 h-6 -mx-1 border-2 border-white rounded-full dark:border-gray-700 shrink-0" src="${workout.user.image_url}" alt="">`
                 if(workout.user.id != workout.owner.id){
                     avatarText = `
@@ -81,8 +78,7 @@ const loadWorkouts = async () => {
                         <img class="object-cover w-6 h-6 -mx-1 rounded-full ring ring-white dark:ring-gray-900" src="${workout.owner.image_url}" alt="">
                     </div>
                     `
-                }
-                
+                }                
 
                 const tdPeople = createCell({
                     text: avatarText,

@@ -55,9 +55,10 @@ const loadClusters = async () => {
 
             clusters.forEach(cluster => {
 
+                const tdClasses = cluster.done ? 'line-through' : ''
+
                 const info = {
                     id: `cl_${cluster.id}`,
-                    classes: `${cluster.done ? 'non-prioritary-row' : ''}`,
                     datasets: {
                         workout: cluster.workout_id
                     }
@@ -80,6 +81,7 @@ const loadClusters = async () => {
 
                 const tdExcercise = createCell({
                     text: cluster.excercise.name,
+                    classes: tdClasses,
                     type: 'td'
                 })
                 tr.appendChild(tdExcercise)
@@ -87,12 +89,14 @@ const loadClusters = async () => {
 
                 const tdSets = createCell({
                     text: `${cluster.sets}x${cluster.reps}`,
+                    classes: tdClasses,
                     type: 'td'
                 })
                 tr.appendChild(tdSets)
 
                 const tdWeight = createCell({
                     text: `${cluster.weight} ${cluster.unit}`,
+                    classes: tdClasses,
                     type: 'td'
                 })
                 tr.appendChild(tdWeight)

@@ -10,7 +10,6 @@ use App\Models\WorkoutStatus;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
-use App\Models\TrainerUser;
 use stdClass;
 
 class WorkoutController extends Controller
@@ -60,15 +59,10 @@ class WorkoutController extends Controller
      */
     public function get(){
 
-        $userIds = [];
-        if(Auth::user()->isTrainer()){
-            $trainerUsers = TrainerUser::where('trainer_id', Auth::user()->id)->get();
-            $userIds = $trainerUsers->pluck('user_id');
-        }
-
-        $userIds[] = Auth::user()->id;
-
-        $workouts = Workout::whereIn('user_id', $userIds)->with('status', 'owner', 'user')->get();
+        $workouts = Workout::where('user_id', Auth::user()->id)
+        ->orWhere('owner_id', Auth::user()->id)
+        ->with('status', 'owner', 'user')
+        ->get();
 
         return response()->json([
             'data' => $workouts,

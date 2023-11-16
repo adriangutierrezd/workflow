@@ -8,6 +8,11 @@
     @apply text-lg font-medium text-gray-800 dark:text-white;
 }
 
+
+td{
+    @apply text-gray-800 dark:text-white px-4 py-4 text-sm font-medium whitespace-nowrap;
+}
+
 /** Styles for Datatable  */
 div.dataTables_filter{
     @apply flex justify-end items-center px-4 py-2;
@@ -107,10 +112,6 @@ div.dataTables_length{
     @apply px-1 py-1 text-gray-500 transition-colors duration-200 rounded-lg dark:text-gray-300 hover:bg-gray-100;
 }
 
-/** Styles for tables **/
-.non-prioritary-row > td{
-    @apply text-gray-700;
-}
 
 /** Styles for select2 **/
 .select2{
