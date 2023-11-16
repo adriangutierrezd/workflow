@@ -31,7 +31,7 @@ const loadClients = async () => {
             data.forEach(client => {
 
                 const { id, created_at: date, clients } = client
-                const { name, email, id: clientId } = clients[0]
+                const { name, email, id: clientId, image_url } = clients[0]
 
                 const info = {
                     id: `clt_${id}`,
@@ -46,7 +46,7 @@ const loadClients = async () => {
                 const nameDiv = document.createElement('div')
                 nameDiv.className = 'flex items-center space-x-3'
                 nameDiv.innerHTML = `
-                    <img class="object-cover w-6 h-6 -mx-1 border-2 border-white rounded-full dark:border-gray-700 shrink-0" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=256&q=80" alt="">
+                    <img class="object-cover w-6 h-6 -mx-1 border-2 border-white rounded-full dark:border-gray-700 shrink-0" src="${image_url}" alt="">
                     <span>${name}</span>
                 `
 
