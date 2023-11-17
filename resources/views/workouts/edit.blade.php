@@ -141,6 +141,8 @@
                                 </button>
                             
                                 <div x-show="isAsignModalOpen" 
+                                    x-cloak
+                                    @click.away="isAsignModalOpen = false"
                                     x-transition:enter="transition duration-300 ease-out"
                                     x-transition:enter-start="translate-y-4 opacity-0 sm:translate-y-0 sm:scale-95"
                                     x-transition:enter-end="translate-y-0 opacity-100 sm:scale-100"

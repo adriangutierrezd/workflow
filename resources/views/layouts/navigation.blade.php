@@ -24,6 +24,10 @@
                         <x-nav-link :href="route('workouts.index')" :active="request()->routeIs('workouts.index')">
                             {{ __('Workouts') }}
                         </x-nav-link>
+
+                        <x-nav-link :href="route('statics.index')" :active="request()->routeIs('statics.index')">
+                            {{ __('Statics') }}
+                        </x-nav-link>
                         
                     </x-nav-link>
                 </div>
