@@ -215,6 +215,7 @@ document.getElementById('newClusterForm').addEventListener('submit', async (even
     } catch (error) {
         alert(error.message)
     } finally {
+        $('select[name=excercise_id]').val(null).trigger('change');
         changeButtonStatus({ button: submitBtn, disabled: false, inner: submitBtnText })
     }
 
