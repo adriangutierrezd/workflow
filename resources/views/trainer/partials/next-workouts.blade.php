@@ -7,7 +7,25 @@
     <main>
 
         <ul class="flex sm:overflow-x-scroll text-sm font-medium text-center text-gray-500 dark:text-gray-400 mt-4">
-            <li class="mr-2 flex-items-center justify-center flex flex-col px-4 py-3 text-white bg-blue-600 rounded-lg active" aria-current="page">
+
+            @foreach($weekDays as $weekDay)
+                @if($weekDay['date'] == date('Y-m-d'))
+                    <li 
+                    class="mr-2 flex-items-center justify-center flex flex-col px-4 py-3 rounded-lg text-white bg-blue-600 active"
+                    >
+                        <span>{{ $weekDay['number'] }}</span>
+                        <span>{{ Str::limit(__($weekDay['name']), 3, '') }}</span>
+                    </li>
+                @else 
+                    <li 
+                    class="mr-2 flex-items-center justify-center flex flex-col px-4 py-3 rounded-lg text-gray-800 bg-gray-200 pointer"
+                    >
+                        <span>{{ $weekDay['number'] }}</span>
+                        <span>{{ Str::limit(__($weekDay['name']), 3, '') }}</span>
+                    </li>
+                @endif
+            @endforeach
+            {{-- <li class="mr-2 flex-items-center justify-center flex flex-col px-4 py-3 text-white bg-blue-600 rounded-lg active" aria-current="page">
                 <span>09</span>
                 <span>Lun</span>
             </li>
@@ -16,31 +34,8 @@
                 <span>10</span>
                 <span>Mar</span>
             </li>
-    
-            <li class="mr-2 flex-items-center justify-center flex flex-col px-4 py-3 text-gray-800 bg-gray-200 rounded-lg pointer">
-                <span>11</span>
-                <span>Mier</span>
-            </li>
-    
-            <li class="mr-2 flex-items-center justify-center flex flex-col px-4 py-3 text-gray-800 bg-gray-200 rounded-lg pointer">
-                <span>12</span>
-                <span>Jue</span>
-            </li>
-    
-            <li class="mr-2 flex-items-center justify-center flex flex-col px-4 py-3 text-gray-800 bg-gray-200 rounded-lg pointer">
-                <span>13</span>
-                <span>Vie</span>
-            </li>
-    
-            <li class="mr-2 flex-items-center justify-center flex flex-col px-4 py-3 text-gray-800 bg-gray-200 rounded-lg pointer">
-                <span>14</span>
-                <span>Sáb</span>
-            </li>
-    
-            <li class="mr-2 flex-items-center justify-center flex flex-col px-4 py-3 text-gray-800 bg-gray-200 rounded-lg pointer">
-                <span>15</span>
-                <span>Dom</span>
-            </li>
+     --}}
+            
     
         </ul>
 

@@ -37,6 +37,9 @@ const loadWorkouts = async () => {
 
         } else {
             workouts.data.forEach(workout => {
+
+                if(allowedStates !== undefined && allowedStates.length > 0 && !allowedStates.includes(workout.status.name)) return
+
                 const info = {
                     id: `wk_${workout.id}`,
                     datasets: {

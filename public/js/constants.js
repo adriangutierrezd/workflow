@@ -29,3 +29,10 @@ export const HTTP_STATUS = {
     INTERNAL_SERVER_ERROR: 500
 }
 
+export const WORKOUT_STATUSES_COLORS = {
+    'Borrador': '#6b7280',
+    'Pendiente': '#eab308',
+    'En progreso': '#3b82f6',
+    'Completado': '#10b981',
+    'Cancelado': '#ef4444'
+}

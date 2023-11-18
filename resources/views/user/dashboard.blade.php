@@ -10,10 +10,11 @@
             <div class="p-6 bg-white dark:bg-gray-800 shadow-sm sm:rounded-lg">
 
                 <div class="flex justify-end items-center">
-                    <x-new-workout-dialog />
+                    @include('workouts.partials.new-workout-dialog')
                 </div>
 
-                <x-workouts-table/>
+                @include('workouts.partials.workouts-table', ['title' => __('Workouts')])
+
 
             </div>
         </div>

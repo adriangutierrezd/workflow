@@ -356,9 +356,11 @@
                 </div>
 
                 <div class="flex items-center justify-end my-3">
-                    <x-new-cluster-dialog :workout="$workout" :excercises="$excercises"/>
+                    @include('clusters.partials.new-cluster-dialog', ['workout' => $workout, 'excercises' => $excercises])
+
                 </div>
-                <x-clusters-table :workout="$workout" :excercises="$excercises"/>
+
+                @include('clusters.partials.clusters-table', ['workout' => $workout, 'excercises' => $excercises])
 
             </div>
         </div>

@@ -14,10 +14,11 @@
 
 
                 <div class="flex justify-end items-center">
-                    <x-new-workout-dialog />
+                    @include('workouts.partials.new-workout-dialog')
                 </div>
 
-                <x-workouts-table />
+                @include('workouts.partials.workouts-table', ['title' => __('Workouts') ])
+
 
             </div>
         </div>
