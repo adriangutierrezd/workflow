@@ -39,11 +39,12 @@ class HomeController extends Controller
         ->where(function(Builder $query){
             $query->where('user_id', Auth::user()->id)
             ->orWhere('owner_id', Auth::user()->id);
-        })->with('status')->get();
+        })->with('status', 'user')->get();
 
         $workoutsByStatus = $workouts->groupBy('status.name');
+        $workoutsByDate = $workouts->groupBy('date');
         
-        return view('trainer.dashboard', compact('workouts', 'workoutsByStatus', 'weekDays'));
+        return view('trainer.dashboard', compact('workouts', 'workoutsByStatus', 'weekDays', 'workoutsByDate'));
 
     }
 

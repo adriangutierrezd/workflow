@@ -10,7 +10,7 @@
         @include('workouts.partials.workouts-data-abstract', ['workouts' => $workouts, 'workoutsByStatus' => $workoutsByStatus])
 
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 gap-4 mb-5">
-            @include('trainer.partials.workouts-state-pie', ['workoutsByStatus' => $workoutsByStatus])
+            @include('trainer.partials.workouts-state-pie', ['workoutsByStatus' => $workoutsByStatus, 'workoutsByDate' => $workoutsByDate])
             @include('trainer.partials.next-workouts', ['weekDays' => $weekDays])
         </div>
 

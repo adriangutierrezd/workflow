@@ -132,3 +132,13 @@ div.dataTables_length{
     background-color: rgba(0, 0, 0, 0.5); /* Ajusta el valor alpha según sea necesario */
     z-index: 1000; /* Ajusta el valor según sea necesario para asegurarte de que esté por encima del resto del contenido */
 }
+
+
+
+.week-day-active{
+    @apply text-white bg-blue-600;
+}
+
+.week-day-default{
+    @apply text-gray-800 bg-gray-200 cursor-pointer;
+}
