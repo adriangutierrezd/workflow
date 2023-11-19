@@ -85,6 +85,20 @@
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
+
+            @can('view', App\Models\TrainerUser::class)
+                <x-responsive-nav-link :href="route('clients.index')" :active="request()->routeIs('clients.index')">
+                    {{ __('Clients') }}
+                </x-responsive-nav-link>
+            @endcan
+
+            <x-responsive-nav-link :href="route('workouts.index')" :active="request()->routeIs('workouts.index')">
+                {{ __('Workouts') }}
+            </x-responsive-nav-link>
+
+            <x-responsive-nav-link :href="route('statics.index')" :active="request()->routeIs('statics.index')">
+                {{ __('Statics') }}
+            </x-responsive-nav-link>
         </div>
 
         <!-- Responsive Settings Options -->
