@@ -61,7 +61,7 @@ class WorkoutController extends Controller
     public function get($startDate = null, $endDate = null){
 
         $startDate = $startDate ? $startDate : date('Y-m-d', strtotime('monday this week'));
-        $endDate = $endDate ? $endDate : date('Y-m-d', strtotime('saturday this week'));
+        $endDate = $endDate ? $endDate : date('Y-m-d', strtotime('sunday this week'));
 
         $workouts = Workout::where(function(Builder $query){
             $query->where('user_id', Auth::user()->id)

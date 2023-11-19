@@ -1,8 +1,13 @@
 import { HTTP_STATUS } from './constants.js'
 
-export const getWorkouts = async () => {
+export const getWorkouts = async ({ startDate, endDate }) => {
     try {
-        const response = await fetch('/api/workouts')
+
+        let url = '/api/workouts'
+        if (startDate !== undefined) url = `${url}/${startDate}`
+        if (endDate !== undefined) url = `${url}/${endDate}`
+
+        const response = await fetch(url)
         const data = await response.json()
         return data
     } catch (error) {

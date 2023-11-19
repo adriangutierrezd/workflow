@@ -1,17 +1,19 @@
 import { getWorkouts, deleteWorkout } from './workoutService.js'
 import { createRow, createCell, createFullTd, showTableLoading } from './tablesService.js'
 import { generateProgressBar, changeButtonStatus, createDialogDroDownBtn, createDialogDropDownContainer, createDialogDropDownItem, closeModal, openModal } from './utils.js'
-import { OPTIONS_DOTS, TRASH_ICON, EDIT_ICON, SPINNER } from './constants.js'
+import { OPTIONS_DOTS, TRASH_ICON, EDIT_ICON, SPINNER, WEEK_DAYS, MONTHS } from './constants.js'
 
-const loadWorkouts = async () => {
+const loadWorkouts = async (props = {}) => {
     try {
+
+        const { startDate, endDate, allowedStates } = props
 
         const table = document.getElementById('workouts-list')
         $('#workouts-list').DataTable().destroy();
 
         showTableLoading({ table })
 
-        const workouts = await getWorkouts()
+        const workouts = await getWorkouts({ startDate, endDate })
 
         table.children[1].innerHTML = ''
 
@@ -38,7 +40,7 @@ const loadWorkouts = async () => {
         } else {
             workouts.data.forEach(workout => {
 
-                if(allowedStates !== undefined && allowedStates.length > 0 && !allowedStates.includes(workout.status.name)) return
+                if (allowedStates !== undefined && allowedStates.length > 0 && !allowedStates.includes(workout.status.name)) return
 
                 const info = {
                     id: `wk_${workout.id}`,
@@ -74,14 +76,14 @@ const loadWorkouts = async () => {
                 tr.appendChild(tdStatus)
 
                 let avatarText = `<img class="object-cover w-6 h-6 -mx-1 border-2 border-white rounded-full dark:border-gray-700 shrink-0" src="${workout.user.image_url}" alt="">`
-                if(workout.user.id != workout.owner.id){
+                if (workout.user.id != workout.owner.id) {
                     avatarText = `
                     <div class="flex items-center">
                         <img class="object-cover w-6 h-6 -mx-1 rounded-full ring ring-white dark:ring-gray-900" src="${workout.user.image_url}" alt="">
                         <img class="object-cover w-6 h-6 -mx-1 rounded-full ring ring-white dark:ring-gray-900" src="${workout.owner.image_url}" alt="">
                     </div>
                     `
-                }                
+                }
 
                 const tdPeople = createCell({
                     text: avatarText,
@@ -208,13 +210,43 @@ document.getElementById('deleteBtn').addEventListener('click', async (ev) => {
     }
 })
 
-window.addEventListener('DOMContentLoaded', () => {
-    loadWorkouts()
 
+document.getElementById('date-range-form')?.addEventListener('submit', (ev) => {
+    ev.preventDefault()
+    const dateFrom = document.querySelector('input[name="initialDate"]').value
+    const dateTo = document.querySelector('input[name="endDate"]').value
 
+    const initialDateObj = new Date(dateFrom)
+    const endDateObj = new Date(dateTo)
 
-    if(document.getElementById('date-range-form')){
-        console.log('Existe')
+    if (initialDateObj > endDateObj) {
+        alert('La fecha inicial no puede ser mayor a la fecha final')
+        return
     }
 
+    loadWorkouts({ startDate: dateFrom, endDate: dateTo })
+    changeDateRangeDropdownInfo(initialDateObj, endDateObj)
+    closeModal('dateRangeDropdown')
+
+})
+
+
+const changeDateRangeDropdownInfo = (startDate, endDate) => {
+    const infoContainer = document.getElementById('dateRangeDropdownInfo')
+
+    const startDay = startDate.getDate()
+    const startWeekDay = WEEK_DAYS[startDate.getDay()].substring(0, 3)
+    const startMonth = MONTHS[startDate.getMonth()].substring(0, 3)
+
+    const endDay = endDate.getDate()
+    const endWeekDay = WEEK_DAYS[endDate.getDay()].substring(0, 3)
+    const endMonth = MONTHS[endDate.getMonth()].substring(0, 3)
+
+    infoContainer.innerText = `${startWeekDay} ${startDay} ${startMonth} A ${endWeekDay} ${endDay} ${endMonth}`
+
+}
+
+
+window.addEventListener('DOMContentLoaded', () => {
+    loadWorkouts({ allowedStates: displayStatesJson })
 })

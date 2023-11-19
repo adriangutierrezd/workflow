@@ -1,18 +1,39 @@
-import { WORKOUT_STATUSES_COLORS } from './constants.js'
+import { WORKOUT_STATUSES_COLORS, EMPTY_BOX_ICON } from './constants.js'
 
 window.addEventListener("DOMContentLoaded", () => {
-    const chartContainer = document.getElementById('workouts-state-pie-container')
-    const chart = echarts.init(chartContainer)
 
+    const chartContainer = document.getElementById('workouts-state-pie-container')
     const formattedData = Object.keys(workoutsByStatus).map(key => {
         return {
             value: workoutsByStatus[key].length,
-            name: key, 
+            name: key,
             color: WORKOUT_STATUSES_COLORS[key]
         }
     })
 
-    console.log(formattedData)
+    if (formattedData.length === 0) {
+
+        const div = document.createElement('div')
+        div.className = 'flex flex-col items-center justify-center h-full py-4'
+
+        const iconSpan = document.createElement('span')
+        iconSpan.innerHTML = EMPTY_BOX_ICON
+
+        const noWksP = document.createElement('p')
+        noWksP.innerText = 'Añade algún entrenamiento para ver estadísticas'
+
+        div.appendChild(iconSpan)
+        div.appendChild(noWksP)
+
+        chartContainer.innerHTML = ''
+        chartContainer.appendChild(div)
+
+        return
+    }
+
+
+    const chart = echarts.init(chartContainer)
+    const labelColor = document.documentElement.classList.contains('dark') ? 'rgba(255, 255, 255, 0.5)' : 'rgba(60, 60, 60, 0.5)'
 
     chart.setOption({
         tooltip: {
@@ -20,13 +41,21 @@ window.addEventListener("DOMContentLoaded", () => {
         },
         legend: {
             bottom: '0%',
-            left: 'center'
+            left: 'center',
+            textStyle: {
+                color: labelColor,
+                fontSize: 12
+            }
         },
         series: [
             {
                 type: "pie",
                 data: formattedData,
-                color: formattedData.map(data => data.color) 
+                color: formattedData.map(data => data.color),
+                label: {
+                    color: labelColor,
+                    fontSize: 12
+                }
             },
         ],
         graph: {
