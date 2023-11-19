@@ -5,17 +5,15 @@
         </h2>
     </header>
 
-    <form id="theme-selector-form" class="my-3">
+    <form id="theme-selector-form" class="mt-3">
         <label for="theme_selector" class="form-label">Tema:</label>
-        <select name="theme_selector" id="theme_selector" required class="form-field mb-3">
+        <select name="theme_selector" id="theme_selector" required class="form-field mb-6">
             <option value="dark">{{__('Dark')}}</option>
             <option value="light">{{__('Light')}}</option>
             <option value="system">{{__('System preferences')}}</option>
         </select>
 
-        <button class="primary-btn">
-            {{__('Save')}}
-        </button>
+        <x-primary-button>{{ __('Save') }}</x-primary-button>
     </form>
 </section>
 @push('scripts')
