@@ -11,6 +11,7 @@ use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use stdClass;
+use Illuminate\Database\Eloquent\Builder;
 
 class WorkoutController extends Controller
 {
@@ -57,12 +58,19 @@ class WorkoutController extends Controller
     /**
      * Retrieves all workouts from the authenticated user
      */
-    public function get(){
+    public function get($startDate = null, $endDate = null){
 
-        $workouts = Workout::where('user_id', Auth::user()->id)
-        ->orWhere('owner_id', Auth::user()->id)
-        ->with('status', 'owner', 'user')
+        $startDate = $startDate ? $startDate : date('Y-m-d', strtotime('monday this week'));
+        $endDate = $endDate ? $endDate : date('Y-m-d', strtotime('saturday this week'));
+
+        $workouts = Workout::where(function(Builder $query){
+            $query->where('user_id', Auth::user()->id)
+            ->orWhere('owner_id', Auth::user()->id);
+        })
+        ->whereBetween('date', [$startDate, $endDate])
+        ->with('status', 'owner', 'user')        
         ->get();
+
 
         return response()->json([
             'data' => $workouts,

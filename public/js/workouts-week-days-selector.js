@@ -21,7 +21,6 @@ window.addEventListener('DOMContentLoaded', () => {
         element.setAttribute('aria-current', 'page')        
     }
     
-
     const loadDayData = (date) => {
         const workouts = workoutsByWeek[date] ?? []
         const container = document.getElementById('workouts-by-date-container')
@@ -32,7 +31,7 @@ window.addEventListener('DOMContentLoaded', () => {
             container.classList.add('justify-center')
 
             const div = document.createElement('div')
-            div.className = 'flex flex-col items-center justify-center'
+            div.className = 'flex flex-col items-center justify-center py-4'
 
             const iconSpan = document.createElement('span')
             iconSpan.innerHTML = EMPTY_BOX_ICON
@@ -70,7 +69,8 @@ window.addEventListener('DOMContentLoaded', () => {
                 userPhoto.src = user.image_url
     
                 const userName = document.createElement('span')
-                userName.innerText = 'John Doe'
+                userName.className = 'ml-2 text-gray-700'
+                userName.innerText = user.name
     
                 userDiv.appendChild(userPhoto)
                 userDiv.appendChild(userName)
@@ -79,7 +79,7 @@ window.addEventListener('DOMContentLoaded', () => {
                 infoDiv.appendChild(userDiv)
     
                 const link = document.createElement('a')
-                link.href = '#'
+                link.href = `/workout/edit/${id}`
                 link.innerHTML = EXTERNAL_LINK_ICON
                 link.className = 'hover:text-blue-600'
                 link.title = 'Ver entrenamiento'

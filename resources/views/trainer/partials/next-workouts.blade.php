@@ -5,7 +5,7 @@
     </header>
 
     <main class="flex flex-col h-full">
-        <ul class="flex sm:overflow-x-scroll text-sm font-medium text-center text-gray-500 dark:text-gray-400 mt-4" id="week-days-container">
+        <ul class="flex overflow-x-auto text-sm font-medium text-center text-gray-500 dark:text-gray-400 mt-4" id="week-days-container">
             @foreach($weekDays as $weekDay)
                 @if($weekDay['date'] == date('Y-m-d'))
                     <li 
@@ -26,7 +26,7 @@
             @endforeach
         </ul>
 
-        <section class="mt-2 flex flex-col justify-start grow" id="workouts-by-date-container">
+        <section class="mt-2 flex flex-col justify-start grow max-h-40 md:max-h-96 overflow-y-auto" id="workouts-by-date-container">
 
         </section>
 

@@ -210,4 +210,11 @@ document.getElementById('deleteBtn').addEventListener('click', async (ev) => {
 
 window.addEventListener('DOMContentLoaded', () => {
     loadWorkouts()
+
+
+
+    if(document.getElementById('date-range-form')){
+        console.log('Existe')
+    }
+
 })

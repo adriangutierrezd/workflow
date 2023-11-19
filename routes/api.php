@@ -24,7 +24,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::middleware(['auth:sanctum'])->group(function(){
 
-    Route::get('/workouts', [WorkoutController::class, 'get']);
+    Route::get('/workouts/{startDate?}/{endDate?}', [WorkoutController::class, 'get']);
     Route::post('/workouts', [WorkoutController::class, 'store'])->name('workouts.store');
     Route::delete('/workouts/{workout}', [WorkoutController::class, 'destroy'])->name('workouts.destroy');
     Route::put('/workouts/{workout}', [WorkoutController::class, 'update'])->name('workouts.update');
