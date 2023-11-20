@@ -89,7 +89,7 @@ const loadClients = async () => {
                 const optionsDelete = createDialogDropDownItem({ icon: TRASH_ICON, text: 'Eliminar' })
                 optionsDelete.addEventListener('click', () => {
                     document.getElementById('clientDeleteId').value = id
-                    openModal('deleteClientModal')
+                    openModal('delete-client-form-modal')
                 })
                 optionsList.appendChild(optionsDelete)
 
@@ -143,7 +143,7 @@ document.getElementById('newClientForm').addEventListener('submit', async (ev) =
     } catch (error) {
         alert(error.message)
     } finally {
-        closeModal('newClientModal')
+        closeModal('new-client-form-modal')
         loadClients()
     }
 
@@ -158,7 +158,7 @@ document.getElementById('deleteClientButton').addEventListener('click', async ()
     } catch (error) {
         alert(error.message)
     } finally {
-        closeModal('deleteClientModal')
+        closeModal('delete-client-form-modal')
         loadClients()
     }
 

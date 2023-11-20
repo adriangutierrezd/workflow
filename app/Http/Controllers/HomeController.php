@@ -11,20 +11,19 @@ class HomeController extends Controller
     
     public function index(){
 
+        $initialDate = date('Y-m-d', strtotime('monday this week'));
+        $endDate = date('Y-m-d', strtotime('sunday this week'));
+
         if (!Auth::user()->isTrainer()) {
-            return view('user.dashboard');
+            return view('user.dashboard', compact('initialDate', 'endDate'));
         }
 
-        $start_date = date('Y-m-d', strtotime('monday this week'));
-        $end_date = date('Y-m-d', strtotime('sunday this week'));
-
-
         $weekDays = [];
-        $startDate = date('Y-m-d', strtotime('monday this week'));
+        $initialDate = date('Y-m-d', strtotime('monday this week'));
         $endDate = date('Y-m-d', strtotime('sunday this week'));
         
         for($i = 0; $i < 7; $i++){
-            $newDate = date('Y-m-d', strtotime($startDate." + ".$i." days"));
+            $newDate = date('Y-m-d', strtotime($initialDate." + ".$i." days"));
             $dayData = [
                 'date' => $newDate,
                 'number' => date('d', strtotime($newDate)),
@@ -35,7 +34,7 @@ class HomeController extends Controller
         }
 
 
-        $workouts = Workout::whereBetween('date', [$start_date, $end_date])
+        $workouts = Workout::whereBetween('date', [$initialDate, $endDate])
         ->where(function(Builder $query){
             $query->where('user_id', Auth::user()->id)
             ->orWhere('owner_id', Auth::user()->id);
@@ -44,7 +43,7 @@ class HomeController extends Controller
         $workoutsByStatus = $workouts->groupBy('status.name');
         $workoutsByDate = $workouts->groupBy('date');
         
-        return view('trainer.dashboard', compact('workouts', 'workoutsByStatus', 'weekDays', 'workoutsByDate'));
+        return view('trainer.dashboard', compact('workouts', 'workoutsByStatus', 'weekDays', 'workoutsByDate', 'initialDate', 'endDate'));
 
     }
 

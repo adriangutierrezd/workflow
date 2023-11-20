@@ -90,5 +90,11 @@
     "Thursday": "Jueves",
     "Friday": "Viernes",
     "Saturday": "Sábado",
-    "Sunday": "Domingo"
+    "Sunday": "Domingo",
+    "Delete client": "Borrar cliente",
+    "If you continue, your relationship with the customer will be erased.": "Si continuas, tu relación con el cliente se borrará.",
+    "Delete": "Eliminar",
+    "Create": "Crear",
+    "Delete workout": "Borrar entrenamiento",
+    "If you continue, the training will be permanently deleted.": "Si continuas, el entrenamiento se borrará permanentemente."
 }

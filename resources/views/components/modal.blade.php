@@ -1,4 +1,5 @@
 @props([
+    'id',
     'name',
     'show' => false,
     'maxWidth' => '2xl'
@@ -15,6 +16,9 @@ $maxWidth = [
 @endphp
 
 <div
+    id="{{$id}}"
+    @close-modal.camel="$dispatch('close')"
+    @open-modal.camel="$dispatch('open-modal', '{{$name}}')"
     x-data="{
         show: @js($show),
         focusables() {

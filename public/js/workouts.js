@@ -256,8 +256,10 @@ const getDateDate = () => {
 
 window.addEventListener('DOMContentLoaded', () => {
 
-    const { initialDateObj, endDateObj } = getDateDate()
-    changeDateRangeDropdownInfo(initialDateObj, endDateObj)
+    if(document.getElementById('dateRangeDropdown')){
+        const { initialDateObj, endDateObj } = getDateDate()
+        changeDateRangeDropdownInfo(initialDateObj, endDateObj)    
+    }
 
     loadWorkouts({ allowedStates: displayStatesJson })
 })
