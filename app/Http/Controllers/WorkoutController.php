@@ -18,7 +18,11 @@ class WorkoutController extends Controller
 
     public function index(){
         if(Auth::user()->isTrainer()){
-            return view('trainer.workouts.index');
+
+            $initialDate = date('Y-m-d', strtotime('monday this week'));
+            $endDate = date('Y-m-d', strtotime('sunday this week'));
+            
+            return view('trainer.workouts.index', compact('initialDate', 'endDate'));
         }else{
             throw new \Error('Pendiente de implementación');
         }
@@ -59,7 +63,6 @@ class WorkoutController extends Controller
      * Retrieves all workouts from the authenticated user
      */
     public function get($startDate = null, $endDate = null){
-
         $startDate = $startDate ? $startDate : date('Y-m-d', strtotime('monday this week'));
         $endDate = $endDate ? $endDate : date('Y-m-d', strtotime('sunday this week'));
 

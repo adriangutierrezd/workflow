@@ -12,7 +12,7 @@
                     id="dateRangeDropdownBtn"
                     @click="isDateRangeOpen = !isDateRangeOpen"
                     class="relative font-semibold z-10 font-regular p-2 text-gray-700 bg-white border border-transparent rounded-md dark:text-white focus:border-blue-500 focus:ring-opacity-40 dark:focus:ring-opacity-40 focus:ring-blue-300 dark:focus:ring-blue-400 focus:ring dark:bg-gray-800 focus:outline-none flex space-x-2">
-                        <span id="dateRangeDropdownInfo">Lun 13 Nov A Dom 19 Nov</span>
+                        <span id="dateRangeDropdownInfo"></span>
                         <svg class="w-5 h-5 text-gray-800 dark:text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                             <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
                         </svg>
@@ -34,10 +34,10 @@
                         
                         <form method="GET" action="#" id="date-range-form">
                             <x-input-label for="initialDate" class="form-label font-semibold">De:</x-input-label>
-                            <input type="date" name="initialDate" class="form-field" value="2023-11-13">
+                            <input type="date" name="initialDate" class="form-field" value="{{ $initialDate }}">
 
                             <x-input-label for="endDate" class="form-label font-semibold">A:</x-input-label>
-                            <input type="date" name="endDate" class="form-field" value="2023-11-19">
+                            <input type="date" name="endDate" class="form-field" value="{{ $endDate }}">
 
                             <x-primary-button 
                             type="submit"

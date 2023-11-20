@@ -213,11 +213,8 @@ document.getElementById('deleteBtn').addEventListener('click', async (ev) => {
 
 document.getElementById('date-range-form')?.addEventListener('submit', (ev) => {
     ev.preventDefault()
-    const dateFrom = document.querySelector('input[name="initialDate"]').value
-    const dateTo = document.querySelector('input[name="endDate"]').value
 
-    const initialDateObj = new Date(dateFrom)
-    const endDateObj = new Date(dateTo)
+    const { dateFrom, dateTo, initialDateObj, endDateObj } = getDateDate()
 
     if (initialDateObj > endDateObj) {
         alert('La fecha inicial no puede ser mayor a la fecha final')
@@ -246,7 +243,21 @@ const changeDateRangeDropdownInfo = (startDate, endDate) => {
 
 }
 
+const getDateDate = () => {
+    const dateFrom = document.querySelector('input[name="initialDate"]').value
+    const dateTo = document.querySelector('input[name="endDate"]').value
+
+    const initialDateObj = new Date(dateFrom)
+    const endDateObj = new Date(dateTo)
+
+    return { dateFrom, dateTo, initialDateObj, endDateObj }
+}
+
 
 window.addEventListener('DOMContentLoaded', () => {
+
+    const { initialDateObj, endDateObj } = getDateDate()
+    changeDateRangeDropdownInfo(initialDateObj, endDateObj)
+
     loadWorkouts({ allowedStates: displayStatesJson })
 })
