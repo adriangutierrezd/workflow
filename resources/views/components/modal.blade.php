@@ -16,7 +16,7 @@ $maxWidth = [
 @endphp
 
 <div
-    id="{{$id}}"
+    @if(isset($id)) id="{{ $id }}" @endif
     @close-modal.camel="$dispatch('close')"
     @open-modal.camel="$dispatch('open-modal', '{{$name}}')"
     x-data="{
