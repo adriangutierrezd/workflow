@@ -13,7 +13,7 @@ document.getElementById('assignWorkoutForm').addEventListener('submit', async (e
         const client_id = document.getElementById('client_selector').value
         await updateWorkout({ workoutId: workout_id, props: { user_id: client_id } })
         closeModal('optionsDropdown')
-        closeModal('assignWorkoutModal')
+        closeModal('assign-workout-form-modal')
     } catch (error) {
         alert(error.message)
     }

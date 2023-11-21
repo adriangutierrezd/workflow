@@ -96,5 +96,14 @@
     "Delete": "Eliminar",
     "Create": "Crear",
     "Delete workout": "Borrar entrenamiento",
-    "If you continue, the training will be permanently deleted.": "Si continuas, el entrenamiento se borrará permanentemente."
+    "If you continue, the training will be permanently deleted.": "Si continuas, el entrenamiento se borrará permanentemente.",
+    "Properties": "Propiedades",
+    "Workout properties": "Propiedades del entrenamiento",
+    "Update": "Actualizar",
+    "Assign": "Asignar",
+    "Assign workout": "Asignar entrenamiento",
+    "By assigning the training to this person, the former owner (if any) will lose access.": "Al asignar el entrenamiento a esta persona, su antiguo propietario (en caso de haberlo) perderá los accesos.",
+    "Remove assignment": "Eliminar asignación",
+    "If you continue, the assigned user will lose access to this training.": "Si continuas, el usuario asignado perderá acceso a este entrenamiento",
+    "": ""
 }
