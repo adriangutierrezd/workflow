@@ -207,7 +207,7 @@ document.getElementById('newClusterForm').addEventListener('submit', async (even
         if (status === HTTP_STATUS.CREATED) {
             loadClusters()
             document.getElementById('newClusterForm').reset()
-            closeModal('newClusterModal')
+            closeModal('new-cluster-form-modal')
         } else {
             alert(message)
         }
