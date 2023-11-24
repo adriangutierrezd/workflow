@@ -7,6 +7,7 @@ use App\Http\Controllers\WorkoutController;
 use App\Http\Controllers\ClusterController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\StaticsController;
+use App\Http\Controllers\MailController;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,5 +47,8 @@ Route::middleware('auth')->group(function () {
 
 
 });
+
+
+Route::post('send-contact-form', [MailController::class, 'sendContactForm'])->name('mail.contact-form');
 
 require __DIR__.'/auth.php';

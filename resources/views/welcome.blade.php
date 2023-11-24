@@ -151,16 +151,18 @@
                         {{__('Do you have any questions?')}}
                     </h2>
 
-                    <form action="#" method="POST" class="grid grid-cols-1 md:grid-cols-2 mt-6 gap-4">
+                    <form action="{{route('mail.contact-form')}}" x-data="{ submitting: false }" @submit="submitting = true" method="POST" id="demo-form" class="grid grid-cols-1 md:grid-cols-2 mt-6 gap-4">
+
+                        @csrf
 
                         <div>
                             <x-input-label class="font-semibold capitalize">{{__('Name')}}</x-input-label>
-                            <x-text-input type="text" class="w-full" required minLength="3"/>
+                            <x-text-input type="text" name="name" class="w-full" required minLength="3"/>
                         </div>
     
                         <div>
                             <x-input-label class="font-semibold capitalize">{{__('email')}}</x-input-label>
-                            <x-text-input type="email" class="w-full" required/>
+                            <x-text-input type="email" name="email" class="w-full" required/>
                         </div>
     
                         <div class="md:col-span-2">
@@ -168,8 +170,9 @@
                             <textarea name="message" class="w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-blue-500 dark:focus:border-blue-600 focus:ring-blue-500 dark:focus:ring-blue-600 rounded-md shadow-sm" cols="30" rows="5"></textarea>    
                         </div>
     
-                        <button class="w-full md:col-span-2 p-3 text-sm tracking-wider text-white uppercase transition-colors duration-300 transform bg-blue-600 rounded-lg lg:w-auto hover:bg-blue-500 focus:outline-none focus:bg-blue-500">{{__('Send')}}</button>
-    
+                        <button 
+                            :disabled="submitting"
+                            class="w-full md:col-span-2 p-3 text-sm tracking-wider text-white uppercase transition-colors duration-300 transform bg-blue-600 rounded-lg lg:w-auto hover:bg-blue-500 focus:outline-none focus:bg-blue-500">{{__('Send')}}</button>
                     </form>
 
                 </div>
