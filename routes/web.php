@@ -30,6 +30,7 @@ Route::get('/dashboard', [HomeController::class, 'index'])->middleware(['auth', 
 Route::middleware('auth')->group(function () {
 
     Route::get('/workouts', [WorkoutController::class, 'index'])->name('workouts.index');
+    Route::post('/workouts', [WorkoutController::class, 'store'])->name('workouts.store');
     Route::get('/workout/edit/{workout}', [WorkoutController::class, 'edit'])->name('workouts.edit');
     Route::put('/workouts/{workout}', [WorkoutController::class, 'update'])->name('workouts.update');
     Route::delete('/workouts/{workout}', [WorkoutController::class, 'destroy'])->name('workouts.destroy');

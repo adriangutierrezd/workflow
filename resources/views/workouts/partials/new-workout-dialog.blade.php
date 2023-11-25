@@ -6,7 +6,7 @@
             <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
         </svg>
         
-        <span class="ml-2">Añadir entrenamiento</span>
+        <span class="ml-2">{{__('Add workout')}}</span>
     </x-primary-button>
 
     <x-modal name="new-client-form" id="new-client-form-modal" maxWidth="lg" focusable>
@@ -24,15 +24,13 @@
                     </div>
 
                     <div class="mt-2">
-                        <h3 class="text-lg text-center font-medium leading-6 text-gray-800 mb-4 capitalize dark:text-white" id="modal-title">Crear entrenamiento</h3>
+                        <h3 class="text-lg text-center font-medium leading-6 text-gray-800 mb-4 capitalize dark:text-white" id="modal-title">{{__('Add workout')}}</h3>
 
-                        <label class="dark:text-white" for="title">Título</label>
+                        <label class="dark:text-white" for="title">{{__('Title')}}</label>
                         <input type="text" name="title" id="title" class="block my-2 w-full border-gray-300 focus:border-blue-500 focus:ring-blue-500 rounded-md shadow-sm">
-                        @error('title')
-                            <p class="text-red-500 text-xs mt-1">{{$message}}</p>
-                        @enderror
+                        <x-input-error :messages="$errors->get('title')" class="mt-2" />
 
-                        <label class="dark:text-white" for="date">Fecha del entrenamiento</label>
+                        <label class="dark:text-white" for="date">{{__('Date')}}</label>
                         <input type="date" name="date" id="date" value="{{date('Y-m-d')}}" class="block mt-2 w-full border-gray-300 focus:border-blue-500 focus:ring-blue-500 rounded-md shadow-sm">
                     </div>
                 </div>

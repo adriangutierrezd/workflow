@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignId('status_id')->constrained(
                 table: 'workout_statuses', indexName: 'workout_status_id'
             );
-            $table->string('title', 20);
+            $table->string('title', 50);
             $table->text('note')->nullable();
             $table->date('date');
             $table->timestamps();

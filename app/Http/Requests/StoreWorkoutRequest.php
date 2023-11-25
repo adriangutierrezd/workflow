@@ -22,7 +22,7 @@ class StoreWorkoutRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => 'required|string|max:20',
+            'title' => 'required|string|max:50',
         ];
     }
 }
