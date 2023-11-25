@@ -20,6 +20,7 @@ class MailController extends Controller
         Mail::to($email)
             ->send(new ContactFormMailable($name, $email, $message));
 
+        return redirect()->back();
     }
 
 }

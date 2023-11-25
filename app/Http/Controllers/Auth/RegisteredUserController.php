@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
 use App\Models\Role;
+use Illuminate\Validation\ValidationException;
 
 class RegisteredUserController extends Controller
 {
@@ -31,25 +32,29 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
-        ]);
-
-        $role = Role::where('name', 'USER')->first();
-
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'role_id' => $role->id,
-            'password' => Hash::make($request->password),
-        ]);
-
-        event(new Registered($user));
-
-        Auth::login($user);
-
-        return redirect(RouteServiceProvider::HOME);
+        try {
+            $request->validate([
+                'name' => ['required', 'string', 'max:255'],
+                'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
+                'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            ]);
+    
+            $role = Role::where('name', 'USER')->first();
+    
+            $user = User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'role_id' => $role->id,
+                'password' => Hash::make($request->password),
+            ]);
+    
+            event(new Registered($user));
+    
+            Auth::login($user);
+    
+            return redirect(RouteServiceProvider::HOME);
+        } catch (ValidationException $e) {
+            return redirect()->back()->withErrors($e->validator->errors())->withInput();
+        }
     }
 }
