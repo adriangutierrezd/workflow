@@ -27,11 +27,11 @@
                         <h3 class="text-lg text-center font-medium leading-6 text-gray-800 mb-4 capitalize dark:text-white" id="modal-title">{{__('Add workout')}}</h3>
 
                         <label class="dark:text-white" for="title">{{__('Title')}}</label>
-                        <input type="text" name="title" id="title" class="block my-2 w-full border-gray-300 focus:border-blue-500 focus:ring-blue-500 rounded-md shadow-sm">
+                        <x-text-input type="text" maxlength="50" name="title" id="title" class="block w-full mb-3" required maxLength="50" />
                         <x-input-error :messages="$errors->get('title')" class="mt-2" />
 
                         <label class="dark:text-white" for="date">{{__('Date')}}</label>
-                        <input type="date" name="date" id="date" value="{{date('Y-m-d')}}" class="block mt-2 w-full border-gray-300 focus:border-blue-500 focus:ring-blue-500 rounded-md shadow-sm">
+                        <x-text-input type="date" value="{{date('Y-m-d')}}"  name="date" id="date" class="block w-full mb-3" required />
                     </div>
                 </div>
 

@@ -130,22 +130,25 @@
                 @csrf
                 @method('PUT')
                 <div>
-                    <label class="text-gray-700 dark:text-gray-200" for="title">Título</label>
-                    <input id="title" name="title" type="text" value="{{ $workout->title }}" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
+                    <label class="text-gray-700 dark:text-gray-200" for="title">{{__('Title')}}</label>
+                    <x-text-input type="text" maxlength="50" name="title" id="title" value="{{ $workout->title }}" class="block w-full mb-3" required maxLength="50" />
+                    <x-input-error :messages="$errors->get('title')" class="mt-2" />
                 </div>
 
                 <div>
-                    <label class="text-gray-700 dark:text-gray-200" for="date">Fecha</label>
-                    <input id="date" name="date" type="date" value="{{ $workout->date }}" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
+                    <label class="text-gray-700 dark:text-gray-200" for="date">{{__('Date')}}</label>
+                    <x-text-input type="date" value="{{ $workout->date }}" name="date" id="date" class="block w-full mb-3" required />
+                    <x-input-error :messages="$errors->get('date')" class="mt-2" />
                 </div>
 
                 <div>
-                    <label class="text-gray-700 dark:text-gray-200" for="status">Estado</label>
+                    <label class="text-gray-700 dark:text-gray-200" for="status">{{__('State')}}</label>
                     <select name="status_id" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
                         @foreach ($workoutStatuses as $item)
                             <option @php echo $workout->status->id === $item->id ? 'selected' : '' @endphp value="{{ $item->id }}">{{ $item->name }}</option>
                         @endforeach
                     </select>
+                    <x-input-error :messages="$errors->get('status_id')" class="mt-2" />
                 </div>
 
                 <div class="mt-6 flex justify-end">
@@ -189,7 +192,7 @@
                 id="client_selector"
                 class="form-field my-4" 
                 name="user_id" required>
-                    <option value="" selected disabled>Escoge un usuario</option>
+                    <option value="" selected disabled>{{__('Pick an user')}}</option>
                     @foreach($clients as $client)
                         <option @php echo $workout->user_id === $client->id ? 'selected' : '' @endphp value="{{$client->id}}">{{$client->name}}</option>
                     @endforeach
