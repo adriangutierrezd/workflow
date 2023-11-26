@@ -7,9 +7,9 @@
                 </svg>  
             </div>    
 
-            <h3 class="font-semibold text-xl">{{ count($workouts) }}</h3>
+            <h3 class="font-semibold text-xl" data-label="planned-workouts">{{ count($workouts) }}</h3>
         </div>
-        <p class="my-2">Entrenamientos planificados</p>
+        <p class="my-2">{{__('Planned workouts')}}</p>
         {{-- 
         <span class="flex items-center justify-start space-x-2">
             <p>+18%</p>
@@ -25,7 +25,7 @@
                 </svg>   
             </div>    
 
-            <h3 class="font-semibold text-xl">
+            <h3 class="font-semibold text-xl" data-label="completed-workouts">
                 @isset($workoutsByStatus['Completado'])
                     {{ count($workoutsByStatus['Completado']) }}
                 @else
@@ -33,7 +33,7 @@
                 @endisset
             </h3>
         </div>
-        <p class="my-2">Entrenamientos finalizados</p>
+        <p class="my-2">{{__('Completed workouts')}}</p>
         {{-- <span class="flex items-center justify-start space-x-2">
             <p>-3 %</p>
             <p class="text-gray-600">frente a la semana pasada</p>
@@ -48,7 +48,7 @@
                 </svg>
             </div>    
 
-            <h3 class="font-semibold text-xl">
+            <h3 class="font-semibold text-xl" data-label="cancelled-workouts">
                 @isset($workoutsByStatus['Cancelado'])
                     {{ count($workoutsByStatus['Cancelado']) }}
                 @else
@@ -56,7 +56,7 @@
                 @endisset
             </h3>
         </div>
-        <p class="my-2">Entrenamientos cancelados</p>
+        <p class="my-2">{{__('Cancelled workouts')}}</p>
         {{-- <span class="flex items-center justify-start space-x-2">
             <p>+ 4%</p>
             <p class="text-gray-600">frente a la semana pasada</p>

@@ -19,9 +19,6 @@ class HomeController extends Controller
         }
 
         $weekDays = [];
-        $initialDate = date('Y-m-d', strtotime('monday this week'));
-        $endDate = date('Y-m-d', strtotime('sunday this week'));
-        
         for($i = 0; $i < 7; $i++){
             $newDate = date('Y-m-d', strtotime($initialDate." + ".$i." days"));
             $dayData = [

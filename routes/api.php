@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WorkoutController;
 use App\Http\Controllers\ClusterController;
+use App\Http\Controllers\StaticsController;
 use App\Http\Controllers\TrainerUserController;
 
 /*
@@ -40,5 +41,7 @@ Route::middleware(['auth:sanctum'])->group(function(){
     Route::delete('/trainer/clients/{trainerUser}', [TrainerUserController::class, 'destroy'])->name('trainer.clients.destroy');
 
     Route::get('/trainer/possible-clients/{search?}', [TrainerUserController::class, 'getPossibleClients'])->name('trainer.possible-clients');
+
+    Route::get('statics-workout-abstract/{user}/{initialDate?}/{endDate?}', [StaticsController::class, 'getWorkoutsAbstract'])->name('statics.workouts-abstract');
 
 });

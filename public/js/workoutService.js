@@ -57,3 +57,20 @@ export const updateWorkout = async ({ workoutId, props }) => {
         throw new Error(error.message)
     }
 }
+
+export const getWorkoutsAbstract = async ({ userId, startDate, endDate }) => {
+
+    try {
+
+        let url = `/api/statics-workout-abstract/${userId}`
+        if (startDate !== undefined) url = `${url}/${startDate}`
+        if (endDate !== undefined) url = `${url}/${endDate}`
+
+        const response = await fetch(url)
+        const data = await response.json()
+        return data
+    } catch (error) {
+        throw new Error(error.message)
+    }
+
+}

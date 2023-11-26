@@ -127,7 +127,10 @@
     "Title": "Título",
     "Date": "Fecha",
     "State": "Estado",
-    "Pick an user": "Escoge un usuario"
+    "Pick an user": "Escoge un usuario",
+    "Planned workouts": "Entrenamientos planificados",
+    "Completed workouts": "Entrenamientos completados",
+    "Cancelled workouts": "Entrenamientos cancelados"
 
 
 
