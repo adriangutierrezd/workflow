@@ -13,7 +13,8 @@ class StaticsController extends Controller
     public function index(Request $request, ?User $user = null){
         $initialDate = date('Y-m-d', strtotime('monday this week'));
         $endDate = date('Y-m-d', strtotime('sunday this week'));
-        return view('statics.index', compact('initialDate', 'endDate'));
+        $targetUser = !$user ? $request->user()->id : $user->id;
+        return view('statics.index', compact('initialDate', 'endDate', 'targetUser'));
     }
 
     public function getWorkoutsAbstract(Request $request, User $user, string $initialDate = null, string $endDate = null): JsonResponse
@@ -31,7 +32,7 @@ class StaticsController extends Controller
         ->with('status', 'user')
         ->get();
 
-         $workoutsByStatus = $workouts->groupBy('status.name');
+        $workoutsByStatus = $workouts->groupBy('status.name');
 
         return response()->json([
             'message' => 'Data fetched',

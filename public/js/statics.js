@@ -1,5 +1,6 @@
 import { getWorkoutsAbstract } from './workoutService.js'
 import { WEEK_DAYS, MONTHS } from './constants.js'
+import { closeModal } from './utils.js'
 
 window.addEventListener('DOMContentLoaded', async () => {
 
@@ -9,14 +10,24 @@ window.addEventListener('DOMContentLoaded', async () => {
     }
 
 
-    const { data } = await getWorkoutsAbstract({ userId: 1 })
+    const { data } = await getWorkoutsAbstract({ userId: User })
     updateWorkoutsAbstractData({ workoutsData: data })
 
 })
 
+document.getElementById('date-range-form').addEventListener('submit', async(ev) => {
+
+    ev.preventDefault()
+    closeModal('dateRangeDropdown')
+
+    const { dateFrom, dateTo, initialDateObj, endDateObj } = getDateDate()
+
+    const { data } = await getWorkoutsAbstract({ userId: User, startDate: dateFrom, endDate: dateTo })
+    updateWorkoutsAbstractData({ workoutsData: data })
+    changeDateRangeDropdownInfo(initialDateObj, endDateObj)
+})
 
 const updateWorkoutsAbstractData = ({ workoutsData }) => {
-    console.log(workoutsData)
     const plannedLabel = document.querySelector('[data-label="planned-workouts"]')
     const completedLabel = document.querySelector('[data-label="completed-workouts"]')
     const cancelledLabel = document.querySelector('[data-label="cancelled-workouts"]')

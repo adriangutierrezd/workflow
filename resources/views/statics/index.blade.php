@@ -61,6 +61,9 @@
     </div>
 
     @push('scripts')
+        <script>
+            window.User = @json($targetUser)
+        </script>
         <script type="module" src="{{asset('js/statics.js')}}" defer></script>
     @endpush
 </x-app-layout>
