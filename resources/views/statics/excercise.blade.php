@@ -1,11 +1,12 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Statics') }}
+            {{__('Statics of')}} {{ $excercise->name }}
         </h2>
     </x-slot>
 
-    <div class="pt-4">
+
+    <div class="py-4">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8  flex items-center justify-end">
             <div x-data="{ isDateRangeOpen: false }" @close-modal.camel="isDateRangeOpen = false" id="dateRangeDropdown" class="relative inline-block">
 
@@ -54,20 +55,44 @@
 
     </div>
 
-    <div class="py-6">
-        @include('workouts.partials.workouts-data-abstract', ['workouts' => [], 'workoutsByStatus' => []])
+    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mb-5">
+        <article class="p-4 bg-white dark:text-white dark:bg-gray-800 shadow-sm sm:rounded-lg">
+            <header>
+                <h2 class="card-heading-2">{{__('Weight lifted per workout')}}</h2>
+            </header>
+            <main id="average-weight-by-session-container" style="width:100%;height:350px">
+
+            </main>
+        </article>
     </div>
 
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mb-5">
-        <div class="p-4 bg-white dark:text-white dark:bg-gray-800 shadow-sm sm:rounded-lg">
-            @include('statics.partials.statics-per-excercise')
-        </div>
+        <article class="p-4 bg-white dark:text-white dark:bg-gray-800 shadow-sm sm:rounded-lg">
+            <header>
+                <h2 class="card-heading-2">{{__('Average weight lifted per rep')}}</h2>
+            </header>
+            <main id="average-weight-by-rep-container" style="width:100%;height:350px">
+                
+            </main>
+        </article>
+    </div>
+
+    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mb-5">
+        <article class="p-4 bg-white dark:text-white dark:bg-gray-800 shadow-sm sm:rounded-lg">
+            <header>
+                <h2 class="card-heading-2">{{__('Usage of exercise')}}</h2>
+            </header>
+            <main id="excercise-usage-container" style="width:100%;height:350px">
+                
+            </main>
+        </article>
     </div>
 
     @push('scripts')
         <script>
-            window.User = @json($targetUser)
+            window.User = @json($targetUser);
+            window.Excercise = @json($excercise);
         </script>
-        <script type="module" src="{{asset('js/statics.js')}}" defer></script>
+        <script type="module" defer src="{{asset('js/staticsExcercise.js')}}"></script>
     @endpush
 </x-app-layout>

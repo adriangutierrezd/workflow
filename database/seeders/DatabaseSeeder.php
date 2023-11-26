@@ -2,10 +2,8 @@
 
 namespace Database\Seeders;
 
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Database\Seeders\ExcerciseSeeder;
-
+use App\Models\Excercise;
 use App\Models\Role;
 use App\Models\WorkoutStatus;
 
@@ -27,10 +25,25 @@ class DatabaseSeeder extends Seeder
         WorkoutStatus::factory()->create(['name' => 'Completado']);
         WorkoutStatus::factory()->create(['name' => 'Cancelado']);
 
-        $this->call([
-            ExcerciseSeeder::class
-        ]);
-
+        Excercise::factory()->create(['name' => 'Press de banca']);
+        Excercise::factory()->create(['name' => 'Sentadillas']);
+        Excercise::factory()->create(['name' => 'Peso muerto']);
+        Excercise::factory()->create(['name' => 'Dominadas']);
+        Excercise::factory()->create(['name' => 'Curl de bíceps con barra']);
+        Excercise::factory()->create(['name' => 'Extensiones de tríceps con polea']);
+        Excercise::factory()->create(['name' => 'Press militar']);
+        Excercise::factory()->create(['name' => 'Prensa de piernas']);
+        Excercise::factory()->create(['name' => 'Remo con barra']);
+        Excercise::factory()->create(['name' => 'Elevaciones laterales con mancuernas']);
+        Excercise::factory()->create(['name' => 'Crunch abdominal']);
+        Excercise::factory()->create(['name' => 'Hip Thrust']);
+        Excercise::factory()->create(['name' => 'Elevación de talones']);
+        Excercise::factory()->create(['name' => 'Pull-over con mancuerna']);
+        Excercise::factory()->create(['name' => 'Patada de glúteos']);
+        Excercise::factory()->create(['name' => 'Encogimientos de hombros']);
+        Excercise::factory()->create(['name' => 'Abdominales en polea alta']);
+        Excercise::factory()->create(['name' => 'Máquina de aductores']);
+        Excercise::factory()->create(['name' => 'Máquina de abductores']);
 
     }
 }

@@ -130,7 +130,17 @@
     "Pick an user": "Escoge un usuario",
     "Planned workouts": "Entrenamientos planificados",
     "Completed workouts": "Entrenamientos completados",
-    "Cancelled workouts": "Entrenamientos cancelados"
+    "Cancelled workouts": "Entrenamientos cancelados",
+    "Statics by excercise": "Estadísticas por ejercicio",
+    "Excercise": "Ejercicio",
+    "Sets": "Series",
+    "Reps": "Repeticiones",
+    "Average weight": "Peso medio",
+    "Edit": "Editar",
+    "Statics of": "Estadísticas de",
+    "Weight lifted per workout": "Peso levantado por sesión",
+    "Average weight lifted per rep": "Peso medio levantado por repetición",
+    "Usage of exercise": "Uso del ejercicio"
 
 
 

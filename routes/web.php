@@ -45,6 +45,8 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/clients', [TrainerUserController::class, 'index'])->name('clients.index');
     Route::get('/statics/{user?}', [StaticsController::class, 'index'])->name('statics.index');
+    Route::get('/excercise-statics/{excercise}/{user?}/{initialDate?}/{endDate?}', [StaticsController::class, 'excerciseStatics'])->name('statics.excercise');
+
 
 
 });

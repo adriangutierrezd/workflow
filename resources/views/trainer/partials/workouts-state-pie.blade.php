@@ -4,9 +4,7 @@
         <h2 class="card-heading-2">Entrenamientos por estado</h2>
     </header>
 
-    <main id="workouts-state-pie-container" style="width:100%;height:400px;">
 
-    </main>
 
 </div>
 @push('scripts')

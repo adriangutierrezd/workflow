@@ -43,5 +43,9 @@ Route::middleware(['auth:sanctum'])->group(function(){
     Route::get('/trainer/possible-clients/{search?}', [TrainerUserController::class, 'getPossibleClients'])->name('trainer.possible-clients');
 
     Route::get('statics-workout-abstract/{user}/{initialDate?}/{endDate?}', [StaticsController::class, 'getWorkoutsAbstract'])->name('statics.workouts-abstract');
+    Route::get('statics-per-excercise/{user}/{initialDate?}/{endDate?}', [StaticsController::class, 'staticsPerExcercise'])->name('statics.per-excercise');
+    Route::get('statics-excercise-data/{excercise}/{user}/{initialDate?}/{endDate?}', [StaticsController::class, 'getExcerciseData'])->name('statics.excercise-data');
+    Route::get('statics-excercise-usage/{excercise}/{user}/{initialDate?}/{endDate?}', [StaticsController::class, 'getExcerciseUsage'])->name('statics.excercise-usage');
+
 
 });

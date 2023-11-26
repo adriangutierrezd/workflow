@@ -60,6 +60,7 @@
                         {{ __('Delete') }}
                     </x-danger-button>
                 </div>
+            </div>
 
         </div>
 
