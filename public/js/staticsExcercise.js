@@ -61,7 +61,13 @@ const loadWeightPerWorkout = (weightByWorkout) => {
         {
             data: weightByWorkout.map(w => w.weight),
             type: 'line',
-            smooth: true
+            smooth: true,
+            lineStyle: {   
+                color: '#3b82f6' 
+            },
+            itemStyle: {   
+                color: '#3b82f6' 
+            }
         }
         ]
     });
@@ -86,7 +92,13 @@ const loadAverageWeightByRep = (weightByRep) => {
         {
             data: weightByRep.map(w => w.weight),
             type: 'line',
-            smooth: true
+            smooth: true,
+            lineStyle: {   
+                color: '#3b82f6' 
+            },
+            itemStyle: {   
+                color: '#3b82f6' 
+            }
         }
         ]
     });
@@ -149,7 +161,10 @@ const loadExcerciseUsageHeatmap = (usageData) => {
             calculable: true,
             orient: 'horizontal',
             left: 'center',
-            bottom: '15%'
+            bottom: '15%',
+            inRange: {
+                color: ['#eff6ff', '#1e40af']
+            }
         },
         series: [
         {
