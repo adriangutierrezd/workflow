@@ -17,15 +17,10 @@ class WorkoutController extends Controller
 {
 
     public function index(){
-        if(Auth::user()->isTrainer()){
-
-            $initialDate = date('Y-m-d', strtotime('monday this week'));
-            $endDate = date('Y-m-d', strtotime('sunday this week'));
-            
-            return view('trainer.workouts.index', compact('initialDate', 'endDate'));
-        }else{
-            throw new \Error('Pendiente de implementación');
-        }
+        $initialDate = date('Y-m-d', strtotime('monday this week'));
+        $endDate = date('Y-m-d', strtotime('sunday this week'));
+        
+        return view('trainer.workouts.index', compact('initialDate', 'endDate'));
     }
 
     /**
