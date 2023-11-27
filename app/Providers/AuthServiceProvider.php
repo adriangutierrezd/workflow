@@ -1,10 +1,9 @@
 <?php
 
 namespace App\Providers;
+use Illuminate\Support\Facades\Gate;
+use App\Models\User;
 
-// use Illuminate\Support\Facades\Gate;
-
-use App\Models\TrainerUser;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
 class AuthServiceProvider extends ServiceProvider
@@ -23,6 +22,18 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        Gate::define('see-statics', function (User $user, ?User $targetUser = null): bool 
+        {
+            
+            $isSameUser = !$targetUser || $user->id == $targetUser->id;
+
+            if($isSameUser) return true;
+
+            $trainerId = $targetUser->trainer?->id;
+            $isHisTrainer = $trainerId !== null && $trainerId == $user->id; 
+                
+            return $isHisTrainer;
+        });
+
     }
 }

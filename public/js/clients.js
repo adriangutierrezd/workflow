@@ -1,7 +1,7 @@
 import { getClients, createClient, deleteClient, getPossibleClients } from './clientsService.js'
 import { showTableLoading, createFullTd, createRow, createCell } from './tablesService.js';
 import { changeButtonStatus, createDialogDroDownBtn, createDialogDropDownContainer, createDialogDropDownItem, closeModal, openModal } from './utils.js'
-import { OPTIONS_DOTS, TRASH_ICON, EDIT_ICON, SPINNER } from './constants.js'
+import { OPTIONS_DOTS, TRASH_ICON, EDIT_ICON, SPINNER, EXTERNAL_LINK_ICON } from './constants.js'
 
 const loadClients = async () => {
     try {
@@ -85,6 +85,18 @@ const loadClients = async () => {
                 optionsEdit.setAttribute('role', 'menuitem')
                 optionsEdit.setAttribute('tabindex', '-1')
                 optionsEdit.setAttribute('id', 'options-menu-0')
+
+
+                const optionsEditLink = document.createElement('a')
+                optionsEditLink.className = 'flex items-center'
+                optionsEditLink.setAttribute('href', `/statics/${clientId}`)
+                optionsEditLink.innerHTML = EXTERNAL_LINK_ICON
+                const optionsEditLinkText = document.createElement('span')
+                optionsEditLinkText.className = 'ml-2'
+                optionsEditLinkText.innerText = 'Estadísticas'
+                optionsEditLink.appendChild(optionsEditLinkText)
+                optionsEdit.appendChild(optionsEditLink)
+                optionsList.appendChild(optionsEdit)
 
                 const optionsDelete = createDialogDropDownItem({ icon: TRASH_ICON, text: 'Eliminar' })
                 optionsDelete.addEventListener('click', () => {

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Workout;
 use App\Models\Excercise;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\DB;
 use DateTime;
@@ -16,6 +17,11 @@ class StaticsController extends Controller
 {
 
     public function index(Request $request, ?User $user = null){
+
+        if(!Gate::allows('see-statics', $user)){
+            abort(403);
+        }
+            
         $initialDate = date('Y-m-d', strtotime('monday this week'));
         $endDate = date('Y-m-d', strtotime('sunday this week'));
         $targetUser = !$user ? $request->user()->id : $user->id;
@@ -25,11 +31,14 @@ class StaticsController extends Controller
     public function excerciseStatics(Request $request, Excercise $excercise, ?User $user, string $initialDate = null, string $endDate = null)
     {
 
-        $initialTimeStr = !$initialDate ? 'monday this week' : $initialDate;
-        $endTimeStr = !$endDate ? 'sunday this week' : $endDate;
+        if(!Gate::allows('see-statics', $user)){
+            abort(403);
+        }
 
-        $initialDate = date('Y-m-d', strtotime($initialTimeStr));
-        $endDate = date('Y-m-d', strtotime($endTimeStr));
+        if(!$initialDate || !$endDate){
+            $initialDate = date('Y-m-d', strtotime('last monday', strtotime('-3 months')));
+            $endDate = date('Y-m-d', strtotime('sunday this week'));
+        }
 
         $targetUser = !$user ? $request->user()->id : $user->id;
 
@@ -38,6 +47,10 @@ class StaticsController extends Controller
 
     public function getWorkoutsAbstract(Request $request, User $user, string $initialDate = null, string $endDate = null): JsonResponse
     {
+
+        if(!Gate::allows('see-statics', $user)){
+            return response()->json(['error' => 'Not authorized.'], 403);
+        }
 
         $initialTimeStr = !$initialDate ? 'monday this week' : $initialDate;
         $endTimeStr = !$endDate ? 'sunday this week' : $endDate;
@@ -67,6 +80,10 @@ class StaticsController extends Controller
 
     public function staticsPerExcercise(Request $request, User $user, string $initialDate = null, string $endDate = null): JsonResponse
     {
+        if(!Gate::allows('see-statics', $user)){
+            return response()->json(['error' => 'Not authorized.'], 403);
+        }
+
         $initialTimeStr = !$initialDate ? 'monday this week' : $initialDate;
         $endTimeStr = !$endDate ? 'sunday this week' : $endDate;
 
@@ -100,6 +117,10 @@ class StaticsController extends Controller
 
     public function getExcerciseData(Request $request, Excercise $excercise, User $user, string $initialDate = null, string $endDate = null): JsonResponse
     {
+        if(!Gate::allows('see-statics', $user)){
+            return response()->json(['error' => 'Not authorized.'], 403);
+        }
+
         $initialTimeStr = !$initialDate ? 'monday this week' : $initialDate;
         $endTimeStr = !$endDate ? 'sunday this week' : $endDate;
 
@@ -131,6 +152,10 @@ class StaticsController extends Controller
 
     public function getExcerciseUsage(Request $request, Excercise $excercise, User $user, string $initialDate = null, string $endDate = null): JsonResponse
     {
+        if(!Gate::allows('see-statics', $user)){
+            return response()->json(['error' => 'Not authorized.'], 403);
+        }
+
         $initialTimeStr = !$initialDate ? 'monday this week' : $initialDate;
         $endTimeStr = !$endDate ? 'sunday this week' : $endDate;
 

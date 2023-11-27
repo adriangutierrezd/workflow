@@ -25,9 +25,13 @@
                             {{ __('Workouts') }}
                         </x-nav-link>
 
-                        <x-nav-link :href="route('statics.index')" :active="request()->routeIs('statics.index')">
-                            {{ __('Statics') }}
-                        </x-nav-link>
+                        @if(!Auth::user()->isTrainer())
+                            <x-nav-link :href="route('statics.index')" :active="request()->routeIs('statics.index')">
+                                {{ __('Statics') }}
+                            </x-nav-link>
+                        @endif
+
+
                         
                     </x-nav-link>
                 </div>
@@ -96,9 +100,12 @@
                 {{ __('Workouts') }}
             </x-responsive-nav-link>
 
-            <x-responsive-nav-link :href="route('statics.index')" :active="request()->routeIs('statics.index')">
-                {{ __('Statics') }}
-            </x-responsive-nav-link>
+            @if(!Auth::user()->isTrainer())
+                <x-responsive-nav-link :href="route('statics.index')" :active="request()->routeIs('statics.index')">
+                    {{ __('Statics') }}
+                </x-responsive-nav-link>
+            @endif
+
         </div>
 
         <!-- Responsive Settings Options -->
