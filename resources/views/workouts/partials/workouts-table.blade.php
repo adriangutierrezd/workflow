@@ -29,7 +29,7 @@
                     x-transition:leave="transition ease-in duration-100"
                     x-transition:leave-start="opacity-100 scale-100"
                     x-transition:leave-end="opacity-0 scale-90" 
-                    class="absolute right-0 z-20 w-48 p-4 mt-2 origin-top-right bg-white rounded-md shadow-xl dark:bg-gray-800">
+                    class="date-range-picker">
 
                         
                         <form method="GET" action="#" id="date-range-form">
@@ -42,7 +42,7 @@
                             <x-primary-button 
                             type="submit"
                             class="w-full mt-3 justify-center">
-                                Cargar
+                                {{__('Load')}}
                             </x-primary-button>
                         </form>
 
@@ -63,23 +63,23 @@
                             <thead class="bg-gray-50 dark:bg-gray-800">
                                 <tr>
                                     <th scope="col" class="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                                        Título
+                                        {{__('Title')}}
                                     </th>
     
                                     <th scope="col" class="px-12 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                                        Fecha
+                                        {{__('Date')}}
                                     </th>
     
                                     <th scope="col" class="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                                        Estado
+                                        {{__('State')}}
                                     </th>
     
-                                    <th scope="col" class="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">Personas</th>
+                                    <th scope="col" class="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">{{__('People')}}</th>
     
-                                    <th scope="col" class="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">Progreso</th>
+                                    <th scope="col" class="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">{{__('Progress')}}</th>
     
                                     <th scope="col" class="relative py-3.5 px-4">
-                                        <span class="sr-only">Edit</span>
+                                        <span class="sr-only">{{__('Edit')}}</span>
                                     </th>
                                 </tr>
                             </thead>

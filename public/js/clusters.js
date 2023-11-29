@@ -10,7 +10,7 @@ const getWorkoutId = () => {
 }
 
 const asignMainCheckAsMaster = () => {
-    document.getElementById('select_all').addEventListener('change', (ev) => {
+    document.getElementById('select_all')?.addEventListener('change', (ev) => {
         Array.from(document.getElementsByName('clusters[]')).forEach(checkBox => {
             checkBox.checked = ev.target.checked
         })
@@ -38,7 +38,7 @@ const loadClusters = async () => {
             noDataPh.innerText = 'No hay ejercicios registrados'
 
             const td = createFullTd({
-                colSpan: 5,
+                colSpan: 4,
                 innerHTML: noDataPh,
                 classes: 'p-2'
             })
@@ -67,17 +67,17 @@ const loadClusters = async () => {
                 const tr = createRow(info)
                 table.children[1].appendChild(tr)
 
-                const checkBoxSelect = document.createElement('input')
-                checkBoxSelect.type = 'checkbox'
-                checkBoxSelect.name = 'clusters[]'
-                checkBoxSelect.dataset.cluster = cluster.id
-                checkBoxSelect.className = 'form-checkbox'
-                const tdSelectCheckBox = createCell({
-                    text: checkBoxSelect,
-                    type: 'td',
-                    html: true
-                })
-                tr.appendChild(tdSelectCheckBox)
+                // const checkBoxSelect = document.createElement('input')
+                // checkBoxSelect.type = 'checkbox'
+                // checkBoxSelect.name = 'clusters[]'
+                // checkBoxSelect.dataset.cluster = cluster.id
+                // checkBoxSelect.className = 'form-checkbox'
+                // const tdSelectCheckBox = createCell({
+                //     text: checkBoxSelect,
+                //     type: 'td',
+                //     html: true
+                // })
+                // tr.appendChild(tdSelectCheckBox)
 
                 const tdExcercise = createCell({
                     text: cluster.excercise.name,

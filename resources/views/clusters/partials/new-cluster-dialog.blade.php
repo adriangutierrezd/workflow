@@ -16,26 +16,26 @@
 
                 <input type="hidden" name="workout_id" value="{{ $workout->id }}">
 
-                <label class="form-label" for="excercise_id">Ejercicio</label>
+                <label class="form-label" for="excercise_id">{{__('Excercise')}}</label>
                 <select 
                 id="excercise_selector"
                 class="form-field mb-4" 
                 name="excercise_id" required>
-                    <option value="" selected disabled>Escoge un ejercicio</option>
+                    <option value="" selected disabled>{{__('Pick an excercise')}}</option>
                     @foreach ($excercises as $excercise)
                         <option value="{{ $excercise->id }}">{{ $excercise->name }}</option>
                     @endforeach
                 </select>
 
-                <label class="form-label" for="sets">Series</label>
+                <label class="form-label" for="sets">{{__('Sets')}}</label>
                 <input type="number" step="1" min="1" max="255" name="sets"
                 class="form-field mb-4" required>
 
-                <label class="form-label" for="reps">Repeticiones</label>
+                <label class="form-label" for="reps">{{__('Reps')}}</label>
                 <input type="number" step="1" min="1" max="65535" name="reps"
                 class="form-field mb-4" required>
 
-                <label class="form-label" for="weight">Peso</label>
+                <label class="form-label" for="weight">{{__('Weight')}}</label>
                 <input type="number" step="0.1" min="0" max="99999.99" name="weight"
                 class="form-field mb-4" required>
 

@@ -150,3 +150,8 @@ div.dataTables_length{
 .week-day-default{
     @apply text-gray-800 bg-gray-200 cursor-pointer;
 }
+
+
+.date-range-picker{
+    @apply absolute right-0 z-20 w-4/5 sm:w-48 p-4 mt-2 origin-top-right bg-white rounded-md shadow-xl dark:bg-gray-800;
+}

@@ -384,8 +384,15 @@
     },
     "infoThousands": ".",
     "searchPlaceholder": "Buscar",
-    "No data found": "Sin datos"
-
+    "No data found": "Sin datos",
+    "Weight": "Peso",
+    "From": "De",
+    "To": "A",
+    "Load": "Cargar",
+    "People": "Personas",
+    "Progress": "Progreso",
+    "Pick an excercise": "Escoge un ejercicio",
+    "Add client": "Añadir cliente"
 
 
 }

@@ -31,7 +31,7 @@
                 x-transition:leave="transition ease-in duration-100"
                 x-transition:leave-start="opacity-100 scale-100"
                 x-transition:leave-end="opacity-0 scale-90" 
-                class="absolute right-0 z-20 w-48 p-4 mt-2 origin-top-right bg-white rounded-md shadow-xl dark:bg-gray-800">
+                class="date-range-picker">
         
                     <form method="GET" action="#" id="date-range-form">
                         <x-input-label for="initialDate" class="form-label font-semibold">De:</x-input-label>

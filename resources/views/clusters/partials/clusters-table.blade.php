@@ -1,6 +1,6 @@
 <div>
     <section class="container px-4 mx-auto">
-        <h2 class="card-heading-2">Entrenamientos</h2>
+        <h2 class="card-heading-2">{{__('Sets')}}</h2>
     
         <div class="flex flex-col mt-6">
             <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -10,24 +10,21 @@
                         <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700" id="clusters-list">
                             <thead class="bg-gray-50 dark:bg-gray-800">
                                 <tr>
+    
                                     <th scope="col" class="px-4 py-3.5 text-sm font-normal text-left text-gray-500 dark:text-gray-400">
-                                        <input type="checkbox" name="select_all" id="select_all" class="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-600">
+                                        {{__('Excercise')}}
                                     </th>
     
                                     <th scope="col" class="px-4 py-3.5 text-sm font-normal text-left text-gray-500 dark:text-gray-400">
-                                        Ejercicio
+                                        {{__('Sets')}}
                                     </th>
     
                                     <th scope="col" class="px-4 py-3.5 text-sm font-normal text-left text-gray-500 dark:text-gray-400">
-                                        Series
-                                    </th>
-    
-                                    <th scope="col" class="px-4 py-3.5 text-sm font-normal text-left text-gray-500 dark:text-gray-400">
-                                        Peso
+                                        {{__('Weight')}}
                                     </th>
     
                                     <th scope="col" class="relative py-3.5 px-4">
-                                        <span class="sr-only">Edit</span>
+                                        <span class="sr-only">{{__('Edit')}}</span>
                                     </th>
                                 </tr>
                             </thead>
