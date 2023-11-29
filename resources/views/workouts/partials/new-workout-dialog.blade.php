@@ -6,7 +6,7 @@
             <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
         </svg>
         
-        <span class="ml-2">{{__('Add workout')}}</span>
+        <span class="hidden md:block ml-2">{{__('Add workout')}}</span>
     </x-primary-button>
 
     <x-modal name="new-client-form" id="new-client-form-modal" maxWidth="lg" focusable>
