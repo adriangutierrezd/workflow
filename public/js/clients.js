@@ -132,10 +132,7 @@ const loadClients = async () => {
 
             window.dataTable = $('#clients-list').DataTable({
                 info: false,
-                language: {
-                    search: "_INPUT_",
-                    searchPlaceholder: "Buscar..."
-                }
+                language: translations
             })
 
         }

@@ -169,10 +169,7 @@ const loadWorkouts = async (props = {}) => {
 
             $('#workouts-list').DataTable({
                 info: false,
-                language: {
-                    search: "_INPUT_",
-                    searchPlaceholder: "Buscar..."
-                }
+                language: translations
             })
         }
 

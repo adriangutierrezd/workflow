@@ -23,7 +23,7 @@ div.dataTables_filter{
 }
 
 div.dataTables_filter > label > input {
-    @apply  text-black my-2 border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm;
+    @apply  text-black my-2 border-gray-300 focus:border-blue-500 focus:ring-blue-500 rounded-md shadow-sm;
 }
 
 div.dataTables_paginate{
@@ -48,6 +48,10 @@ div.dataTables_paginate > span > a.paginate_button{
 
 div.dataTables_length{
     @apply hidden;
+}
+
+.dataTables_empty{
+    @apply text-center;
 }
 
 

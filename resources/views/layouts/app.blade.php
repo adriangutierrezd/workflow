@@ -35,6 +35,10 @@
             }
           </script>
 
+          <script>
+            window.translations = @json($translations)
+          </script>
+
         @stack('scripts')
     </head>
     <body class="font-sans antialiased">

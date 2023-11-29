@@ -79,3 +79,10 @@ export const createDialogDroDownBtn = ({ icon }) => {
     optionsButton.setAttribute('type', 'button')
     return optionsButton
 }
+
+export const trans = ({ key, def }) => {
+
+    const substitute = def ?? key
+    return translations[key] ?? substitute
+
+}

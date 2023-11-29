@@ -1,6 +1,6 @@
 import { getWorkoutsAbstract } from './workoutService.js'
 import { staticsPerExcercise } from './staticsService.js'
-import { createDialogDroDownBtn, createDialogDropDownContainer, closeModal } from './utils.js'
+import { createDialogDroDownBtn, createDialogDropDownContainer, closeModal, trans } from './utils.js'
 import { showTableLoading, createFullTd, createRow, createCell } from './tablesService.js'
 import { OPTIONS_DOTS, EXTERNAL_LINK_ICON } from './constants.js'
 import { getDateRangeInfo, getDateDate } from './dateRange.js'
@@ -126,17 +126,14 @@ const handleStaticPerExcerciseUpdate = async ({props}) => {
         
         window.dataTable = $('#statics-per-excercise').DataTable({
             info: false,
-            language: {
-                search: "_INPUT_",
-                searchPlaceholder: "Buscar..."
-            }
+            language: translations
         })
 
 
     }else{
         const td = createFullTd({
             colSpan: table.children[0].children[0].children.length,
-            innerHTML: 'No data found',
+            innerHTML: trans({ key: 'No data found' }),
             classes: 'p-2 text-center'
         })
         const tr = createRow({})
