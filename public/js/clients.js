@@ -138,7 +138,12 @@ const loadClients = async () => {
         }
 
     } catch (error) {
-        alert(error.message)
+        Swal.fire({
+            title: 'Error!',
+            text: error.message,
+            icon: 'error',
+            confirmButtonText: trans({ key: 'Okey' })
+        })    
     }
 }
 
@@ -150,7 +155,12 @@ document.getElementById('newClientForm').addEventListener('submit', async (ev) =
     try {
         await createClient({ trainerId: User.id, client })
     } catch (error) {
-        alert(error.message)
+        Swal.fire({
+            title: 'Error!',
+            text: error.message,
+            icon: 'error',
+            confirmButtonText: trans({ key: 'Okey' })
+        })    
     } finally {
         closeModal('new-client-form-modal')
         loadClients()
@@ -165,7 +175,12 @@ document.getElementById('deleteClientButton').addEventListener('click', async ()
     try {
         await deleteClient({ clientTrainerId })
     } catch (error) {
-        alert(error.message)
+        Swal.fire({
+            title: 'Error!',
+            text: error.message,
+            icon: 'error',
+            confirmButtonText: trans({ key: 'Okey' })
+        })    
     } finally {
         closeModal('delete-client-form-modal')
         loadClients()

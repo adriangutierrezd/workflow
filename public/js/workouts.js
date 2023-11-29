@@ -1,6 +1,6 @@
 import { getWorkouts, deleteWorkout } from './workoutService.js'
 import { createRow, createCell, createFullTd, showTableLoading } from './tablesService.js'
-import { generateProgressBar, changeButtonStatus, createDialogDroDownBtn, createDialogDropDownContainer, createDialogDropDownItem, closeModal, openModal } from './utils.js'
+import { generateProgressBar, changeButtonStatus, createDialogDroDownBtn, createDialogDropDownContainer, createDialogDropDownItem, closeModal, openModal, trans } from './utils.js'
 import { OPTIONS_DOTS, TRASH_ICON, EDIT_ICON, SPINNER, WEEK_DAYS, MONTHS } from './constants.js'
 
 const loadWorkouts = async (props = {}) => {
@@ -193,7 +193,12 @@ document.getElementById('deleteBtn').addEventListener('click', async (ev) => {
         const workoutId = document.getElementById('workoutDeleteId').value
         await deleteWorkout(workoutId)
     } catch (error) {
-        alert(error.message)
+        Swal.fire({
+            title: 'Error!',
+            text: error.message,
+            icon: 'error',
+            confirmButtonText: trans({ key: 'Okey' })
+        })    
     } finally {
         closeModal('deleteWorkoutModal')
         setTimeout(() => {
@@ -214,7 +219,12 @@ document.getElementById('date-range-form')?.addEventListener('submit', (ev) => {
     const { dateFrom, dateTo, initialDateObj, endDateObj } = getDateDate()
 
     if (initialDateObj > endDateObj) {
-        alert('La fecha inicial no puede ser mayor a la fecha final')
+        Swal.fire({
+            title: 'Error!',
+            text: trans({ key: 'The start date cannot be greater than the end date.' }),
+            icon: 'error',
+            confirmButtonText: trans({ key: 'Okey' })
+        })
         return
     }
 

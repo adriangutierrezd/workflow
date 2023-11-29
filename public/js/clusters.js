@@ -181,7 +181,12 @@ const loadClusters = async () => {
         }
 
     } catch (error) {
-        alert(error.message)
+        Swal.fire({
+            title: 'Error!',
+            text: error.message,
+            icon: 'error',
+            confirmButtonText: trans({ key: 'Okey' })
+        })    
     }
 }
 
@@ -209,11 +214,21 @@ document.getElementById('newClusterForm').addEventListener('submit', async (even
             document.getElementById('newClusterForm').reset()
             closeModal('new-cluster-form-modal')
         } else {
-            alert(message)
+            Swal.fire({
+                title: 'Error!',
+                text: message,
+                icon: 'error',
+                confirmButtonText: trans({ key: 'Okey' })
+            })    
         }
 
     } catch (error) {
-        alert(error.message)
+        Swal.fire({
+            title: 'Error!',
+            text: error.message,
+            icon: 'error',
+            confirmButtonText: trans({ key: 'Okey' })
+        })    
     } finally {
         $('select[name=excercise_id]').val(null).trigger('change');
         changeButtonStatus({ button: submitBtn, disabled: false, inner: submitBtnText })
@@ -236,7 +251,12 @@ document.getElementById('deleteClusterBtn').addEventListener('click', async (eve
         const clusterId = document.getElementById('clusterDeleteId').value
         await deleteCluster(clusterId)
     } catch (error) {
-        alert(error.message)
+        Swal.fire({
+            title: 'Error!',
+            text: error.message,
+            icon: 'error',
+            confirmButtonText: trans({ key: 'Okey' })
+        })    
     } finally {
 
         closeModal('deleteClusterModal')
@@ -289,11 +309,21 @@ document.getElementById('updateClusterForm').addEventListener('submit', async (e
             loadClusters()
             closeModal('editClusterModal')
         } else {
-            alert(message)
+            Swal.fire({
+                title: 'Error!',
+                text: message,
+                icon: 'error',
+                confirmButtonText: trans({ key: 'Okey' })
+            })    
         }
 
     } catch (error) {
-        alert(error.message)
+        Swal.fire({
+            title: 'Error!',
+            text: error.message,
+            icon: 'error',
+            confirmButtonText: trans({ key: 'Okey' })
+        })    
     } finally {
         changeButtonStatus({
             button: submitBtn,

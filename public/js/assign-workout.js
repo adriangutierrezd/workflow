@@ -15,6 +15,11 @@ document.getElementById('assignWorkoutForm').addEventListener('submit', async (e
         closeModal('optionsDropdown')
         closeModal('assign-workout-form-modal')
     } catch (error) {
-        alert(error.message)
+        Swal.fire({
+            title: 'Error!',
+            text: error.message,
+            icon: 'error',
+            confirmButtonText: trans({ key: 'Okey' })
+        })    
     }
 })

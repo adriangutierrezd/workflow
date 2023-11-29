@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use stdClass;
 use Illuminate\Database\Eloquent\Builder;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class WorkoutController extends Controller
 {
@@ -142,13 +143,23 @@ class WorkoutController extends Controller
     public function destroy(Workout $workout)
     {
 
+        if($workout->user->id != Auth::user()->id && $workout->owner->id != Auth::user()->id){
+            if(isJsonRequest()){
+                return response()->json([
+                    'message' => __('Unauthorized action.')
+                ], 403);
+            }else{
+                abort(403);
+            }
+        }
+
         try{
             $workout->delete();
         }catch(QueryException $e){
             Log::error('Error deleting workout: ' . $e->getMessage());
             if(isJsonRequest()){
                 return response()->json([
-                    'message' => 'An error ocurred while deleting the workout'
+                    'message' => __('An error ocurred while deleting the workout')
                 ], 500);
             }else{
                 return redirect()->route('workouts.edit', ['workout' => $workout->id]);
@@ -157,7 +168,7 @@ class WorkoutController extends Controller
 
         if(isJsonRequest()){
             return response()->json([
-                'message' => 'Workout deleted successfully'
+                'message' => __('Workout deleted successfully')
             ]);
         }
 

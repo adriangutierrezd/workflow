@@ -392,7 +392,12 @@
     "People": "Personas",
     "Progress": "Progreso",
     "Pick an excercise": "Escoge un ejercicio",
-    "Add client": "Añadir cliente"
+    "Add client": "Añadir cliente",
+    "The start date cannot be greater than the end date.": "La fecha inicial no puede ser mayor a la fecha final", 
+    "Okey": "Vale",
+    "Unauthorized action.": "Acción no autorizada",
+    "An error ocurred while deleting the workout": "Ha ocurrido un error borrando el entrenamiento",
+    "Workout deleted successfully": "Entrenamiento eliminado correctamente"
 
 
 }
