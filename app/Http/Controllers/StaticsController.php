@@ -104,7 +104,7 @@ class StaticsController extends Controller
         ->where('w.user_id', $user->id)
         ->whereBetween('w.date', [$dateFrom, $dateTo])
         ->where('c.done', 1)
-        ->groupBy('e.id')
+        ->groupBy('e.id', 'e.name')
         ->get();
 
         return response()->json([
@@ -139,7 +139,7 @@ class StaticsController extends Controller
         ->whereBetween('w.date', [$dateFrom, $dateTo])
         ->where('c.done', '=', '1')
         ->where('c.excercise_id', '=', $excercise->id)
-        ->groupBy('w.id')
+        ->groupBy('w.id', 'w.date')
         ->get();
 
         return response()->json([
