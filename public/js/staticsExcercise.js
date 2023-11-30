@@ -57,6 +57,9 @@ const loadWeightPerWorkout = (weightByWorkout) => {
         yAxis: {
             type: 'value'
         },
+        tooltip: {
+            trigger: 'axis'
+        },
         series: [
         {
             data: weightByWorkout.map(w => w.weight),
@@ -87,6 +90,9 @@ const loadAverageWeightByRep = (weightByRep) => {
         },
         yAxis: {
             type: 'value'
+        },
+        tooltip: {
+            trigger: 'axis'
         },
         series: [
         {

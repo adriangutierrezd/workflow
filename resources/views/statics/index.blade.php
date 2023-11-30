@@ -5,59 +5,61 @@
         </h2>
     </x-slot>
 
-    <div class="flex flex-col md:flex-row md:items-center justify-end mt-4">
+    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mb-6">
+        <div class="flex flex-col md:flex-row md:items-center justify-end mt-4">
 
-        <div x-data="{ isDateRangeOpen: false }" @close-modal.camel="isDateRangeOpen = false" id="dateRangeDropdown" class="relative inline-block mt-2 md:mt-0">
-
-            <button 
-            id="dateRangeDropdownBtn"
-            @click="isDateRangeOpen = !isDateRangeOpen"
-            class="relative font-semibold z-10 font-regular p-2 text-gray-700 bg-white border border-transparent rounded-md dark:text-white focus:border-blue-500 focus:ring-opacity-40 dark:focus:ring-opacity-40 focus:ring-blue-300 dark:focus:ring-blue-400 focus:ring dark:bg-gray-800 focus:outline-none flex space-x-2 ml-auto">
-                <span id="dateRangeDropdownInfo"></span>
-                <svg class="w-5 h-5 text-gray-800 dark:text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                </svg>
-            </button>
-
-            <div
-            x-show="isDateRangeOpen"
-            x-cloak
-            @click.away="isDateRangeOpen = false"
-            @keyup.escape.window="isDateRangeOpen = false"
-            x-transition:enter="transition ease-out duration-100"
-            x-transition:enter-start="opacity-0 scale-90"
-            x-transition:enter-end="opacity-100 scale-100"
-            x-transition:leave="transition ease-in duration-100"
-            x-transition:leave-start="opacity-100 scale-100"
-            x-transition:leave-end="opacity-0 scale-90" 
-            class="date-range-picker">
-
-                
-                <form method="GET" action="#" id="date-range-form">
-                    <x-input-label for="initialDate" class="form-label font-semibold">De:</x-input-label>
-                    <input type="date" name="initialDate" class="form-field" value="{{ $initialDate }}">
-
-                    <x-input-label for="endDate" class="form-label font-semibold">A:</x-input-label>
-                    <input type="date" name="endDate" class="form-field" value="{{ $endDate }}">
-
-                    <x-primary-button 
-                    type="submit"
-                    class="w-full mt-3 justify-center">
-                        {{__('Load')}}
-                    </x-primary-button>
-                </form>
-
+            <div x-data="{ isDateRangeOpen: false }" @close-modal.camel="isDateRangeOpen = false" id="dateRangeDropdown" class="relative inline-block mt-2 md:mt-0">
+    
+                <button 
+                id="dateRangeDropdownBtn"
+                @click="isDateRangeOpen = !isDateRangeOpen"
+                class="relative font-semibold z-10 font-regular p-2 text-gray-700 bg-white border border-transparent rounded-md dark:text-white focus:border-blue-500 focus:ring-opacity-40 dark:focus:ring-opacity-40 focus:ring-blue-300 dark:focus:ring-blue-400 focus:ring dark:bg-gray-800 focus:outline-none flex space-x-2 ml-auto">
+                    <span id="dateRangeDropdownInfo"></span>
+                    <svg class="w-5 h-5 text-gray-800 dark:text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                    </svg>
+                </button>
+    
+                <div
+                x-show="isDateRangeOpen"
+                x-cloak
+                @click.away="isDateRangeOpen = false"
+                @keyup.escape.window="isDateRangeOpen = false"
+                x-transition:enter="transition ease-out duration-100"
+                x-transition:enter-start="opacity-0 scale-90"
+                x-transition:enter-end="opacity-100 scale-100"
+                x-transition:leave="transition ease-in duration-100"
+                x-transition:leave-start="opacity-100 scale-100"
+                x-transition:leave-end="opacity-0 scale-90" 
+                class="date-range-picker">
+    
+                    
+                    <form method="GET" action="#" id="date-range-form">
+                        <x-input-label for="initialDate" class="form-label font-semibold">De:</x-input-label>
+                        <input type="date" name="initialDate" class="form-field" value="{{ $initialDate }}">
+    
+                        <x-input-label for="endDate" class="form-label font-semibold">A:</x-input-label>
+                        <input type="date" name="endDate" class="form-field" value="{{ $endDate }}">
+    
+                        <x-primary-button 
+                        type="submit"
+                        class="w-full mt-3 justify-center">
+                            {{__('Load')}}
+                        </x-primary-button>
+                    </form>
+    
+                </div>
+    
+    
             </div>
-
-
-        </div>
-    </div>  
+        </div>  
+    </div>
 
     <div class="py-6">
         @include('workouts.partials.workouts-data-abstract', ['workouts' => [], 'workoutsByStatus' => []])
     </div>
 
-    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mb-">
+    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mb-6">
         <div class="p-4 bg-white dark:text-white dark:bg-gray-800 shadow-sm sm:rounded-lg">
             @include('statics.partials.statics-per-excercise')
         </div>
