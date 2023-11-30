@@ -1,3 +1,3 @@
 window.addEventListener('DOMContentLoaded', () => {
-    $('#excercise_selector').select2()
+    $('.select2-selector').select2()
 })

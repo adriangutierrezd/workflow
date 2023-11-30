@@ -397,7 +397,9 @@
     "Okey": "Vale",
     "Unauthorized action.": "Acción no autorizada",
     "An error ocurred while deleting the workout": "Ha ocurrido un error borrando el entrenamiento",
-    "Workout deleted successfully": "Entrenamiento eliminado correctamente"
+    "Workout deleted successfully": "Entrenamiento eliminado correctamente",
+    "Delete cluster": "Eliminar cluster",
+    "If you continue, the cluster will be permanently deleted.": "Si continuas, el cluster se borrará permanentemente."
 
 
 }

@@ -116,11 +116,11 @@ const loadClusters = async () => {
                 const optionsEdit = createDialogDropDownItem({ icon: EDIT_ICON, text: 'Editar' })
                 optionsEdit.addEventListener('click', () => {
                     document.querySelector('input[name=updateClusterId]').value = cluster.id
-                    document.querySelector(`select[name=updateExcerciseId] option[value="${cluster.excercise_id}"]`).selected = true
+                    $('[name=updateExcerciseId]').val(cluster.excercise_id).trigger('change');
                     document.querySelector('input[name=updateSets]').value = cluster.sets
                     document.querySelector('input[name=updateReps]').value = cluster.reps
                     document.querySelector('input[name=updateWeight]').value = cluster.weight
-                    openModal('editClusterModal')
+                    openModal('edit-cluster-form-modal')
                 })
                 optionsList.appendChild(optionsEdit)
 
@@ -148,7 +148,7 @@ const loadClusters = async () => {
 
                 const optionsDelete = createDialogDropDownItem({ icon: TRASH_ICON, text: 'Eliminar' })
                 optionsDelete.addEventListener('click', () => {
-                    openModal('deleteClusterModal')
+                    openModal('delete-cluster-form-modal')
                     document.querySelector('input[name=clusterDeleteId').value = cluster.id
                 })
                 optionsList.appendChild(optionsDelete)
@@ -259,7 +259,7 @@ document.getElementById('deleteClusterBtn').addEventListener('click', async (eve
         })    
     } finally {
 
-        closeModal('deleteClusterModal')
+        closeModal('delete-cluster-form-modal')
 
         setTimeout(() => {
             changeButtonStatus({
@@ -307,7 +307,7 @@ document.getElementById('updateClusterForm').addEventListener('submit', async (e
 
         if (status === HTTP_STATUS.OK) {
             loadClusters()
-            closeModal('editClusterModal')
+            closeModal('edit-cluster-form-modal')
         } else {
             Swal.fire({
                 title: 'Error!',

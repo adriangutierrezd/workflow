@@ -19,7 +19,7 @@
                 <label class="form-label" for="excercise_id">{{__('Excercise')}}</label>
                 <select 
                 id="excercise_selector"
-                class="form-field mb-4" 
+                class="form-field mb-4 select2-selector" 
                 name="excercise_id" required>
                     <option value="" selected disabled>{{__('Pick an excercise')}}</option>
                     @foreach ($excercises as $excercise)
