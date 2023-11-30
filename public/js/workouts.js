@@ -169,7 +169,10 @@ const loadWorkouts = async (props = {}) => {
 
             $('#workouts-list').DataTable({
                 info: false,
-                language: translations
+                language: translations,
+                order: [{
+                    0: 'desc'
+                }]
             })
         }
 

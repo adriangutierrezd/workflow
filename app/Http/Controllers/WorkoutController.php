@@ -67,7 +67,8 @@ class WorkoutController extends Controller
             ->orWhere('owner_id', Auth::user()->id);
         })
         ->whereBetween('date', [$startDate, $endDate])
-        ->with('status', 'owner', 'user')        
+        ->with('status', 'owner', 'user')  
+        ->orderBy('date', 'desc')
         ->get();
 
 
