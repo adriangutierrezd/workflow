@@ -21,7 +21,7 @@ const loadWorkouts = async (props = {}) => {
 
             const noDataPh = document.createElement('p')
             noDataPh.className = 'text-center text-gray-500 dark:text-gray-400'
-            noDataPh.innerText = 'No hay entrenamientos registrados'
+            noDataPh.innerText = trans({ key: 'No workouts have been recorded' })
 
             const td = createFullTd({
                 colSpan: 6,
@@ -128,11 +128,11 @@ const loadWorkouts = async (props = {}) => {
                 optionsEditLink.innerHTML = EDIT_ICON
                 const optionsEditLinkText = document.createElement('span')
                 optionsEditLinkText.className = 'ml-2'
-                optionsEditLinkText.innerText = 'Editar'
+                optionsEditLinkText.innerText = trans({ key: 'Edit' })
                 optionsEditLink.appendChild(optionsEditLinkText)
                 optionsEdit.appendChild(optionsEditLink)
 
-                const optionsDelete = createDialogDropDownItem({ icon: TRASH_ICON, text: 'Eliminar' })
+                const optionsDelete = createDialogDropDownItem({ icon: TRASH_ICON, text: trans({ key: 'Delete' }) })
                 optionsDelete.addEventListener('click', () => {
                     document.getElementById('workoutDeleteId').value = workout.id
                     openModal('deleteWorkoutModal')

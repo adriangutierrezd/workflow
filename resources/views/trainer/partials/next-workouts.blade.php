@@ -1,7 +1,7 @@
 <article class="p-4 bg-white dark:text-white dark:bg-gray-800 shadow-sm sm:rounded-lg">
     
     <header>
-        <h2 class="card-heading-2">Próximos entrenamientos</h2>
+        <h2 class="card-heading-2">{{__('Upcoming workouts')}}</h2>
     </header>
 
     <main class="flex flex-col h-full">

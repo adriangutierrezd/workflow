@@ -399,7 +399,19 @@
     "An error ocurred while deleting the workout": "Ha ocurrido un error borrando el entrenamiento",
     "Workout deleted successfully": "Entrenamiento eliminado correctamente",
     "Delete cluster": "Eliminar cluster",
-    "If you continue, the cluster will be permanently deleted.": "Si continuas, el cluster se borrará permanentemente."
+    "If you continue, the cluster will be permanently deleted.": "Si continuas, el cluster se borrará permanentemente.",
+    "No clients found": "Clientes no encontrados",
+    "No exercises have been recorded": "No hay ejercicios registrados",
+    "Done": "Hecho",
+    "Pending": "Pendiente",
+    "Check": "Marcar",
+    "See": "Ver",
+    "Add some workouts to view statistics": "Añade algún entrenamiento para ver estadísticas",
+    "You do not have any workouts yet this day": "Aún no tienes ningún entrenamiento este día",
+    "See workout": "Ver entrenamiento",
+    "No workouts have been recorded": "No hay entrenamientos registrados",
+    "Upcoming workouts": "Próximos entrenamientos",
+    "Workouts by state": "Entrenamientos por estado"
 
 
 }

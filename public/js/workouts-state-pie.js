@@ -1,4 +1,5 @@
 import { WORKOUT_STATUSES_COLORS, EMPTY_BOX_ICON } from './constants.js'
+import { trans } from './utils.js';
 
 window.addEventListener("DOMContentLoaded", () => {
 
@@ -20,7 +21,7 @@ window.addEventListener("DOMContentLoaded", () => {
         iconSpan.innerHTML = EMPTY_BOX_ICON
 
         const noWksP = document.createElement('p')
-        noWksP.innerText = 'Añade algún entrenamiento para ver estadísticas'
+        noWksP.innerText = trans({ key: 'Add some workouts to view statistics' })
 
         div.appendChild(iconSpan)
         div.appendChild(noWksP)

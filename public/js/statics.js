@@ -91,7 +91,7 @@ const handleStaticPerExcerciseUpdate = async ({props}) => {
             optionsEditLink.innerHTML = EXTERNAL_LINK_ICON
             const optionsEditLinkText = document.createElement('span')
             optionsEditLinkText.className = 'ml-2'
-            optionsEditLinkText.innerText = 'Ver'
+            optionsEditLinkText.innerText = trans({ key: 'See' })
             optionsEditLink.appendChild(optionsEditLinkText)
             optionsEdit.appendChild(optionsEditLink)
 

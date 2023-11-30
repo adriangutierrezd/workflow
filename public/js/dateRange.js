@@ -1,4 +1,5 @@
 import { WEEK_DAYS, MONTHS } from './constants.js'
+import { trans } from './utils.js'
 
 export const getDateDate = () => {
     const dateFrom = document.querySelector('input[name="initialDate"]').value
@@ -19,5 +20,5 @@ export const getDateRangeInfo = (startDate, endDate) => {
     const endWeekDay = WEEK_DAYS[endDate.getDay()].substring(0, 3)
     const endMonth = MONTHS[endDate.getMonth()].substring(0, 3)
 
-    return `${startWeekDay} ${startDay} ${startMonth} A ${endWeekDay} ${endDay} ${endMonth}`
+    return `${startWeekDay} ${startDay} ${startMonth} ${trans({ key: 'To' })} ${endWeekDay} ${endDay} ${endMonth}`
 }

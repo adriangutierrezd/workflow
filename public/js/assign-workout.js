@@ -1,5 +1,6 @@
 import { closeModal } from './utils.js'
 import { updateWorkout } from './workoutService.js'
+import { trans } from './utils.js'
 
 window.addEventListener('DOMContentLoaded', () => {
     $('#client_selector').select2()

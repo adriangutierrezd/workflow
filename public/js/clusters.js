@@ -1,5 +1,5 @@
 import { createRow, createCell, createFullTd, showTableLoading } from './tablesService.js'
-import { changeButtonStatus, closeModal, openModal, createDialogDropDownItem, createDialogDropDownContainer, createDialogDroDownBtn } from './utils.js'
+import { changeButtonStatus, closeModal, openModal, createDialogDropDownItem, createDialogDropDownContainer, createDialogDroDownBtn, trans } from './utils.js'
 import { OPTIONS_DOTS, TRASH_ICON, EDIT_ICON, SPINNER, HTTP_STATUS, CHECK_ICON } from './constants.js'
 import { getClusterByWorkout, createCluster, deleteCluster, updateCluster } from './clusterService.js'
 
@@ -35,7 +35,7 @@ const loadClusters = async () => {
 
             const noDataPh = document.createElement('p')
             noDataPh.className = 'text-center text-gray-500 dark:text-gray-400'
-            noDataPh.innerText = 'No hay ejercicios registrados'
+            noDataPh.innerText = trans({ key: 'No exercises have been recorded' })
 
             const td = createFullTd({
                 colSpan: 4,
@@ -113,7 +113,7 @@ const loadClusters = async () => {
                 optionsList.setAttribute('role', 'none')
 
 
-                const optionsEdit = createDialogDropDownItem({ icon: EDIT_ICON, text: 'Editar' })
+                const optionsEdit = createDialogDropDownItem({ icon: EDIT_ICON, text: trans({ key: 'Edit' }) })
                 optionsEdit.addEventListener('click', () => {
                     document.querySelector('input[name=updateClusterId]').value = cluster.id
                     $('[name=updateExcerciseId]').val(cluster.excercise_id).trigger('change');
@@ -126,9 +126,9 @@ const loadClusters = async () => {
 
 
                 const clusterStatusProps = !cluster.done ? {
-                    icon: CHECK_ICON, text: 'Marcar (hecho)'
+                    icon: CHECK_ICON, text: `${trans({ key: 'Check' })} (${trans({ key: 'Done' })})`
                 } : {
-                    icon: CHECK_ICON, text: 'Marcar (pendiente)'
+                    icon: CHECK_ICON, text: `${trans({ key: 'Check' })} (${trans({ key: 'Pending' })})`
                 }
 
                 const optionsMarkAsDone = createDialogDropDownItem(clusterStatusProps)
@@ -146,7 +146,7 @@ const loadClusters = async () => {
                 })
                 optionsList.appendChild(optionsMarkAsDone)
 
-                const optionsDelete = createDialogDropDownItem({ icon: TRASH_ICON, text: 'Eliminar' })
+                const optionsDelete = createDialogDropDownItem({ icon: TRASH_ICON, text: trans({ key: 'Delete' }) })
                 optionsDelete.addEventListener('click', () => {
                     openModal('delete-cluster-form-modal')
                     document.querySelector('input[name=clusterDeleteId').value = cluster.id

@@ -37,7 +37,7 @@ window.addEventListener('DOMContentLoaded', () => {
             iconSpan.innerHTML = EMPTY_BOX_ICON
 
             const noWksP = document.createElement('p')
-            noWksP.innerText = 'Aún no tienes ningún entrenamiento este día'
+            noWksP.innerText = trans({ key: 'You do not have any workouts yet this day' })
 
             div.appendChild(iconSpan)
             div.appendChild(noWksP)
@@ -82,18 +82,13 @@ window.addEventListener('DOMContentLoaded', () => {
                 link.href = `/workout/edit/${id}`
                 link.innerHTML = EXTERNAL_LINK_ICON
                 link.className = 'hover:text-blue-600'
-                link.title = 'Ver entrenamiento'
+                link.title = trans({ key: 'See workout' })
 
                 workoutDiv.appendChild(infoDiv)
                 workoutDiv.appendChild(link)
 
                 container.appendChild(workoutDiv)
-
-
             })
-
-
-
         }
 
     }

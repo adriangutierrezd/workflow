@@ -43,7 +43,7 @@
                         <x-primary-button 
                         type="submit"
                         class="w-full mt-3 justify-center">
-                            Cargar
+                            {{__('Load')}}
                         </x-primary-button>
                     </form>
         

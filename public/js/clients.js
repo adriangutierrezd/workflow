@@ -1,7 +1,7 @@
-import { getClients, createClient, deleteClient, getPossibleClients } from './clientsService.js'
+import { getClients, createClient, deleteClient } from './clientsService.js'
 import { showTableLoading, createFullTd, createRow, createCell } from './tablesService.js';
-import { changeButtonStatus, createDialogDroDownBtn, createDialogDropDownContainer, createDialogDropDownItem, closeModal, openModal } from './utils.js'
-import { OPTIONS_DOTS, TRASH_ICON, EDIT_ICON, SPINNER, EXTERNAL_LINK_ICON } from './constants.js'
+import { createDialogDroDownBtn, createDialogDropDownContainer, createDialogDropDownItem, closeModal, openModal, trans } from './utils.js'
+import { OPTIONS_DOTS, TRASH_ICON, EXTERNAL_LINK_ICON } from './constants.js'
 
 const loadClients = async () => {
     try {
@@ -19,7 +19,7 @@ const loadClients = async () => {
         if (data.length === 0) {
             const td = createFullTd({
                 colSpan: table.children[0].children[0].children.length,
-                innerHTML: 'No clients found',
+                innerHTML: trans({ key: 'No clients found' }),
                 classes: 'p-2 text-center'
             })
             const tr = createRow({})
@@ -98,7 +98,7 @@ const loadClients = async () => {
                 optionsEdit.appendChild(optionsEditLink)
                 optionsList.appendChild(optionsEdit)
 
-                const optionsDelete = createDialogDropDownItem({ icon: TRASH_ICON, text: 'Eliminar' })
+                const optionsDelete = createDialogDropDownItem({ icon: TRASH_ICON, text: trans({ key: 'Delete' }) })
                 optionsDelete.addEventListener('click', () => {
                     document.getElementById('clientDeleteId').value = id
                     openModal('delete-client-form-modal')
