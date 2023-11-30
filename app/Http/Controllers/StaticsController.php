@@ -140,6 +140,7 @@ class StaticsController extends Controller
         ->where('c.done', '=', '1')
         ->where('c.excercise_id', '=', $excercise->id)
         ->groupBy('w.id', 'w.date')
+        ->orderBy('w.date', 'asc')
         ->get();
 
         return response()->json([
@@ -170,14 +171,17 @@ class StaticsController extends Controller
         ->where('c.done', '=', '1')
         ->where('c.excercise_id', '=', $excercise->id)
         ->groupBy('w.date')
+        ->orderBy('w.date', 'asc')
         ->get();
 
         $results = $results->map(function($elm){
             $elm->week = date('W', strtotime($elm->date));
+            $elm->year = date('o', strtotime($elm->date));
+            $elm->wkyr = $elm->year."-".$elm->week;
             return $elm;
         });
 
-        $uniqueWeeks = $results->pluck('week')->unique()->toArray();
+        $uniqueWeeks = $results->pluck('wkyr', 'date')->unique()->toArray();
 
         $dateFromObj = new DateTime($dateFrom);
         $dateToObj = new DateTime($dateTo);
@@ -187,19 +191,24 @@ class StaticsController extends Controller
         $allWeeks = [];
         foreach ($dateRange as $date) {
             $week = $date->format('W');
-            $allWeeks[] = $week;
+            $year = $date->format('o');
+            $allWeeks[$date->format('Y-m-d')] = "$year-$week";
         }
 
         $missingWeeks = array_diff($allWeeks, $uniqueWeeks);
         $missingResults = collect();
-        foreach ($missingWeeks as $week) {
+        foreach ($missingWeeks as $date => $value) {
             $missingResults->push((object)[
-                'week' => $week,
+                'week' => date('W', strtotime($date)),
+                'year' => date('o', strtotime($date)),
+                'wkyr' => $value,
+                'date' => $date,
                 'sets' => 0
             ]);
         }
 
-        $results = $results->merge($missingResults)->sortBy('week')->values();
+
+        $results = $results->merge($missingResults)->sortBy('date')->values();
 
         return response()->json([
             'message' => 'Data fetched',

@@ -1,7 +1,7 @@
 import { getDateRangeInfo, getDateDate } from './dateRange.js'
 import { WEEK_DAYS } from './constants.js'
 import { getExcerciseData, getExcerciseUsage } from './staticsService.js'
-import { closeModal } from './utils.js'
+import { closeModal, trans } from './utils.js'
 
 
 window.addEventListener('DOMContentLoaded', async () => {
@@ -126,12 +126,15 @@ const loadExcerciseUsage = async ({ dateFrom, dateTo }) => {
 const loadExcerciseUsageHeatmap = (usageData) => {
     const chartContainer = document.getElementById('excercise-usage-container')
 
+    const totalHeight = 35 * usageData.length
+    chartContainer.style.height = `${totalHeight}px`
+
     const chart = echarts.init(chartContainer)
-    const weeks = [...new Set(usageData.map(d => d.week))]
+    const wkyrs = [...new Set(usageData.map(d => d.wkyr))]
     const data = usageData.map(d => {
         return [
+            wkyrs.indexOf(d.wkyr),
             --d.DAY,
-            weeks.indexOf(d.week),
             Number(d.sets)
         ]
     }).map(function (item) {
@@ -144,37 +147,38 @@ const loadExcerciseUsageHeatmap = (usageData) => {
             position: 'top'
         },
         grid: {
-            height: '50%',
-            top: '10%'
+            height: '95%',
+            top: '5%'
         },
         xAxis: {
             type: 'category',
-            data: weeks,
+            data: WEEK_DAYS,
             splitArea: {
                 show: true
-            }
+            },
+            position: 'top'
         },
         yAxis: {
             type: 'category',
-            data: WEEK_DAYS,
+            data: wkyrs,
             splitArea: {
                 show: true
             }
         },
         visualMap: {
             min: 0,
-            max: 10,
+            max: usageData.sort((a, b) => b.sets - a.sets)[0].sets,
             calculable: true,
             orient: 'horizontal',
             left: 'center',
-            bottom: '15%',
+            top: '1%',
             inRange: {
                 color: ['#eff6ff', '#1e40af']
             }
         },
         series: [
         {
-            name: 'Sets',
+            name: trans({ key: 'Sets' }),
             type: 'heatmap',
             data: data,
             label: {

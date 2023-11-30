@@ -82,7 +82,7 @@
             <header>
                 <h2 class="card-heading-2">{{__('Usage of exercise')}}</h2>
             </header>
-            <main id="excercise-usage-container" style="width:100%;height:350px">
+            <main id="excercise-usage-container" style="width:100%">
                 
             </main>
         </article>
