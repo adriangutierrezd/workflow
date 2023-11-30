@@ -66,7 +66,7 @@ const handleStaticPerExcerciseUpdate = async ({props}) => {
             const tdWokts = createCell({ text: workout_appearences, type: 'td' })
             tr.appendChild(tdWokts)
 
-            const tdAvgW = createCell({ text: average_weight, type: 'td' })
+            const tdAvgW = createCell({ text: `${average_weight} kg`, type: 'td' })
             tr.appendChild(tdAvgW)
 
             const parentOptionsDiv = document.createElement('div')
