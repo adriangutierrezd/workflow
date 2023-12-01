@@ -85,6 +85,8 @@ const handleStaticPerExcerciseUpdate = async ({props}) => {
             optionsEdit.setAttribute('tabindex', '-1')
             optionsEdit.setAttribute('id', 'options-menu-0')
 
+            const { dateFrom, dateTo } = getDateDate()
+
             const optionsEditLink = document.createElement('a')
             optionsEditLink.className = 'flex items-center'
             optionsEditLink.setAttribute('href', `/excercise-statics/${excercise_id}/${User}/${dateFrom}/${dateTo}`)

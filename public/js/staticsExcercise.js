@@ -2,7 +2,7 @@ import { getDateRangeInfo, getDateDate } from './dateRange.js'
 import { WEEK_DAYS } from './constants.js'
 import { getExcerciseData, getExcerciseUsage } from './staticsService.js'
 import { closeModal, trans } from './utils.js'
-
+import { getChartStyles } from './chartsUtils.js'
 
 window.addEventListener('DOMContentLoaded', async () => {
     
@@ -49,13 +49,17 @@ const loadWeightPerWorkout = (weightByWorkout) => {
     const chartContainer = document.getElementById('average-weight-by-session-container')
     const chart = echarts.init(chartContainer)
 
+    const { yAxisSplitLine } = getChartStyles()
+
+
     chart.setOption( {
         xAxis: {
             type: 'category',
             data: weightByWorkout.map(w => w.date)
         },
         yAxis: {
-            type: 'value'
+            type: 'value',
+            splitLine: yAxisSplitLine ?? {}
         },
         tooltip: {
             trigger: 'axis'
@@ -79,9 +83,9 @@ const loadWeightPerWorkout = (weightByWorkout) => {
 
 const loadAverageWeightByRep = (weightByRep) => {
     const chartContainer = document.getElementById('average-weight-by-rep-container')
-
-    
     const chart = echarts.init(chartContainer)
+
+    const { yAxisSplitLine } = getChartStyles()
 
     chart.setOption( {
         xAxis: {
@@ -89,7 +93,8 @@ const loadAverageWeightByRep = (weightByRep) => {
             data: weightByRep.map(w => w.date)
         },
         yAxis: {
-            type: 'value'
+            type: 'value',
+            splitLine: yAxisSplitLine ?? {}
         },
         tooltip: {
             trigger: 'axis'
