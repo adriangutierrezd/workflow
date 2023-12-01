@@ -107,7 +107,7 @@ const loadWorkouts = async (props = {}) => {
                 tr.appendChild(tdProgress)
 
                 const parentOptionsDiv = document.createElement('div')
-                parentOptionsDiv.className = 'relative'
+                parentOptionsDiv.className = ''
 
                 const optionsButton = createDialogDroDownBtn({ icon: OPTIONS_DOTS })
                 const optionsDiv = createDialogDropDownContainer()
@@ -161,7 +161,8 @@ const loadWorkouts = async (props = {}) => {
                 const tdActions = createCell({
                     text: parentOptionsDiv,
                     html: true,
-                    type: 'td'
+                    type: 'td',
+                    classes: 'relative'
                 })
                 tr.appendChild(tdActions)
 
@@ -201,7 +202,7 @@ document.getElementById('deleteBtn').addEventListener('click', async (ev) => {
             text: error.message,
             icon: 'error',
             confirmButtonText: trans({ key: 'Okey' })
-        })    
+        })
     } finally {
         closeModal('deleteWorkoutModal')
         setTimeout(() => {

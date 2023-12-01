@@ -60,7 +60,7 @@
                     <div class="border border-gray-200 dark:border-gray-700 md:rounded-lg">
     
                         <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700" id="workouts-list">
-                            <thead class="bg-gray-50 dark:bg-gray-800">
+                            <thead class="bg-gray-50 dark:bg-gray-800 relative">
                                 <tr>
                                     <th scope="col" class="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
                                         {{__('Title')}}

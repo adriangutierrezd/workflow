@@ -125,9 +125,16 @@ div.dataTables_length{
 .select2{
     width: 100% !important;
     margin: 0.5rem 0rem;
+    margin-bottom: 1rem;
 }
 
+.select2-container{
+    margin: 0.5rem 0rem !important;
+}
 
+.select2-selection{
+    padding: 1rem 0rem !important;
+}
 
 
 /* styles.css o tu archivo de estilos principal */
