@@ -87,7 +87,7 @@ const handleStaticPerExcerciseUpdate = async ({props}) => {
 
             const optionsEditLink = document.createElement('a')
             optionsEditLink.className = 'flex items-center'
-            optionsEditLink.setAttribute('href', `/excercise-statics/${excercise_id}/${User}`)
+            optionsEditLink.setAttribute('href', `/excercise-statics/${excercise_id}/${User}/${dateFrom}/${dateTo}`)
             optionsEditLink.innerHTML = EXTERNAL_LINK_ICON
             const optionsEditLinkText = document.createElement('span')
             optionsEditLinkText.className = 'ml-2'
