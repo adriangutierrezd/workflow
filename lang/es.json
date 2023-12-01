@@ -412,7 +412,10 @@
     "No workouts have been recorded": "No hay entrenamientos registrados",
     "Upcoming workouts": "Próximos entrenamientos",
     "Workouts by state": "Entrenamientos por estado",
-    "Edit workout": "Editar entrenamiento"
+    "Edit workout": "Editar entrenamiento",
+    "New workout assigned": "Nuevo entrenamiento asignado",
+    "Hi": "Hola",
+    "has assigned you a new workout": "te ha asignado un nuevo entrenamiento"
 
 
 }

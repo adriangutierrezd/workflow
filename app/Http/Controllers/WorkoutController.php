@@ -12,7 +12,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use stdClass;
 use Illuminate\Database\Eloquent\Builder;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use App\Mail\WorkoutAssignedMailable;
+use Illuminate\Support\Facades\Mail;
+use App\Models\User;
 
 class WorkoutController extends Controller
 {
@@ -109,6 +111,7 @@ class WorkoutController extends Controller
 
         try{
 
+            $initialWorkoutUser = $workout->user_id;
             $updateData = $request->only(['title', 'date', 'status_id', 'user_id']);
             $updateData = array_filter($updateData, function ($value) {
                 return $value !== null;
@@ -126,6 +129,12 @@ class WorkoutController extends Controller
                 return redirect()->route('workouts.edit', ['workout' => $workout->id]);
             }
 
+        }
+
+        if($workout->user_id != $initialWorkoutUser && $workout->user_id != $request->user()->id){
+            $targetUser = User::find($workout->user_id);
+            Mail::to($workout->user->email)
+            ->send(new WorkoutAssignedMailable($targetUser, $request->user(), $workout));
         }
 
         if(isJsonRequest()){

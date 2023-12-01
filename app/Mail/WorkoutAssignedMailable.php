@@ -2,6 +2,8 @@
 
 namespace App\Mail;
 
+use App\Models\User;
+use App\Models\Workout;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Address;
@@ -9,22 +11,23 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class ContactFormMailable extends Mailable
+class WorkoutAssignedMailable extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public string $name;
-    public string $email;
-    public string $content;
+
+    public User $user;
+    public User $trainer;
+    public Workout $workout;
 
     /**
      * Create a new message instance.
      */
-    public function __construct(string $name, string $email, string $message)
+    public function __construct(User $user, User $trainer, Workout $workout)
     {
-        $this->name = $name;
-        $this->email = $email;
-        $this->content = $message;
+        $this->user = $user;
+        $this->trainer = $trainer;
+        $this->workout = $workout;
     }
 
     /**
@@ -34,7 +37,7 @@ class ContactFormMailable extends Mailable
     {
         return new Envelope(
             from: new Address(env('MAIL_FROM_ADDRESS')),
-            subject: 'Nuevo mensaje en formulario de contacto',
+            subject: __('New workout assigned'),
         );
     }
 
@@ -44,11 +47,11 @@ class ContactFormMailable extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'mails.contact-form',
+            view: 'mails.workout-assigned',
             with: [
-                'name' => $this->name,
-                'email' => $this->email,
-                'content' => $this->content
+                'user' => $this->user,
+                'trainer' => $this->trainer,
+                'workout' => $this->workout
             ]
         );
     }

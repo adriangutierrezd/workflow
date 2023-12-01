@@ -1,15 +1,25 @@
 import { closeModal } from './utils.js'
 import { updateWorkout } from './workoutService.js'
-import { trans } from './utils.js'
+import { trans, changeButtonStatus } from './utils.js'
+import { SPINNER } from './constants.js'
 
 window.addEventListener('DOMContentLoaded', () => {
     $('#client_selector').select2()
 })
 
 document.getElementById('assignWorkoutForm').addEventListener('submit', async (ev) => {
-    try {
+    
+    const button = document.getElementById('assignWorkoutForm').querySelector('button[type="submit"]')
+    const previousInnerHTML = button.innerHTML
+    ev.preventDefault()
 
-        ev.preventDefault()
+    try {
+        changeButtonStatus({
+            button,
+            disabled: true,
+            inner: SPINNER
+        })
+
         const workout_id = document.getElementById('workout_id').value
         const client_id = document.getElementById('client_selector').value
         await updateWorkout({ workoutId: workout_id, props: { user_id: client_id } })
@@ -22,5 +32,11 @@ document.getElementById('assignWorkoutForm').addEventListener('submit', async (e
             icon: 'error',
             confirmButtonText: trans({ key: 'Okey' })
         })    
+    }finally{
+        changeButtonStatus({
+            button,
+            disabled: true,
+            inner: previousInnerHTML
+        })
     }
 })
