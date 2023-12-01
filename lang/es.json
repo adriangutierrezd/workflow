@@ -415,7 +415,15 @@
     "Edit workout": "Editar entrenamiento",
     "New workout assigned": "Nuevo entrenamiento asignado",
     "Hi": "Hola",
-    "has assigned you a new workout": "te ha asignado un nuevo entrenamiento"
+    "has assigned you a new workout": "te ha asignado un nuevo entrenamiento",
+    "auth.failed": "Estas credenciales no coinciden con nuestros registros.",
+    "passwords.user": "No podemos encontrar un usuario con esa dirección de correo electrónico",
+    "passwords.sent": "Te hemos enviado por correo electrónico el enlace para restablecer tu contraseña.",
+    "passwords.reset": "Su contraseña ha sido restablecida.",
+    "passwords.throttled": "Espere antes de volver a intentarlo.",
+    "passwords.token": "Este token de restablecimiento de contraseña no es válido.",
+    "auth.password": "La contraseña proporcionada es incorrecta.",
+    "auth.thorttle": "Demasiados intentos de conexión. Por favor, inténtelo de nuevo en :seconds segundos."
 
 
 }
