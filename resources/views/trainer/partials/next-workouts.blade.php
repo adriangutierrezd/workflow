@@ -5,20 +5,24 @@
     </header>
 
     <main class="flex flex-col h-full">
-        <ul class="flex overflow-x-auto text-sm font-medium text-center text-gray-500 dark:text-gray-400 mt-4" id="week-days-container">
+        <ul
+            class="flex overflow-x-auto text-sm
+            font-medium text-center text-gray-500
+            dark:text-gray-400 mt-4" id="week-days-container"
+        >
             @foreach($weekDays as $weekDay)
                 @if($weekDay['date'] == date('Y-m-d'))
-                    <li 
+                    <li
                     aria-current="page"
                     data-date="{{ $weekDay['date'] }}"
-                    class="week-day-selector mr-2 flex-items-center justify-center flex flex-col px-4 py-3 rounded-lg week-day-active">
+                    class="week-day-selector week-day-active">
                         <span>{{ $weekDay['number'] }}</span>
                         <span>{{ Str::limit(__($weekDay['name']), 3, '') }}</span>
                     </li>
-                @else 
-                    <li 
+                @else
+                    <li
                     data-date="{{ $weekDay['date'] }}"
-                    class="week-day-selector mr-2 flex-items-center justify-center flex flex-col px-4 py-3 rounded-lg week-day-default">
+                    class="week-day-selector week-day-default">
                         <span>{{ $weekDay['number'] }}</span>
                         <span>{{ Str::limit(__($weekDay['name']), 3, '') }}</span>
                     </li>
@@ -26,7 +30,11 @@
             @endforeach
         </ul>
 
-        <section class="mt-2 flex flex-col justify-start grow max-h-40 md:max-h-96 overflow-y-auto" id="workouts-by-date-container">
+        <section
+            class="mt-2 flex flex-col justify-start grow
+            max-h-40 md:max-h-96 overflow-y-auto"
+            id="workouts-by-date-container"
+        >
 
         </section>
 

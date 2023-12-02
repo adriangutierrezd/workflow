@@ -2,7 +2,7 @@ import { getWorkoutsAbstract } from './workoutService.js'
 import { staticsPerExcercise } from './staticsService.js'
 import { createDialogDroDownBtn, createDialogDropDownContainer, closeModal, trans } from './utils.js'
 import { showTableLoading, createFullTd, createRow, createCell } from './tablesService.js'
-import { OPTIONS_DOTS, EXTERNAL_LINK_ICON } from './constants.js'
+import { OPTIONS_DOTS, EXTERNAL_LINK_ICON } from './icons.js'
 import { getDateRangeInfo, getDateDate } from './dateRange.js'
 
 
@@ -80,7 +80,7 @@ const handleStaticPerExcerciseUpdate = async ({props}) => {
             optionsList.setAttribute('role', 'none')
 
             const optionsEdit = document.createElement('li')
-            optionsEdit.className = 'block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900'
+            optionsEdit.className = 'dropdown-item'
             optionsEdit.setAttribute('role', 'menuitem')
             optionsEdit.setAttribute('tabindex', '-1')
             optionsEdit.setAttribute('id', 'options-menu-0')

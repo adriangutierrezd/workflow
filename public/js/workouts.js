@@ -1,7 +1,8 @@
 import { getWorkouts, deleteWorkout } from './workoutService.js'
 import { createRow, createCell, createFullTd, showTableLoading } from './tablesService.js'
 import { generateProgressBar, changeButtonStatus, createDialogDroDownBtn, createDialogDropDownContainer, createDialogDropDownItem, closeModal, openModal, trans } from './utils.js'
-import { OPTIONS_DOTS, TRASH_ICON, EDIT_ICON, SPINNER, WEEK_DAYS, MONTHS } from './constants.js'
+import { WEEK_DAYS, MONTHS } from './constants.js'
+import { OPTIONS_DOTS, TRASH_ICON, EDIT_ICON, SPINNER } from './icons.js'
 
 const loadWorkouts = async (props = {}) => {
     try {
@@ -75,7 +76,7 @@ const loadWorkouts = async (props = {}) => {
                 })
                 tr.appendChild(tdStatus)
 
-                let avatarText = `<img class="object-cover w-6 h-6 -mx-1 border-2 border-white rounded-full dark:border-gray-700 shrink-0" src="${workout.user.image_url}" alt="">`
+                let avatarText = `<img class="profile-picture-sm" src="${workout.user.image_url}" alt="">`
                 if (workout.user.id != workout.owner.id) {
                     avatarText = `
                     <div class="flex items-center">
@@ -117,7 +118,7 @@ const loadWorkouts = async (props = {}) => {
                 optionsList.setAttribute('role', 'none')
 
                 const optionsEdit = document.createElement('li')
-                optionsEdit.className = 'block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900'
+                optionsEdit.className = 'dropdown-item'
                 optionsEdit.setAttribute('role', 'menuitem')
                 optionsEdit.setAttribute('tabindex', '-1')
                 optionsEdit.setAttribute('id', 'options-menu-0')

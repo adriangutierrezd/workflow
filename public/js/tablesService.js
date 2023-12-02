@@ -1,4 +1,4 @@
-import { SPINNER } from './constants.js'
+import { SPINNER } from './icons.js'
 
 export const createRow = (info) => {
 

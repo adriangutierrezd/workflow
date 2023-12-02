@@ -80,8 +80,6 @@ div.dataTables_length{
     @apply text-red-500 bg-red-100/60 dark:bg-gray-800;
 }
 
-
-/** Styles for forms **/
 .form-field{
     @apply block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring
 }
@@ -94,55 +92,23 @@ div.dataTables_length{
     @apply h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-600;
 }
 
-/** Styles for buttons **/
-.primary-btn{
-    @apply px-4 py-2 mt-2 text-sm font-medium tracking-wide text-white transition-colors duration-300 transform bg-blue-600 rounded-md sm:w-auto sm:mt-0 hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40;
-}
-
-.outline-btn{
-    @apply px-4 py-2 mt-2 text-sm font-medium tracking-wide text-gray-700 transition-colors duration-300 transform border border-gray-200 rounded-md sm:mt-0 sm:w-auto sm:mx-2 dark:text-gray-200 dark:border-gray-700 dark:hover:bg-gray-800 hover:bg-gray-100 focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-40;
-}
-
-.danger-btn{
-    @apply px-4 py-2 mt-2 text-sm font-medium tracking-wide text-white transition-colors duration-300 transform bg-red-600 rounded-md sm:w-auto sm:mt-0 hover:bg-red-500 focus:outline-none focus:ring focus:ring-red-300 focus:ring-opacity-40;
-}
-
-/** Styles for dropdown items **/
 .dialog-dropdown-item{
     @apply flex items-center cursor-pointer px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900;
 }
 
 .dialog-dropdown-container{
     @apply absolute right-0 z-10 w-48 mt-2 origin-top-right rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5;
-    /* bottom: -90%; */
 }
 
 .dropdown-dots-button{
     @apply px-1 py-1 text-gray-500 transition-colors duration-200 rounded-lg dark:text-gray-300 hover:bg-gray-100;
 }
 
-
-/** Styles for select2 **/
 .select2{
     width: 100% !important;
     margin: 0.5rem 0rem;
     margin-bottom: 1rem;
 }
-
-
-
-/* styles.css o tu archivo de estilos principal */
-.dark-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Ajusta el valor alpha según sea necesario */
-    z-index: 1000; /* Ajusta el valor según sea necesario para asegurarte de que esté por encima del resto del contenido */
-}
-
-
 
 .week-day-active{
     @apply text-white bg-blue-600;
@@ -152,7 +118,54 @@ div.dataTables_length{
     @apply text-gray-800 bg-gray-200 cursor-pointer;
 }
 
-
 .date-range-picker{
     @apply absolute right-0 z-20 w-4/5 sm:w-48 p-4 mt-2 origin-top-right bg-white rounded-md shadow-xl dark:bg-gray-800;
+}
+
+.date-range-selector-button{
+    @apply relative font-semibold z-10 font-medium p-2 text-gray-700 bg-white border border-transparent rounded-md dark:text-white focus:border-blue-500 focus:ring-opacity-40 dark:focus:ring-opacity-40 focus:ring-blue-300 dark:focus:ring-blue-400 focus:ring dark:bg-gray-800 focus:outline-none flex space-x-2 ml-auto;
+}
+
+.main-container{
+    @apply max-w-7xl mx-auto sm:px-6 lg:px-8 mb-6;
+}
+
+.main-container-content{
+    @apply p-6 relative bg-white dark:text-white dark:bg-gray-800 shadow-sm sm:rounded-lg;
+}
+
+.records-table{
+    @apply min-w-full divide-y divide-gray-200 dark:divide-gray-700;
+}
+
+table.records-table thead{
+    @apply bg-gray-50 dark:bg-gray-800;
+}
+
+table.records-table tbody{
+    @apply bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900;
+}
+
+.modal-title{
+    @apply text-lg font-medium leading-6 text-gray-800 dark:text-white;
+}
+
+.dropdown-item{
+    @apply block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900;
+}
+
+.profile-picture-sm{
+    @apply object-cover w-6 h-6 -mx-1 border-2 border-white rounded-full dark:border-gray-700 shrink-0;
+}
+
+.profile-picture-stack-container{
+    @apply flex items-center space-x-3;
+}
+
+.week-day-selector{
+    @apply mr-2 flex items-center justify-center flex flex-col px-4 py-3 rounded-lg;
+}
+
+.records-table th{
+    @apply text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400;
 }

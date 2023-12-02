@@ -7,10 +7,9 @@
                 <div class="inline-block min-w-full py-8 align-middle md:px-6 lg:px-8">
                     <div class="border border-gray-200 dark:border-gray-700 md:rounded-lg">
     
-                        <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700" id="clusters-list">
-                            <thead class="bg-gray-50 dark:bg-gray-800">
+                        <table class="records-table" id="clusters-list">
+                            <thead>
                                 <tr>
-    
                                     <th scope="col" class="px-4 py-3.5 text-sm font-normal text-left text-gray-500 dark:text-gray-400">
                                         {{__('Excercise')}}
                                     </th>
@@ -24,11 +23,10 @@
                                     </th>
     
                                     <th scope="col" class="py-3.5 px-4">
-                                        <span class="sr-only">{{__('Edit')}}</span>
                                     </th>
                                 </tr>
                             </thead>
-                            <tbody class="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
+                            <tbody>
 
                             </tbody>
                         </table>
@@ -45,7 +43,7 @@
             <div class="flex flex-col items-center justify-center">
 
                 <div class="mt-2 text-center">
-                    <h3 class="text-lg font-medium leading-6 text-gray-800 dark:text-white" id="modal-title">{{__('Edit cluster')}}</h3>
+                    <h3 class="modal-title" id="modal-title">{{__('Edit cluster')}}</h3>
                 </div>
     
                 
@@ -53,8 +51,8 @@
                     <input type="hidden" name="updateClusterId">
     
                     <label class="form-label" for="updateExcerciseId">{{__('Excercise')}}</label>
-                    <select 
-                    class="form-field mb-4 select2-selector" 
+                    <select
+                    class="form-field mb-4 select2-selector"
                     name="updateExcerciseId" required>
                         <option value="" selected disabled>{{__('Pick an excercise')}}</option>
                         @foreach ($excercises as $excercise)
@@ -97,7 +95,7 @@
             <div class="flex flex-col items-center justify-center">
 
                 <div class="mt-2 text-center">
-                    <h3 class="text-lg font-medium leading-6 text-gray-800 dark:text-white" id="modal-title">{{__('Delete cluster')}}</h3>
+                    <h3 class="modal-title" id="modal-title">{{__('Delete cluster')}}</h3>
                     <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">
                         {{__('If you continue, the cluster will be permanently deleted.')}}
                     </p>

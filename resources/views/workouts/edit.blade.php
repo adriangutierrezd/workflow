@@ -6,8 +6,8 @@
     </x-slot>
 
     <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="p-6 relative bg-white dark:bg-gray-800 shadow-sm sm:rounded-lg">
+        <div class="main-container">
+            <div class="main-container-content">
 
                 <div class="flex items-center justify-end">
                     <x-dropdown align="right" width="48">

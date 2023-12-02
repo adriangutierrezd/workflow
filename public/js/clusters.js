@@ -1,7 +1,8 @@
 import { createRow, createCell, createFullTd, showTableLoading } from './tablesService.js'
 import { changeButtonStatus, closeModal, openModal, createDialogDropDownItem, createDialogDropDownContainer, createDialogDroDownBtn, trans } from './utils.js'
-import { OPTIONS_DOTS, TRASH_ICON, EDIT_ICON, SPINNER, HTTP_STATUS, CHECK_ICON } from './constants.js'
+import { HTTP_STATUS } from './constants.js'
 import { getClusterByWorkout, createCluster, deleteCluster, updateCluster } from './clusterService.js'
+import { OPTIONS_DOTS, TRASH_ICON, EDIT_ICON, SPINNER, CHECK_ICON } from './icons.js'
 
 
 const getWorkoutId = () => {
@@ -66,18 +67,6 @@ const loadClusters = async () => {
 
                 const tr = createRow(info)
                 table.children[1].appendChild(tr)
-
-                // const checkBoxSelect = document.createElement('input')
-                // checkBoxSelect.type = 'checkbox'
-                // checkBoxSelect.name = 'clusters[]'
-                // checkBoxSelect.dataset.cluster = cluster.id
-                // checkBoxSelect.className = 'form-checkbox'
-                // const tdSelectCheckBox = createCell({
-                //     text: checkBoxSelect,
-                //     type: 'td',
-                //     html: true
-                // })
-                // tr.appendChild(tdSelectCheckBox)
 
                 const tdExcercise = createCell({
                     text: cluster.excercise.name,

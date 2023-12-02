@@ -1,7 +1,7 @@
 import { getClients, createClient, deleteClient } from './clientsService.js'
 import { showTableLoading, createFullTd, createRow, createCell } from './tablesService.js';
 import { createDialogDroDownBtn, createDialogDropDownContainer, createDialogDropDownItem, closeModal, openModal, trans } from './utils.js'
-import { OPTIONS_DOTS, TRASH_ICON, EXTERNAL_LINK_ICON } from './constants.js'
+import { OPTIONS_DOTS, TRASH_ICON, EXTERNAL_LINK_ICON } from './icons.js'
 
 const loadClients = async () => {
     try {
@@ -44,9 +44,9 @@ const loadClients = async () => {
                 table.children[1].appendChild(tr)
 
                 const nameDiv = document.createElement('div')
-                nameDiv.className = 'flex items-center space-x-3'
+                nameDiv.className = 'profile-picture-stack-container'
                 nameDiv.innerHTML = `
-                    <img class="object-cover w-6 h-6 -mx-1 border-2 border-white rounded-full dark:border-gray-700 shrink-0" src="${image_url}" alt="">
+                    <img class="profile-picture-sm" src="${image_url}" alt="">
                     <span>${name}</span>
                 `
 
@@ -80,7 +80,7 @@ const loadClients = async () => {
                 optionsList.setAttribute('role', 'none')
 
                 const optionsEdit = document.createElement('li')
-                optionsEdit.className = 'block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900'
+                optionsEdit.className = 'dropdown-item'
                 optionsEdit.setAttribute('role', 'menuitem')
                 optionsEdit.setAttribute('tabindex', '-1')
                 optionsEdit.setAttribute('id', 'options-menu-0')
@@ -92,7 +92,7 @@ const loadClients = async () => {
                 optionsEditLink.innerHTML = EXTERNAL_LINK_ICON
                 const optionsEditLinkText = document.createElement('span')
                 optionsEditLinkText.className = 'ml-2'
-                optionsEditLinkText.innerText = 'Estadísticas'
+                optionsEditLinkText.innerText = trans({ key: 'Statics' })
                 optionsEditLink.appendChild(optionsEditLinkText)
                 optionsEdit.appendChild(optionsEditLink)
                 optionsList.appendChild(optionsEdit)

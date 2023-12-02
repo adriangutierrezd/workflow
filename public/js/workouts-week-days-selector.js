@@ -1,4 +1,4 @@
-import { EMPTY_BOX_ICON, EXTERNAL_LINK_ICON } from './constants.js'
+import { EMPTY_BOX_ICON, EXTERNAL_LINK_ICON } from './icons.js'
 
 window.addEventListener('DOMContentLoaded', () => {
 

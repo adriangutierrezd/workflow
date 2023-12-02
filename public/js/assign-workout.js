@@ -1,7 +1,6 @@
-import { closeModal } from './utils.js'
+import { trans, changeButtonStatus, closeModal } from './utils.js'
 import { updateWorkout } from './workoutService.js'
-import { trans, changeButtonStatus } from './utils.js'
-import { SPINNER } from './constants.js'
+import { SPINNER } from './icons.js'
 
 window.addEventListener('DOMContentLoaded', () => {
     $('#client_selector').select2()

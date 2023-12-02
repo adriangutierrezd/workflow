@@ -1,4 +1,5 @@
-import { WORKOUT_STATUSES_COLORS, EMPTY_BOX_ICON } from './constants.js'
+import { WORKOUT_STATUSES_COLORS } from './constants.js'
+import { EMPTY_BOX_ICON } from './icons.js'
 import { trans } from './utils.js';
 
 window.addEventListener("DOMContentLoaded", () => {
