@@ -103,7 +103,6 @@ const loadClusters = async () => {
 
 
                 const parentOptionsDiv = document.createElement('div')
-                parentOptionsDiv.className = 'relative'
 
                 const optionsButton = createDialogDroDownBtn({ icon: OPTIONS_DOTS })
                 const optionsDiv = createDialogDropDownContainer()

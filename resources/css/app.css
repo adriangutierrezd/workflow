@@ -114,6 +114,7 @@ div.dataTables_length{
 
 .dialog-dropdown-container{
     @apply absolute right-0 z-10 w-48 mt-2 origin-top-right rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5;
+    /* bottom: -90%; */
 }
 
 .dropdown-dots-button{
@@ -128,13 +129,6 @@ div.dataTables_length{
     margin-bottom: 1rem;
 }
 
-.select2-container{
-    margin: 0.5rem 0rem !important;
-}
-
-.select2-selection{
-    padding: 1rem 0rem !important;
-}
 
 
 /* styles.css o tu archivo de estilos principal */

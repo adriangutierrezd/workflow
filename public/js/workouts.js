@@ -161,8 +161,7 @@ const loadWorkouts = async (props = {}) => {
                 const tdActions = createCell({
                     text: parentOptionsDiv,
                     html: true,
-                    type: 'td',
-                    classes: 'relative'
+                    type: 'td'
                 })
                 tr.appendChild(tdActions)
 

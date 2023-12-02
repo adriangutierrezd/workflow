@@ -17,7 +17,7 @@
 
 
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mb-5">
-            <div class="p-4 bg-white dark:text-white dark:bg-gray-800 shadow-sm sm:rounded-lg">
+            <div class="p-4 relative bg-white dark:text-white dark:bg-gray-800 shadow-sm sm:rounded-lg">
                 @include('workouts.partials.workouts-table', ['title' => __('In progress workouts'), 'allowedStates' => ['En progreso'], 'displayDatePicker' => false])
             </div>
         </div>
