@@ -15,9 +15,9 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
 
-        Role::factory()->create(['name' => 'ADMIN', 'selectable' => 0]);
-        Role::factory()->create(['name' => 'USER']);
-        Role::factory()->create(['name' => 'TRAINER']);
+        Role::factory()->create(['name' => 'ADMIN', 'selectable' => 0, 'text' => 'Admin']);
+        Role::factory()->create(['name' => 'USER', 'text' => 'User']);
+        Role::factory()->create(['name' => 'TRAINER', 'text' => 'Trainer']);
 
         WorkoutStatus::factory()->create(['name' => 'Borrador']);
         WorkoutStatus::factory()->create(['name' => 'Pendiente']);

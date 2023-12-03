@@ -47,6 +47,18 @@
             @endif
         </div>
 
+        <div>
+            <x-input-label for="role_id" :value="__('Account type')"/>
+            <select name="role_id" id="role_id_selector" required class="form-field mb-6">
+                @foreach($roles as $role)
+                    <option
+                        @php echo $role->id == $user->role_id ? 'selected' : ''; @endphp
+                        value="{{$role->id}}">{{__($role->text)}}</option>
+                @endforeach
+            </select>
+            <x-input-error class="mt-2" :messages="$errors->get('role_id')" />
+        </div>
+
         <div class="flex items-center justify-start space-x-6">
             <img class="object-cover w-16 h-16 rounded-full" src="{{ Auth::user()->image_url }}" alt="">
             <div>

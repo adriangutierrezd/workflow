@@ -423,7 +423,14 @@
     "passwords.throttled": "Espere antes de volver a intentarlo.",
     "passwords.token": "Este token de restablecimiento de contraseña no es válido.",
     "auth.password": "La contraseña proporcionada es incorrecta.",
-    "auth.thorttle": "Demasiados intentos de conexión. Por favor, inténtelo de nuevo en :seconds segundos."
+    "auth.thorttle": "Demasiados intentos de conexión. Por favor, inténtelo de nuevo en :seconds segundos.",
+    "Account type": "Tipo de cuenta",
+    "User": "Usuario",
+    "Admin": "Administrador",
+    "Trainer": "Entrenador",
+    "The selected role is invalid": "El rol seleccionado no es válido",
+    "You can't change roles, you still have assigned customers": "No puedes cambiar de rol, aún tienes clientes asignados",
+    "You cannot change roles, you still have an assigned trainer.": "No puedes cambiar de rol, aún tienes un entrenador asignado"
 
 
 }

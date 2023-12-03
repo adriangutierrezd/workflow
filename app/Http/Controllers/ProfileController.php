@@ -3,12 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\Role;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
-
+use Illuminate\Support\Facades\Validator;
 class ProfileController extends Controller
 {
     /**
@@ -16,8 +17,12 @@ class ProfileController extends Controller
      */
     public function edit(Request $request): View
     {
+
+        $roles = Role::where('selectable', true)->get();
+
         return view('profile.edit', [
             'user' => $request->user(),
+            'roles' => $roles
         ]);
     }
 
@@ -28,10 +33,30 @@ class ProfileController extends Controller
     {
         $request->user()->fill($request->validated());
 
+        $validator = Validator::make($request->all(), [
+            'role_id' => 'exists:roles,id',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withInput()->withErrors(['role_id' => __('The selected role is invalid')]);
+        }
+
+        $targetRole = Role::find($request->input('role_id'));
+        if($targetRole->name != 'TRAINER' && Auth::user()->clients->isNotEmpty()){
+            return redirect()->back()->withInput()->withErrors(
+                ['role_id' => __("You can't change roles, you still have assigned customers")]
+            );
+        }elseif($targetRole->name != 'USER' && Auth::user()->trainer){
+            return redirect()->back()->withInput()->withErrors(
+                ['role_id' => __("You cannot change roles, you still have an assigned trainer.")]
+            );
+        }
+
+        $request->user()->role_id = $request->input('role_id');
+
         if ($request->user()->isDirty('email')) {
             $request->user()->email_verified_at = null;
         }
-
 
         if($request->hasFile('photo_path')){
             $file = $request->file('photo_path');
