@@ -15,9 +15,14 @@
                     @include('workouts.partials.new-workout-dialog')
                 </div>
 
-                @include('workouts.partials.workouts-table', ['title' => __('Workouts'), 'endDate' => $endDate, 'initialDate' => $initialDate ])
-
-
+                @include(
+                    'workouts.partials.workouts-table',
+                    [
+                        'title' => __('Workouts'),
+                        'endDate' => $endDate,
+                        'initialDate' => $initialDate
+                    ]
+                )
             </div>
         </div>
     </div>

@@ -10,15 +10,15 @@
                         <table class="records-table" id="clusters-list">
                             <thead>
                                 <tr>
-                                    <th scope="col" class="px-4 py-3.5 text-sm font-normal text-left text-gray-500 dark:text-gray-400">
+                                    <th scope="col" class="px-4 py-3.5">
                                         {{__('Excercise')}}
                                     </th>
     
-                                    <th scope="col" class="px-4 py-3.5 text-sm font-normal text-left text-gray-500 dark:text-gray-400">
+                                    <th scope="col" class="px-4 py-3.5">
                                         {{__('Sets')}}
                                     </th>
     
-                                    <th scope="col" class="px-4 py-3.5 text-sm font-normal text-left text-gray-500 dark:text-gray-400">
+                                    <th scope="col" class="px-4 py-3.5">
                                         {{__('Weight')}}
                                     </th>
     

@@ -8,16 +8,16 @@
     <div class="main-container">
         <div class="flex flex-col md:flex-row md:items-center justify-end mt-4">
 
-            <div x-data="{ isDateRangeOpen: false }" @close-modal.camel="isDateRangeOpen = false" id="dateRangeDropdown" class="relative inline-block mt-2 md:mt-0">
+            <div
+                x-data="{ isDateRangeOpen: false }" @close-modal.camel="isDateRangeOpen = false"
+                id="dateRangeDropdown" class="relative inline-block mt-2 md:mt-0">
     
-                <button 
+                <button
                 id="dateRangeDropdownBtn"
                 @click="isDateRangeOpen = !isDateRangeOpen"
                 class="date-range-selector-button">
                     <span id="dateRangeDropdownInfo"></span>
-                    <svg class="w-5 h-5 text-gray-800 dark:text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                    </svg>
+                    <x-chevron-down-icon/>
                 </button>
     
                 <div
@@ -30,7 +30,7 @@
                 x-transition:enter-end="opacity-100 scale-100"
                 x-transition:leave="transition ease-in duration-100"
                 x-transition:leave-start="opacity-100 scale-100"
-                x-transition:leave-end="opacity-0 scale-90" 
+                x-transition:leave-end="opacity-0 scale-90"
                 class="date-range-picker">
     
                     
@@ -41,7 +41,7 @@
                         <x-input-label for="endDate" class="form-label font-semibold">A:</x-input-label>
                         <input type="date" name="endDate" class="form-field" value="{{ $endDate }}">
     
-                        <x-primary-button 
+                        <x-primary-button
                         type="submit"
                         class="w-full mt-3 justify-center">
                             {{__('Load')}}
@@ -52,7 +52,7 @@
     
     
             </div>
-        </div>  
+        </div>
     </div>
 
     <div class="py-6">

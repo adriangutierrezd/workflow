@@ -2,9 +2,7 @@
     <x-primary-button
         x-data=""
         x-on:click.prevent="$dispatch('open-modal', 'new-cluster-form')">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-        </svg>
+        <x-plus-icon/>
     </x-primary-button>
 
     <x-modal name="new-cluster-form" id="new-cluster-form-modal" maxWidth="lg" focusable>
@@ -17,9 +15,9 @@
                 <input type="hidden" name="workout_id" value="{{ $workout->id }}">
 
                 <label class="form-label" for="excercise_id">{{__('Excercise')}}</label>
-                <select 
+                <select
                 id="excercise_selector"
-                class="form-field mb-4 select2-selector" 
+                class="form-field mb-4 select2-selector"
                 name="excercise_id" required>
                     <option value="" selected disabled>{{__('Pick an excercise')}}</option>
                     @foreach ($excercises as $excercise)
@@ -54,8 +52,6 @@
 
     </x-modal>
 </div>
-
-
 @push('scripts')
     <script defer type="module" src="{{ asset('js/excerciseSearch.js') }}"></script>
-@endpush    
+@endpush

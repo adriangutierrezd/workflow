@@ -1,4 +1,5 @@
 import { EMPTY_BOX_ICON, EXTERNAL_LINK_ICON } from './icons.js'
+import { trans } from './utils.js'
 
 window.addEventListener('DOMContentLoaded', () => {
 
