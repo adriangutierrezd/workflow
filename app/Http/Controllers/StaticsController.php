@@ -35,7 +35,11 @@ class StaticsController extends Controller
             abort(403);
         }
 
-        if(!$initialDate || !$endDate){
+        $defaultInitialDate = date('Y-m-d', strtotime('monday this week'));
+        $defaultEndDate = date('Y-m-d', strtotime('sunday this week'));
+
+        if((!$initialDate || !$endDate) ||
+        ($defaultEndDate == $endDate && $defaultInitialDate == $initialDate)){
             $initialDate = date('Y-m-d', strtotime('last monday', strtotime('-3 months')));
             $endDate = date('Y-m-d', strtotime('sunday this week'));
         }

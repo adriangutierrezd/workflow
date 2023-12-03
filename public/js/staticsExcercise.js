@@ -131,10 +131,30 @@ const loadExcerciseUsage = async ({ dateFrom, dateTo }) => {
 const loadExcerciseUsageHeatmap = (usageData) => {
     const chartContainer = document.getElementById('excercise-usage-container')
 
-    const totalHeight = 35 * usageData.length
+    const totalHeight = (40 * usageData.length) + 100
     chartContainer.style.height = `${totalHeight}px`
 
+    let customGrid = {
+        height: '90%',
+        top: '10%'
+    }
+
+    if(totalHeight > 1000){
+        customGrid.height = '95%'
+        customGrid.top = '5%'
+    }else if(totalHeight < 500){
+        customGrid.height = '85%'
+        customGrid.top = '15%'
+    }else if(totalHeight < 400){
+        customGrid.height = '70%'
+        customGrid.top = '30%'
+    }else if(totalHeight < 200){
+        customGrid.height = '50%'
+        customGrid.top = '50%'
+    }
+
     const chart = echarts.init(chartContainer)
+    chart.resize()
     const wkyrs = [...new Set(usageData.map(d => d.wkyr))]
     const data = usageData.map(d => {
         return [
@@ -146,15 +166,13 @@ const loadExcerciseUsageHeatmap = (usageData) => {
         return [item[1], item[0], item[2] || '-'];
     })
 
+    const visualMapTop = Math.min((totalHeight * 0.3), 100); 
 
     chart.setOption( {
         tooltip: {
             position: 'top'
         },
-        grid: {
-            height: '95%',
-            top: '5%'
-        },
+        grid: customGrid,
         xAxis: {
             type: 'category',
             data: WEEK_DAYS,
@@ -172,11 +190,12 @@ const loadExcerciseUsageHeatmap = (usageData) => {
         },
         visualMap: {
             min: 0,
+            show: false,
             max: usageData.sort((a, b) => b.sets - a.sets)[0].sets,
             calculable: true,
             orient: 'horizontal',
             left: 'center',
-            top: '1%',
+            top: `${visualMapTop}px`,
             inRange: {
                 color: ['#eff6ff', '#1e40af']
             }
@@ -199,6 +218,7 @@ const loadExcerciseUsageHeatmap = (usageData) => {
         ]
     });
 }
+
 
 document.getElementById('date-range-form').addEventListener('submit', async(ev) => {
 
