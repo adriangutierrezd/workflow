@@ -72,7 +72,7 @@
 
     <x-modal name="send-request-form" id="send-request-form-modal" maxWidth="lg" focusable>
 
-        <div class="p-6">
+        <div class="p-6" x-data="{ submitting: false }">
             <div class="flex flex-col items-center justify-center">
 
                 <div>
@@ -88,7 +88,10 @@
                     </div>
                 </div>
             </div>
-            <form action="#" method="POST">
+            <form
+                action="{{route('user-trainer-request.store')}}"
+                x-on:submit="submitting = true"
+                method="POST">
                 @csrf
 
                 <textarea name="message" class="form-field" cols="30" rows="4" maxlength="255"></textarea>
@@ -99,8 +102,14 @@
                         {{ __('Cancel') }}
                     </x-secondary-button>
     
-                    <x-primary-button class="ml-3">
-                        {{ __('Send') }}
+                    <x-primary-button class="ml-3" x-bind:disabled="submitting">
+                        <span
+                            x-show="!submitting">
+                            {{ __('Send') }}
+                        </span>
+                        <span x-show="submitting">
+                            <x-spinner-icon/>
+                        </span>
                     </x-primary-button>
                 </div>
             </form>

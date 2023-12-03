@@ -8,6 +8,7 @@ use App\Http\Controllers\ClusterController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\StaticsController;
 use App\Http\Controllers\MailController;
+use App\Http\Controllers\UserTrainerRequestController;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,6 +51,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/trainers', [TrainerUserController::class, 'trainersIndex'])->name('trainers.index');
 
 
+    Route::post('/user-trainer-request', [UserTrainerRequestController::class, 'store'])->name('user-trainer-request.store');
+    Route::get('/user-trainer-request-accept/{token}', [UserTrainerRequestController::class, 'accept'])->name('user-trainer-request.accept');
 
 });
 

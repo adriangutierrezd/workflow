@@ -433,7 +433,14 @@
     "You cannot change roles, you still have an assigned trainer.": "No puedes cambiar de rol, aún tienes un entrenador asignado",
     "Trainers": "Entenadores",
     "Send request": "Enviar solicitud",
-    "Send a message to this trainer to start collaborating": "Manda un mensaje a este entrenador para empezar a colaborar"
+    "Send a message to this trainer to start collaborating": "Manda un mensaje a este entrenador para empezar a colaborar",
+    "An user wants you to be his trainer": "Un usuario quiere que seas su entrenador",
+    "wants you to be his trainer": "quiere que seas su entrenador",
+    "The request also contains a message": "La solicitud también contiene un mensaje",
+    "Accept request": "Aceptar solicitud",
+    "This application has expired": "Esta solicitud ha caducado",
+    "Application not found": "Solicitud no encontrada",
+    "This application is already accepted": "Esta solicitud ya se ha aceptado"
 
 
 }
