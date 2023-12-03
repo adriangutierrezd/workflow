@@ -430,7 +430,10 @@
     "Trainer": "Entrenador",
     "The selected role is invalid": "El rol seleccionado no es válido",
     "You can't change roles, you still have assigned customers": "No puedes cambiar de rol, aún tienes clientes asignados",
-    "You cannot change roles, you still have an assigned trainer.": "No puedes cambiar de rol, aún tienes un entrenador asignado"
+    "You cannot change roles, you still have an assigned trainer.": "No puedes cambiar de rol, aún tienes un entrenador asignado",
+    "Trainers": "Entenadores",
+    "Send request": "Enviar solicitud",
+    "Send a message to this trainer to start collaborating": "Manda un mensaje a este entrenador para empezar a colaborar"
 
 
 }

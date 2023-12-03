@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreTrainerUserRequest;
+use App\Models\Role;
 use App\Models\TrainerUser;
-use Illuminate\Database\QueryException;
-use Illuminate\Support\Facades\Log;
 use App\Models\User;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class TrainerUserController extends Controller
 {
@@ -22,6 +24,20 @@ class TrainerUserController extends Controller
         }
 
         return view('trainer.clients');
+    }
+
+
+    public function trainersIndex()
+    {
+
+        if(Auth::user()->isTrainer()){
+            abort(403);
+        }
+
+        $trainerRole = Role::where('name', 'TRAINER')->first();
+        $trainers = User::where('role_id', $trainerRole->id)->get();
+        
+        return view('trainer.index', compact('trainers'));
     }
 
     /**

@@ -26,6 +26,10 @@
                         </x-nav-link>
 
                         @if(!Auth::user()->isTrainer())
+                            <x-nav-link :href="route('trainers.index')" :active="request()->routeIs('trainers.index')">
+                                {{ __('Trainers') }}
+                            </x-nav-link>
+
                             <x-nav-link :href="route('statics.index')" :active="request()->routeIs('statics.index')">
                                 {{ __('Statics') }}
                             </x-nav-link>
@@ -101,6 +105,10 @@
             </x-responsive-nav-link>
 
             @if(!Auth::user()->isTrainer())
+                <x-responsive-nav-link :href="route('trainers.index')" :active="request()->routeIs('trainers.index')">
+                    {{ __('Trainers') }}
+                </x-responsive-nav-link>
+
                 <x-responsive-nav-link :href="route('statics.index')" :active="request()->routeIs('statics.index')">
                     {{ __('Statics') }}
                 </x-responsive-nav-link>
