@@ -51,10 +51,10 @@
                         {{ __('Cancel') }}
                     </x-secondary-button>
 
-                    <input type="hidden" name="clientDeleteId" id="clientDeleteId">
+                    <input type="hidden" name="trainerUserId" id="trainerUserId">
 
     
-                    <x-danger-button id="deleteClientButton" class="ml-3">
+                    <x-danger-button id="deleteTrainerUserButton" class="ml-3">
                         {{ __('Delete') }}
                     </x-danger-button>
                 </div>

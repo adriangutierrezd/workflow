@@ -81,7 +81,7 @@
                                 @endif
                             @endcan
 
-                            <div ¡
+                            <div
                                 class="relative flex justify-center">
                                 <button
                                 x-data=""

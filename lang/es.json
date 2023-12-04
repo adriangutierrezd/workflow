@@ -440,7 +440,12 @@
     "Accept request": "Aceptar solicitud",
     "This application has expired": "Esta solicitud ha caducado",
     "Application not found": "Solicitud no encontrada",
-    "This application is already accepted": "Esta solicitud ya se ha aceptado"
+    "This application is already accepted": "Esta solicitud ya se ha aceptado",
+    "No trainers available": "No hay entrenadores disponibles",
+    "Available trainers": "Entrenadores disponibles",
+    "Your current trainer": "Tu entrenador actual",
+    "Delete relationship": "Eliminar relación",
+    "If you continue, your relationship with the trainer will be erased.": "Si continuas, tu relación con el entrenador se borrará."
 
 
 }

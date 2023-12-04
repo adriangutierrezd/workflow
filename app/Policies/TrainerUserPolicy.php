@@ -31,7 +31,10 @@ class TrainerUserPolicy
     }
 
     public function destroy(User $user, TrainerUser $trainerUser){
-        return $user->role->name === 'ADMIN' || ($user->role->name === 'TRAINER' && $user->id === $trainerUser->trainer_id);
+        return
+            $user->role->name === 'ADMIN' ||
+            ($user->role->name === 'TRAINER' && $user->id === $trainerUser->trainer_id) ||
+            $user->id === $trainerUser->user_id;
     }
 
     public function getPossibleClients(User $user){

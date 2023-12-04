@@ -99,7 +99,7 @@ const loadClients = async () => {
 
                 const optionsDelete = createDialogDropDownItem({ icon: TRASH_ICON, text: trans({ key: 'Delete' }) })
                 optionsDelete.addEventListener('click', () => {
-                    document.getElementById('clientDeleteId').value = id
+                    document.getElementById('trainerUserId').value = id
                     openModal('delete-client-form-modal')
                 })
                 optionsList.appendChild(optionsDelete)
@@ -146,7 +146,7 @@ const loadClients = async () => {
     }
 }
 
-document.getElementById('newClientForm').addEventListener('submit', async (ev) => {
+document.getElementById('newClientForm')?.addEventListener('submit', async (ev) => {
 
     ev.preventDefault()
     const client = document.getElementById('client_selector').value
@@ -167,9 +167,9 @@ document.getElementById('newClientForm').addEventListener('submit', async (ev) =
 
 })
 
-document.getElementById('deleteClientButton').addEventListener('click', async () => {
+document.getElementById('deleteTrainerUserButton').addEventListener('click', async () => {
 
-    const clientTrainerId = document.getElementById('clientDeleteId').value
+    const clientTrainerId = document.getElementById('trainerUserId').value
 
     try {
         await deleteClient({ clientTrainerId })
