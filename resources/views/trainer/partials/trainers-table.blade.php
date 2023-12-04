@@ -83,12 +83,7 @@
 
         <div class="p-6" x-data="{ submitting: false }">
             <div class="flex flex-col items-center justify-center">
-
                 <div>
-                    <div class="flex items-center justify-center">
-                        <x-send-message-icon/>
-                    </div>
-
                     <div class="mt-2 text-center">
                         <h3 class="modal-title" id="modal-title">{{__('Send request')}}</h3>
                         <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">

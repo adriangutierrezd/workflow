@@ -121,11 +121,8 @@
     <x-modal name="workout-properties-form" id="workout-properties-form-modal" maxWidth="lg" focusable>
 
         <div class="p-6">
-            <div class="flex flex-col items-center justify-center">
-                <x-pencil-icon/>
-                <h3 class="modal-title">{{__('Workout properties')}}</h3>
-            </div>
 
+            <h3 class="modal-title text-center">{{__('Workout properties')}}</h3>
 
             <form action="{{route('workouts.update', $workout->id)}}" method="POST" class="grid grid-cols-1 gap-4">
                 @csrf
@@ -190,14 +187,11 @@
     <x-modal name="assign-workout-form" id="assign-workout-form-modal" maxWidth="lg" focusable>
 
         <div class="p-6">
-            <div class="flex flex-col items-center justify-center">
-                <x-person-icon/>
-                <h3 class="modal-title">{{__('Assign workout')}}</h3>
-                <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">
-                    {{__('By assigning the training to this person, the former owner (if any) will lose access.')}}
-                </p>
-            </div>
 
+            <h3 class="modal-title text-center">{{__('Assign workout')}}</h3>
+            <p class="my-3 text-center text-sm text-gray-500 dark:text-gray-400">
+                {{__('By assigning the training to this person, the former owner (if any) will lose access.')}}
+            </p>
 
             <form id="assignWorkoutForm">
 
@@ -241,10 +235,6 @@
             <div class="flex flex-col items-center justify-center">
 
                 <div>
-                    <div class="flex items-center justify-center">
-                        <x-person-minus-icon/>
-                    </div>
-
                     <div class="mt-2 text-center">
                         <h3 class="modal-title" id="modal-title">{{__('Remove assignment')}}</h3>
                         <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">
@@ -280,10 +270,6 @@
             <div class="flex flex-col items-center justify-center">
 
                 <div>
-                    <div class="flex items-center justify-center">
-                        <x-trash-icon/>
-                    </div>
-
                     <div class="mt-2 text-center">
                         <h3 class="modal-title" id="modal-title">{{__('Delete workout')}}</h3>
                         <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">

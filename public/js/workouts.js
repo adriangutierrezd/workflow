@@ -80,8 +80,8 @@ const loadWorkouts = async (props = {}) => {
                 if (workout.user.id != workout.owner.id) {
                     avatarText = `
                     <div class="flex items-center">
-                        <img class="object-cover w-6 h-6 -mx-1 rounded-full ring ring-white dark:ring-gray-900" src="${workout.user.image_url}" alt="">
-                        <img class="object-cover w-6 h-6 -mx-1 rounded-full ring ring-white dark:ring-gray-900" src="${workout.owner.image_url}" alt="">
+                        <img class="profile-picture-sm" src="${workout.user.image_url}" alt="">
+                        <img class="profile-picture-sm" src="${workout.owner.image_url}" alt="">
                     </div>
                     `
                 }

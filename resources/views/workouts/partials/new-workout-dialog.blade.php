@@ -14,10 +14,7 @@
                 @csrf
 
                 <div>
-                    <div class="flex flex-col items-center justify-center">
-                        <x-archive-box-icon/>
-                        <h3 class="modal-title" id="modal-title">{{__('Add workout')}}</h3>
-                    </div>
+                    <h3 class="modal-title text-center" id="modal-title">{{__('Add workout')}}</h3>
 
                     <div class="mt-2">
                         <label class="dark:text-white" for="title">{{__('Title')}}</label>

@@ -177,3 +177,7 @@ table.records-table tbody{
 .welcome-nav-link{
     @apply my-2 text-gray-700 transition-colors duration-300 transform dark:text-gray-200 hover:text-blue-500 dark:hover:text-blue-400 md:mx-4 md:my-0;
 }
+
+html.dark input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+}
