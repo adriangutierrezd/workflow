@@ -445,7 +445,9 @@
     "Available trainers": "Entrenadores disponibles",
     "Your current trainer": "Tu entrenador actual",
     "Delete relationship": "Eliminar relación",
-    "If you continue, your relationship with the trainer will be erased.": "Si continuas, tu relación con el entrenador se borrará."
+    "If you continue, your relationship with the trainer will be erased.": "Si continuas, tu relación con el entrenador se borrará.",
+    "Wait for your previous application to be accepted or to expire": "Espera a que tu solicitud anterior sea aceptada o caduque",
+    "Request sent": "Solicitud enviada"
 
 
 }

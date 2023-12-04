@@ -25,7 +25,10 @@ class UserTrainerRequestController extends Controller
         ->where('accepted', 0)->get();
 
         if($userTrainerRequests->isNotEmpty()){
-            return redirect()->back();
+            return redirect()->back()->with('banner', [
+                'type' => 'error',
+                'message' => __('Wait for your previous application to be accepted or to expire')
+            ]);
         }
 
         try{
@@ -45,7 +48,10 @@ class UserTrainerRequestController extends Controller
             return redirect()->back();
         }
 
-        return redirect()->back();
+        return redirect()->back()->with('banner', [
+            'type' => 'success',
+            'message' => __('Request sent')
+        ]);
     }
 
     /**

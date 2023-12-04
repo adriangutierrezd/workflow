@@ -54,6 +54,15 @@
                 </header>
             @endif
 
+
+            {{-- ALERT --}}
+            @if(session('banner'))
+                <x-banner 
+                  message="{{session('banner')['message']}}"
+                  type="{{session('banner')['type']}}"
+                />
+            @endif
+
             <!-- Page Content -->
             <main class="px-2">
                 {{ $slot }}
