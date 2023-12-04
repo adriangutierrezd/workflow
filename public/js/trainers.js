@@ -1,4 +1,4 @@
-import { openModal } from './utils.js'
+import { openModal, trans } from './utils.js'
 import { deleteClient } from './clientsService.js'
 
 
@@ -32,7 +32,7 @@ document.getElementById('deleteTrainerUserButton')?.addEventListener('click', as
             text: error.message,
             icon: 'error',
             confirmButtonText: trans({ key: 'Okey' })
-        })    
+        })
     }
 
 });
