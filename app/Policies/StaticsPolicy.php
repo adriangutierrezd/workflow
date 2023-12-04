@@ -11,12 +11,7 @@ class StaticsPolicy
 
     public function view(User $user, ?User $targetUser = null)
     {
-
-        return $user->id > 1;
-
-        //return true;
-        // Log::error(print_r([$user, $targetUser], true));
-        // return $this->isSameUser($user, $targetUser) || $this->isHisTrainer($user, $targetUser);
+        return $this->isSameUser($user, $targetUser) || $this->isHisTrainer($user, $targetUser);
     }
 
 
