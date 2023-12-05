@@ -36,7 +36,7 @@ class WorkoutAssignedMailable extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            from: new Address(env('MAIL_FROM_ADDRESS')),
+            from: new Address(env('MAIL_FROM_ADDRESS'), env('APP_NAME', 'Workflow')),
             subject: __('New workout assigned'),
         );
     }

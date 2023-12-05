@@ -212,7 +212,7 @@ document.getElementById('deleteBtn').addEventListener('click', async (ev) => {
                 inner: previousInnerHTML
             })
         }, 500)
-        loadWorkouts()
+        loadWorkouts({ allowedStates: displayStatesJson })
     }
 })
 
