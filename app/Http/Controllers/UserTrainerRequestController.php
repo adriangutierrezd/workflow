@@ -7,6 +7,7 @@ use App\Mail\UserTrainerRequestMailable;
 use App\Models\TrainerUser;
 use App\Models\UserTrainerRequest;
 use Illuminate\Database\QueryException;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
@@ -22,13 +23,21 @@ class UserTrainerRequestController extends Controller
     {
 
         $userTrainerRequests = UserTrainerRequest::where('user_id', $request->user()->id)
+        ->where('trainer_id', $request->input('trainer_id'))
         ->where('accepted', 0)->get();
 
         if($userTrainerRequests->isNotEmpty()){
-            return redirect()->back()->with('banner', [
-                'type' => 'error',
-                'message' => __('Wait for your previous application to be accepted or to expire')
-            ]);
+
+            $nonExpiredRequests = $userTrainerRequests->filter(function($request){
+                return !$request->isExpired();
+            });
+
+            if($nonExpiredRequests->isNotEmpty()){
+                return redirect()->back()->with('banner', [
+                    'type' => 'error',
+                    'message' => __('Wait for your previous application to be accepted or to expire')
+                ]);
+            }
         }
 
         try{
@@ -37,7 +46,7 @@ class UserTrainerRequestController extends Controller
                 'trainer_id' => $request->input('trainer_id'),
                 'token' => Str::uuid(),
                 'message' => $request->input('message') ?? null,
-                'token_expires_at' => now()->addHours(2)
+                'token_expires_at' => now()->addHours(UserTrainerRequest::TTL_HOURS)
             ]);
 
             Mail::to($userTrainerRequest->trainer->email)
@@ -54,24 +63,31 @@ class UserTrainerRequestController extends Controller
         ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function accept(string $token)
+
+    public function accept(Request $request, string $token)
     {
 
         $userTrainerRequest = UserTrainerRequest::where('token', $token)->first();
 
         if(!$userTrainerRequest){
-            abort(404, __('Application not found'));
+            abort(404, "CUSTOM_MESSAGE: ".__('Application not found'));
+        }
+
+        if($userTrainerRequest->trainer_id != $request->user()->id){
+            abort(403);
         }
 
         if($userTrainerRequest->accepted){
-            abort(403, __('This application is already accepted'));
+            abort(403, "CUSTOM_MESSAGE: ".__('This application is already accepted'));
         }
 
         if($userTrainerRequest->isExpired()){
-            abort(404, __('This application has expired'));
+            abort(404, "CUSTOM_MESSAGE: ".__('This application has expired'));
+        }
+
+        $trainerUserRelation = TrainerUser::where('user_id', $userTrainerRequest->user_id)->get();
+        if($trainerUserRelation->isNotEmpty()){
+            abort(403, "CUSTOM_MESSAGE: ".__('This user already has a trainer'));
         }
 
         $userTrainerRequest->update([
@@ -87,11 +103,5 @@ class UserTrainerRequestController extends Controller
         return redirect()->route('dashboard');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(UserTrainerRequest $userTrainerRequest)
-    {
-        //
-    }
+
 }

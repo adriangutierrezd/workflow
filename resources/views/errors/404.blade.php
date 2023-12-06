@@ -29,7 +29,18 @@
         <div class="text-center">
             <p class="text-base font-semibold text-blue-600">404</p>
             <h1 class="mt-4 text-3xl font-bold tracking-tight text-gray-900 sm:text-5xl">{{__('Page not found')}}</h1>
-            <p class="mt-6 text-base leading-7 text-gray-600">{{__('Sorry, we couldn’t find the page you’re looking for.')}}</p>
+            <p class="mt-6 text-base leading-7 text-gray-600">
+
+              @if(isset($exception) && strpos($exception->getMessage(), 'CUSTOM_MESSAGE') === 0)
+                <?php
+                $customMessage = explode('CUSTOM_MESSAGE: ', $exception->getMessage(), 2)[1];
+                ?>
+                <p>{{$customMessage}}</p>
+              @else
+                  <p>{{$exception->getMessage()}}</p>
+              @endif
+
+            </p>
             <div class="mt-10 flex items-center justify-center gap-x-6">
               <a href="{{route('dashboard')}}" 
                 class="rounded-md bg-blue-600 px-3.5 py-2.5 text-sm font-semibold

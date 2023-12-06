@@ -454,7 +454,7 @@
     "Page not found": "Página no encontrada",
     "Sorry, we couldn’t find the page you’re looking for.": "Lo sentimos, no hemos podido encontrar la página que busca.",
     "An error ocurred": "Ha ocurrido un error",
-    "It seems that a server-side error has occurred, sorry for the inconvenience": "Parece que ha ocurrido un error del lado del servidor, disculpa las molestias"
-
+    "It seems that a server-side error has occurred, sorry for the inconvenience": "Parece que ha ocurrido un error del lado del servidor, disculpa las molestias",
+    "This user already has a trainer": "Este usuario ya tiene un entrenador"
 
 }

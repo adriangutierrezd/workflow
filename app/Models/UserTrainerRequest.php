@@ -10,6 +10,8 @@ class UserTrainerRequest extends Model
 {
     use HasFactory;
 
+    const TTL_HOURS = 2;
+
     protected $fillable = [
         'user_id',
         'trainer_id',
