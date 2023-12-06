@@ -10,11 +10,6 @@
 <body>
     <section
         style="padding: 2rem 1.5rem;background-color:#ffffff;">
-        <header>
-            <a href="#">
-                <img style="width:auto;height:2rem;" src="https://merakiui.com/images/full-logo.svg" alt="">
-            </a>
-        </header>
     
         <main style="margin-top: 2rem;">
             <h2 style="color:#374151;">{{__('Hi')}} {{ $userTrainerRequest->trainer->name }}</h2>

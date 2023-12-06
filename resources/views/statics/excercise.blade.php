@@ -11,22 +11,21 @@
     </x-slot>
 
 
-    <div class="py-4">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8  flex items-center justify-end">
-            <div
-                x-data="{ isDateRangeOpen: false }"
-                @close-modal.camel="isDateRangeOpen = false" id="dateRangeDropdown"
-                class="relative inline-block"
-            >
+    <div class="main-container">
+        <div class="flex flex-col md:flex-row md:items-center justify-end mt-4">
 
+            <div
+                x-data="{ isDateRangeOpen: false }" @close-modal.camel="isDateRangeOpen = false"
+                id="dateRangeDropdown" class="relative inline-block mt-2 md:mt-0">
+    
                 <button
                 id="dateRangeDropdownBtn"
                 @click="isDateRangeOpen = !isDateRangeOpen"
                 class="date-range-selector-button">
-                    <span id="dateRangeDropdownInfo">Del xx al xx</span>
+                    <span id="dateRangeDropdownInfo"></span>
                     <x-chevron-down-icon/>
                 </button>
-        
+    
                 <div
                 x-show="isDateRangeOpen"
                 x-cloak
@@ -39,27 +38,27 @@
                 x-transition:leave-start="opacity-100 scale-100"
                 x-transition:leave-end="opacity-0 scale-90"
                 class="date-range-picker">
-        
+    
+                    
                     <form method="GET" action="#" id="date-range-form">
                         <x-input-label for="initialDate" class="form-label font-semibold">De:</x-input-label>
-                        <input type="date" name="initialDate" class="form-field" value="{{$initialDate}}">
-        
+                        <input type="date" name="initialDate" class="form-field" value="{{ $initialDate }}">
+    
                         <x-input-label for="endDate" class="form-label font-semibold">A:</x-input-label>
-                        <input type="date" name="endDate" class="form-field" value="{{$endDate}}">
-        
+                        <input type="date" name="endDate" class="form-field" value="{{ $endDate }}">
+    
                         <x-primary-button
                         type="submit"
                         class="w-full mt-3 justify-center">
                             {{__('Load')}}
                         </x-primary-button>
                     </form>
-        
+    
                 </div>
-        
-        
+    
+    
             </div>
         </div>
-
     </div>
 
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mb-5">

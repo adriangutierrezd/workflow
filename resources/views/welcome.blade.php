@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
+        <link rel="icon" href="{{asset('/img/Workflow-favicon.png')}}" type="image/x-icon">
         <title>{{ config('app.name', 'Workflow') }}</title>
 
         <!-- Fonts -->
@@ -19,8 +20,8 @@
             <nav x-data="{ isOpen: false }" class="relative bg-white dark:bg-gray-900">
                 <div class="container px-6 py-4 mx-auto md:flex md:justify-between md:items-center">
                     <div class="flex items-center justify-between">
-                        <a href="#">
-                            <img class="w-auto h-6 sm:h-7" src="https://merakiui.com/images/full-logo.svg" alt="">
+                        <a href="/">
+                            <x-application-logo-big  class="h-16" />
                         </a>
             
                         <!-- Mobile menu button -->

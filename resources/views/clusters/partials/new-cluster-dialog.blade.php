@@ -34,7 +34,7 @@
                 class="form-field mb-4" required>
 
                 <label class="form-label" for="weight">{{__('Weight')}}</label>
-                <input type="number" step="0.1" min="0" max="99999.99" name="weight"
+                <input type="number" step="0.01" min="0" max="99999.99" name="weight"
                 class="form-field mb-4" required>
 
                 <div class="mt-6 flex justify-end">

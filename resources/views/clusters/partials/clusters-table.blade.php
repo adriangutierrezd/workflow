@@ -69,7 +69,7 @@
                     class="form-field mb-4" required>
     
                     <label class="form-label" for="updateWeight">{{__('Weight')}}</label>
-                    <input type="number" step="0.1" min="0" max="99999.99" name="updateWeight"
+                    <input type="number" step="0.01" min="0" max="99999.99" name="updateWeight"
                     class="form-field mb-4" required>
     
     
