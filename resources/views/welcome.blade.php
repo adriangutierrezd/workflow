@@ -121,8 +121,7 @@
                             <p
                                 class="mt-2 text-gray-500 dark:text-gray-400"
                             >
-                                {{__('Keep a record of your workouts so you can track your
-                                improvement and make future workouts more effective')}}.
+                                {{__('Keep a record of your workouts so you can track your improvement and make future workouts more effective')}}.
                             </p>
                         </div>
             
@@ -136,8 +135,7 @@
                             <p
                                 class="mt-2 text-gray-500 dark:text-gray-400"
                             >
-                                {{__("Create, delete and modify your workouts whenever you want, even
-                                if it's been weeks since you added them to the platform")}}.
+                                {{__("Create, delete and modify your workouts whenever you want, even if it's been weeks since you added them to the platform")}}.
                             </p>
                         </div>
             
@@ -150,8 +148,7 @@
                             </h3>
                             <p
                                 class="mt-2 text-gray-500 dark:text-gray-400">
-                                {{__('Workflow keeps an online record of your data,
-                                so you can access it at any time and from any device.')}}
+                                {{__('Workflow keeps an online record of your data, so you can access it at any time and from any device.')}}
                             </p>
                         </div>
                     </div>
