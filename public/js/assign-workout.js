@@ -34,7 +34,7 @@ document.getElementById('assignWorkoutForm').addEventListener('submit', async (e
     }finally{
         changeButtonStatus({
             button,
-            disabled: true,
+            disabled: false,
             inner: previousInnerHTML
         })
     }

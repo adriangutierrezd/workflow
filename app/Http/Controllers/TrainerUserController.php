@@ -6,7 +6,6 @@ use App\Http\Requests\StoreTrainerUserRequest;
 use App\Models\Role;
 use App\Models\TrainerUser;
 use App\Models\User;
-use Illuminate\Database\Query\Builder;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -52,6 +51,14 @@ class TrainerUserController extends Controller
     public function store(StoreTrainerUserRequest $request)
     {
 
+        $trainerUser = User::find($request->trainer_id);
+        if(!$trainerUser->isTrainer()){
+            return response()->json([
+                'message' => __('Error creating relationship'),
+                'data' => null
+            ], 403);
+        }
+
         try{
             TrainerUser::create([
                 'user_id' => $request->user_id ?? auth()->user()->id,
@@ -60,13 +67,13 @@ class TrainerUserController extends Controller
         }catch(QueryException $e){
             Log::error('Error storing trainer user relation: ' . $e->getMessage());
             return response()->json([
-                'message' => 'Error creating relationship',
+                'message' => __('Error creating relationship'),
                 'data' => null
             ], 500);
         }
 
         return response()->json([
-            'message' => 'Relationship created successfully',
+            'message' => __('Relationship created successfully'),
             'data' => null
         ], 201);
         
@@ -79,7 +86,7 @@ class TrainerUserController extends Controller
 
         if($request->user()->cannot('retrieve', [TrainerUser::class, $user])){
             return response()->json([
-                'message' => 'Unauthorized',
+                'message' => __('Unauthorized action.'),
                 'data' => null
             ], 401);
         }
@@ -99,7 +106,7 @@ class TrainerUserController extends Controller
 
         if($request->user()->cannot('destroy', [TrainerUser::class, $trainerUser])){
             return response()->json([
-                'message' => 'Unauthorized',
+                'message' => __('Unauthorized action.'),
                 'data' => null
             ], 401);
         }
@@ -124,7 +131,7 @@ class TrainerUserController extends Controller
 
         if($request->user()->cannot('getPossibleClients', [TrainerUser::class])){
             return response()->json([
-                'message' => 'Unauthorized',
+                'message' => __('Unauthorized action.'),
                 'data' => null
             ], 401);
         }

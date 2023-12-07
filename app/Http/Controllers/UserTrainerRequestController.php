@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreUserTrainerRequestRequest;
 use App\Mail\UserTrainerRequestMailable;
 use App\Models\TrainerUser;
+use App\Models\User;
 use App\Models\UserTrainerRequest;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
@@ -38,6 +39,13 @@ class UserTrainerRequestController extends Controller
                     'message' => __('Wait for your previous application to be accepted or to expire')
                 ]);
             }
+        }
+
+        if($request->user()->trainer){
+            return redirect()->back()->with('banner', [
+                'type' => 'error',
+                'message' => __('Terminate your relationship with your current trainer to apply for a new one.')
+            ]);
         }
 
         try{
@@ -74,6 +82,11 @@ class UserTrainerRequestController extends Controller
         }
 
         if($userTrainerRequest->trainer_id != $request->user()->id){
+            abort(403);
+        }
+
+        $trainerUser = User::find($userTrainerRequest->trainer_id);
+        if(!$trainerUser->isTrainer()){
             abort(403);
         }
 

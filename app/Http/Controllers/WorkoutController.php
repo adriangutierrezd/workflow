@@ -4,17 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreWorkoutRequest;
 use App\Http\Requests\UpdateWorkoutRequest;
+use App\Mail\WorkoutAssignedMailable;
 use App\Models\Excercise;
+use App\Models\User;
 use App\Models\Workout;
 use App\Models\WorkoutStatus;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
-use stdClass;
-use Illuminate\Database\Eloquent\Builder;
-use App\Mail\WorkoutAssignedMailable;
 use Illuminate\Support\Facades\Mail;
-use App\Models\User;
+use stdClass;
 
 class WorkoutController extends Controller
 {
@@ -49,7 +49,7 @@ class WorkoutController extends Controller
 
         if(isJsonRequest()){
             return response()->json([
-                'message' => 'Workout created successfully',
+                'message' => __('Workout created successfully'),
                 'data' => $newWorkout
             ]);
         }
@@ -69,14 +69,14 @@ class WorkoutController extends Controller
             ->orWhere('owner_id', Auth::user()->id);
         })
         ->whereBetween('date', [$startDate, $endDate])
-        ->with('status', 'owner', 'user')  
+        ->with('status', 'owner', 'user')
         ->orderBy('date', 'desc')
         ->get();
 
 
         return response()->json([
             'data' => $workouts,
-            'message' => 'Workouts retrieved successfully'
+            'message' => __('Workouts retrieved successfully')
         ]);
     }
 
@@ -117,13 +117,21 @@ class WorkoutController extends Controller
                 return $value !== null;
             });
 
+            $targetUser = $request->input('user_id');
+            if($request->has('user_id') && $targetUser != $request->user()->id &&
+                !$request->user()->clients->contains('id', $targetUser)){
+                return response()->json([
+                    'message' => __('An error ocurred while updating the workout')
+                ], 403);
+            }
+
             $workout->update($updateData);
 
         }catch(QueryException $e){
             Log::error('Error updating workout: ' . $e->getMessage());
             if(isJsonRequest()){
                 return response()->json([
-                    'message' => 'An error ocurred while updating the workout'
+                    'message' => __('An error ocurred while updating the workout')
                 ], 500);
             }else{
                 return redirect()->route('workouts.edit', ['workout' => $workout->id]);
@@ -139,7 +147,7 @@ class WorkoutController extends Controller
 
         if(isJsonRequest()){
             return response()->json([
-                'message' => 'Workout updated successfully',
+                'message' => __('Workout updated successfully'),
                 'data' => $workout
             ]);
         }
