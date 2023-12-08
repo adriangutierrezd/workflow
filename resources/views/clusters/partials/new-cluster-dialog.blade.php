@@ -9,6 +9,11 @@
 
         <div class="p-6">
 
+            <div class="mt-2 text-center">
+                <h3 class="modal-title" id="modal-title">{{__('Create cluster')}}</h3>
+            </div>
+
+
             <form method="POST" id="newClusterForm" action="{{ route('clusters.store') }}">
                 @csrf
 

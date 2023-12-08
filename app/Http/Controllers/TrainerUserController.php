@@ -116,13 +116,13 @@ class TrainerUserController extends Controller
         }catch(QueryException $e){
             Log::error('Error deleting trainer user relation: ' . $e->getMessage());
             return response()->json([
-                'message' => 'Error deleting relationship',
+                'message' => __('An error ocurred'),
                 'data' => null
             ], 500);
         }
 
         return response()->json([
-            'message' => 'Relationship deleted successfully',
+            'message' => __('Resource successfully removed'),
             'data' => null
         ]);
     }
@@ -147,7 +147,7 @@ class TrainerUserController extends Controller
 
 
         return response()->json([
-            'message' => 'Possible clients retrieved successfully',
+            'message' => __('Data successfully obtained'),
             'data' => $possibleClients
         ]);
 

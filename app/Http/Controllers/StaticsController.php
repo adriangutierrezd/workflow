@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\Excercise;
 use App\Models\User;
 use App\Models\Workout;
-use App\Models\Excercise;
-use Illuminate\Support\Facades\Gate;
-use Illuminate\Http\JsonResponse;
-use Illuminate\Support\Facades\DB;
-use DateTime;
-use DatePeriod;
 use DateInterval;
+use DatePeriod;
+use DateTime;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Gate;
 
 class StaticsController extends Controller
 {
@@ -53,7 +53,7 @@ class StaticsController extends Controller
     {
 
         if(!Gate::allows('see-statics', $user)){
-            return response()->json(['error' => 'Not authorized.'], 403);
+            return response()->json(['error' => __('Not authorized')], 403);
         }
 
         $initialTimeStr = !$initialDate ? 'monday this week' : $initialDate;
@@ -71,7 +71,7 @@ class StaticsController extends Controller
         $workoutsByStatus = $workouts->groupBy('status.name');
 
         return response()->json([
-            'message' => 'Data fetched',
+            'message' => __('Data successfully obtained'),
             'data' => [
                 'workoutsByStatus' => $workoutsByStatus,
                 'totalWorkouts' => count($workouts)
@@ -85,7 +85,7 @@ class StaticsController extends Controller
     public function staticsPerExcercise(Request $request, User $user, string $initialDate = null, string $endDate = null): JsonResponse
     {
         if(!Gate::allows('see-statics', $user)){
-            return response()->json(['error' => 'Not authorized.'], 403);
+            return response()->json(['error' => __('Not authorized')], 403);
         }
 
         $initialTimeStr = !$initialDate ? 'monday this week' : $initialDate;
@@ -112,7 +112,7 @@ class StaticsController extends Controller
         ->get();
 
         return response()->json([
-            'message' => 'Data fetched',
+            'message' => __('Data successfully obtained'),
             'data' => $results,
             'from' => $dateFrom,
             'to' => $dateTo
@@ -122,7 +122,7 @@ class StaticsController extends Controller
     public function getExcerciseData(Request $request, Excercise $excercise, User $user, string $initialDate = null, string $endDate = null): JsonResponse
     {
         if(!Gate::allows('see-statics', $user)){
-            return response()->json(['error' => 'Not authorized.'], 403);
+            return response()->json(['error' => __('Not authorized')], 403);
         }
 
         $initialTimeStr = !$initialDate ? 'monday this week' : $initialDate;
@@ -133,8 +133,8 @@ class StaticsController extends Controller
 
         $results = DB::table('workouts as w')
         ->select(
-            'w.id', 
-            'w.date', 
+            'w.id',
+            'w.date',
             DB::raw('ROUND(SUM(c.sets * c.reps * c.weight) / SUM(c.sets * c.reps), 2) AS average_weight_per_workout'),
             DB::raw('ROUND(SUM(c.sets * c.reps * c.weight), 2) AS total_weight_per_workout')
         )
@@ -148,7 +148,7 @@ class StaticsController extends Controller
         ->get();
 
         return response()->json([
-            'message' => 'Data fetched',
+            'message' => __('Data successfully obtained'),
             'data' => $results,
             'from' => $dateFrom,
             'to' => $dateTo
@@ -158,7 +158,7 @@ class StaticsController extends Controller
     public function getExcerciseUsage(Request $request, Excercise $excercise, User $user, string $initialDate = null, string $endDate = null): JsonResponse
     {
         if(!Gate::allows('see-statics', $user)){
-            return response()->json(['error' => 'Not authorized.'], 403);
+            return response()->json(['error' => __('Not authorized')], 403);
         }
 
         $initialTimeStr = !$initialDate ? 'monday this week' : $initialDate;
@@ -215,7 +215,7 @@ class StaticsController extends Controller
         $results = $results->merge($missingResults)->sortBy('date')->values();
 
         return response()->json([
-            'message' => 'Data fetched',
+            'message' => __('Data successfully obtained'),
             'data' => $results,
             'from' => $dateFrom,
             'to' => $dateTo

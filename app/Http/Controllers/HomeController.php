@@ -40,7 +40,16 @@ class HomeController extends Controller
         $workoutsByStatus = $workouts->groupBy('status.name');
         $workoutsByDate = $workouts->groupBy('date');
         
-        return view('trainer.dashboard', compact('workouts', 'workoutsByStatus', 'weekDays', 'workoutsByDate', 'initialDate', 'endDate'));
+        $viewVars = [
+            'workouts',
+            'workoutsByStatus',
+            'weekDays',
+            'workoutsByDate',
+            'initialDate',
+            'endDate'
+        ];
+
+        return view('trainer.dashboard', compact(...$viewVars));
 
     }
 

@@ -462,6 +462,13 @@
     "Workouts retrieved successfully": "Entrenamientos obtenidos con éxito",
     "Terminate your relationship with your current trainer to apply for a new one.": "Elimina tu relación con tu entrenador actual para solicitar uno nuevo",
     "Error creating relationship": "Error creando relación",
-    "Relationship created successfully": "Relación creada con éxito"
+    "Relationship created successfully": "Relación creada con éxito",
+    "Edit cluster": "Editar cluster",
+    "Create cluster": "Crear cluster",
+    "Data successfully obtained": "Datos obtenidos correctamente",
+    "Resource successfully created": "Recurso creado con éxito",
+    "Successfully updated resource": "Recurso actualizado con éxito",
+    "Resource successfully removed": "Recurso eliminado con éxito",
+    "Not authorized": "No autorizado"
 
 }
