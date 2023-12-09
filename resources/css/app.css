@@ -127,7 +127,7 @@ div.dataTables_length{
 }
 
 .main-container{
-    @apply max-w-7xl mx-auto sm:px-6 lg:px-8 mb-6;
+    @apply max-w-7xl mx-auto sm:px-6 lg:px-8;
 }
 
 .main-container-content{

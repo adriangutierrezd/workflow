@@ -11,8 +11,8 @@
     </x-slot>
 
     <div class="py-12">
-        <div class="main-container">
-            <div class="main-container-content">
+        <div class="main-container mb-6">
+            <div class="main-container mb-6-content">
                 <div class="flex justify-end items-center">
                     @include('workouts.partials.new-workout-dialog')
                 </div>

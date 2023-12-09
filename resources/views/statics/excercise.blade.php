@@ -11,7 +11,7 @@
     </x-slot>
 
 
-    <div class="main-container">
+    <div class="main-container mb-6">
         <div class="flex flex-col md:flex-row md:items-center justify-end mt-4">
 
             <div
@@ -83,7 +83,7 @@
         </article>
     </div>
 
-    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mb-5">
+    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
         <article class="p-4 bg-white dark:text-white dark:bg-gray-800 shadow-sm sm:rounded-lg">
             <header>
                 <h2 class="card-heading-2">{{__('Usage of exercise')}}</h2>

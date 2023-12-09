@@ -10,6 +10,9 @@
         </h2>
     </x-slot>
 
+    <section>
+        
+    </section>
     <div class="main-container">
         <div class="flex flex-col md:flex-row md:items-center justify-end mt-4">
 
@@ -64,7 +67,7 @@
         @include('workouts.partials.workouts-data-abstract', ['workouts' => [], 'workoutsByStatus' => []])
     </div>
 
-    <div class="main-container">
+    <div class="main-container mb-6">
         <div class="p-4 bg-white dark:text-white dark:bg-gray-800 shadow-sm sm:rounded-lg">
             @include('statics.partials.statics-per-excercise')
         </div>
