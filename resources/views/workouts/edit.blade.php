@@ -12,7 +12,7 @@
 
     <div class="py-12">
         <div class="main-container mb-6">
-            <div class="main-container mb-6-content">
+            <div class="main-container-content">
 
                 <div class="flex items-center justify-end">
                     <x-dropdown align="right" width="48">
