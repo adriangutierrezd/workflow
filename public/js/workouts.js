@@ -10,7 +10,9 @@ const loadWorkouts = async (props = {}) => {
         const { startDate, endDate, allowedStates } = props
 
         const table = document.getElementById('workouts-list')
-        $('#workouts-list').DataTable().destroy();
+        if ($.fn.DataTable.isDataTable('#workouts-list')) {
+            window.workoutsDatatable.clear().destroy();
+        }
 
         showTableLoading({ table })
 
@@ -168,7 +170,7 @@ const loadWorkouts = async (props = {}) => {
 
             })
 
-            $('#workouts-list').DataTable({
+            window.workoutsDatatable = $('#workouts-list').DataTable({
                 info: false,
                 language: translations,
                 order: [[
