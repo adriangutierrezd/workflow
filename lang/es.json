@@ -476,6 +476,8 @@
     "Author": "Autor",
     "If you continue, this excercise will be erased from all your workouts": "Si continúas, el ejercicio se borrará de todos tus entrenamientos",
     "Add excercise": "Nuevo ejercicio",
-    "Excercise created successfully": "Ejercicio creado con éxito"
+    "Excercise created successfully": "Ejercicio creado con éxito",
+    "An error ocurred while deleting the excercise": "Ha ocurrido un error eliminando el ejercicio",
+    "Excercise deleted successfully": "Ejercicio eliminado con éxito"
 
 }

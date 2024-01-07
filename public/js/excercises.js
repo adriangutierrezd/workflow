@@ -1,4 +1,4 @@
-import { getExcercises, createExcercise } from './excercisesService.js'
+import { getExcercises, createExcercise, deleteExcercise } from './excercisesService.js'
 import { createRow, createCell, createFullTd, showTableLoading } from './tablesService.js'
 import { OPTIONS_DOTS, TRASH_ICON, EDIT_ICON, SPINNER, CHART_ICON } from './icons.js'
 import { changeButtonStatus, closeModal, openModal, createDialogDropDownItem, createDialogDropDownContainer, createDialogDroDownBtn, trans } from './utils.js'
@@ -104,7 +104,6 @@ const loadExcercises = async () => {
 
                     const optionsDelete = createDialogDropDownItem({ icon: TRASH_ICON, text: trans({ key: 'Delete' }) })
                     optionsDelete.addEventListener('click', () => {
-                        openModal('<delete-excercise-form-modal>')
                         document.querySelector('input[name=deleteExcerciseId').value = id
                         openModal('delete-excercise-form-modal')
                     })
@@ -160,6 +159,7 @@ const loadExcercises = async () => {
 window.addEventListener('DOMContentLoaded', () => {
 
     loadExcercises()
+
     document.getElementById('new-excercise-modal')?.addEventListener('submit', async (e) => {
 
         e.preventDefault()
@@ -199,6 +199,31 @@ window.addEventListener('DOMContentLoaded', () => {
         }
 
 
+    })
+
+    document.getElementById('deleteExcerciseButton')?.addEventListener('click', async (e) => {
+
+        const prevText = e.target.innerHTML
+
+        try {
+
+            changeButtonStatus({ button: e.target, disabled: true, inner: SPINNER })
+
+            const excerciseId = document.querySelector('input[name=deleteExcerciseId').value
+            await deleteExcercise(excerciseId)
+
+        } catch (error) {
+            Swal.fire({
+                title: 'Error!',
+                text: error.message,
+                icon: 'error',
+                confirmButtonText: trans({ key: 'Okey' })
+            })
+        } finally {
+            closeModal('delete-excercise-form-modal')
+            changeButtonStatus({ button: e.target, disabled: false, inner: prevText })
+            loadExcercises()
+        }
     })
 
 })

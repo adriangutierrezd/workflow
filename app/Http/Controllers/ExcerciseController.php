@@ -90,6 +90,35 @@ class ExcerciseController extends Controller
      */
     public function destroy(Excercise $excercise)
     {
-        //
+        if($excercise->user_id != Auth::user()->id){
+            if(isJsonRequest()){
+                return response()->json([
+                    'message' => __('Unauthorized action.')
+                ], 403);
+            }else{
+                abort(403);
+            }
+        }
+
+        try{
+            $excercise->delete();
+        }catch(QueryException $e){
+            Log::error('Error deleting excercise: ' . $e->getMessage());
+            if(isJsonRequest()){
+                return response()->json([
+                    'message' => __('An error ocurred while deleting the excercise')
+                ], 500);
+            }else{
+                return redirect()->route('excercises.index');
+            }
+        }
+
+        if(isJsonRequest()){
+            return response()->json([
+                'message' => __('Excercise deleted successfully')
+            ]);
+        }
+
+        return redirect()->route('excercises.index');
     }
 }
