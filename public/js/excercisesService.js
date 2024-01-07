@@ -1,6 +1,6 @@
 import { HTTP_STATUS } from './constants.js'
 
-export const getExcercises = async (trainerId) => {
+export const getExcercises = async () => {
     try {
         const response = await fetch(`/api/excercises`)
         const data = await response.json()
@@ -34,7 +34,6 @@ export const createExcercise = async ({ name }) => {
 
 
 export const deleteExcercise = async (excerciseId) => {
-    console.log(excerciseId)
     try {
         const requestOptions = {
             method: 'DELETE',

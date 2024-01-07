@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class StoreExcerciseRequest extends FormRequest
 {
@@ -21,8 +22,16 @@ class StoreExcerciseRequest extends FormRequest
      */
     public function rules(): array
     {
+        $userId = auth()->id();
+    
         return [
-            'name' => 'required|max:100'
+            'name' => [
+                'required',
+                'max:100',
+                Rule::unique('excercises', 'name')->where(function ($query) use ($userId) {
+                    return $query->where('user_id', null)->orWhere('user_id', $userId);
+                }),
+            ],
         ];
     }
 }
