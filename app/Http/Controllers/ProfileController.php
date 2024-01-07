@@ -18,11 +18,9 @@ class ProfileController extends Controller
     public function edit(Request $request): View
     {
 
-        $roles = Role::where('selectable', true)->get();
 
         return view('profile.edit', [
-            'user' => $request->user(),
-            'roles' => $roles
+            'user' => $request->user()
         ]);
     }
 
