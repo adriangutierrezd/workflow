@@ -90,7 +90,7 @@ class WorkoutController extends Controller
         $workoutStatuses = WorkoutStatus::all();
         $excercises = Excercise::where('public', true)->orWhere('user_id', Auth::user()->id)->get();
         $clients = [];
-        if(Auth::user()->isTrainer()){
+        if(Auth::user()->isTrainer() && false){
             $clients = Auth::user()->clients->map(function($client){
                 $newClient = new stdClass();
                 $newClient->id = $client->id;
