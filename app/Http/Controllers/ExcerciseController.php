@@ -82,7 +82,33 @@ class ExcerciseController extends Controller
      */
     public function update(UpdateExcerciseRequest $request, Excercise $excercise)
     {
-        //
+        try{
+            $updateData = $request->only(['name']);
+            $updateData = array_filter($updateData, function ($value) {
+                return $value !== null;
+            });
+
+            $excercise->update($updateData);
+        }catch(QueryException $e){
+            Log::error('Error updating excercise: ' . $e->getMessage());
+            if(isJsonRequest()){
+                return response()->json([
+                    'message' => __('An error ocurred while updating the excercise')
+                ], 500);
+            }else{
+                return redirect()->route('excercises.index');
+            }
+        }
+
+        if(isJsonRequest()){
+            return response()->json([
+                'message' => __('Excercise updated successfully'),
+                'data' => $excercise
+            ]);
+        }
+
+        return redirect()->route('excercises.index');
+
     }
 
     /**

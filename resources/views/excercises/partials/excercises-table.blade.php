@@ -38,18 +38,18 @@
                     <h3 class="modal-title" id="modal-title">{{__('Edit excercise')}}</h3>
                 </div>
                 
-                <form id="updateExcerciseForm" class="w-full">
+                <form id="update-excercise-form" class="w-full">
 
-                    <label class="dark:text-white" for="name">{{__('Name')}}</label>
+                    <input type="hidden" name="update-excercise-id">
+                    <label class="dark:text-white" for="nameEdit">{{__('Name')}}</label>
                     <x-text-input
                         type="text"
-                        name="name"
-                        id="name"
+                        name="nameEdit"
                         class="block w-full mb-3"
                         maxLength="50"
                         required
                     />
-                    <x-input-error :messages="$errors->get('name')" class="mt-2" />
+                    <x-input-error :messages="$errors->get('nameEdit')" class="mt-2" />
                     
     
                     <div class="mt-6 flex justify-end">
@@ -57,7 +57,7 @@
                             {{ __('Cancel') }}
                         </x-secondary-button>
             
-                        <x-primary-button class="ml-3">
+                        <x-primary-button id="update-excercise-button" class="ml-3">
                             {{ __('Update') }}
                         </x-primary-button>
                     </div>

@@ -1,4 +1,4 @@
-import { getExcercises, createExcercise, deleteExcercise } from './excercisesService.js'
+import { getExcercises, createExcercise, deleteExcercise, updateExcercise } from './excercisesService.js'
 import { createRow, createCell, createFullTd, showTableLoading } from './tablesService.js'
 import { OPTIONS_DOTS, TRASH_ICON, EDIT_ICON, SPINNER, CHART_ICON } from './icons.js'
 import { changeButtonStatus, closeModal, openModal, createDialogDropDownItem, createDialogDropDownContainer, createDialogDroDownBtn, trans } from './utils.js'
@@ -97,7 +97,8 @@ const loadExcercises = async () => {
                 if (user) {
                     const optionsEdit = createDialogDropDownItem({ icon: EDIT_ICON, text: trans({ key: 'Edit' }) })
                     optionsEdit.addEventListener('click', () => {
-                        document.querySelector('input[name=name]').value = name
+                        document.querySelector('input[name=update-excercise-id').value = id
+                        document.querySelector('input[name=nameEdit]').value = name
                         openModal('edit-excercise-form-modal')
                     })
                     optionsList.appendChild(optionsEdit)
@@ -224,6 +225,46 @@ window.addEventListener('DOMContentLoaded', () => {
             changeButtonStatus({ button: e.target, disabled: false, inner: prevText })
             loadExcercises()
         }
+    })
+
+    document.getElementById('update-excercise-form')?.addEventListener('submit', async (e) => {
+
+        e.preventDefault()
+
+        const name = document.querySelector('input[name=nameEdit]').value
+        const excerciseId = document.querySelector('input[name=update-excercise-id').value
+
+        const submitBtn = document.getElementById('update-excercise-button')
+        const submitBtnText = submitBtn.innerHTML
+
+        try {
+
+            changeButtonStatus({ button: submitBtn, disabled: true, inner: SPINNER })
+            const { status, message } = await updateExcercise({ excerciseId, props: { name } })
+
+            if (status === HTTP_STATUS.OK) {
+                closeModal('edit-excercise-form-modal')
+            } else {
+                Swal.fire({
+                    title: 'Error!',
+                    text: message,
+                    icon: 'error',
+                    confirmButtonText: trans({ key: 'Okey' })
+                })
+            }
+
+        } catch (error) {
+            Swal.fire({
+                title: 'Error!',
+                text: error.message,
+                icon: 'error',
+                confirmButtonText: trans({ key: 'Okey' })
+            })
+        } finally {
+            changeButtonStatus({ button: submitBtn, disabled: false, inner: submitBtnText })
+            loadExcercises()
+        }
+
     })
 
 })

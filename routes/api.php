@@ -50,8 +50,9 @@ Route::middleware(['auth:sanctum'])->group(function(){
 
 
     Route::get('/excercises', [ExcerciseController::class, 'get'])->name('excercises.get');
-    Route::post('/excercise', [ExcerciseController::class, 'store'])->name('excercises.store');
-    Route::delete('/excercise/{excercise}', [ExcerciseController::class, 'destroy'])->name('excercises.destroy');
+    Route::post('/excercises', [ExcerciseController::class, 'store'])->name('excercises.store');
+    Route::put('/excercises/{excercise}', [ExcerciseController::class, 'update'])->name('excercises.update');
+    Route::delete('/excercises/{excercise}', [ExcerciseController::class, 'destroy'])->name('excercises.destroy');
 
 
 });

@@ -23,7 +23,7 @@ export const createExcercise = async ({ name }) => {
             },
         }
 
-        const response = await fetch(`/api/excercise`, requestOptions)
+        const response = await fetch(`/api/excercises`, requestOptions)
         const data = await response.json()
         if (response.status !== HTTP_STATUS.CREATED) throw new Error(data.message)
         return { ...data, status: response.status }
@@ -44,7 +44,28 @@ export const deleteExcercise = async (excerciseId) => {
             },
         }
 
-        const response = await fetch(`/api/excercise/${excerciseId}`, requestOptions)
+        const response = await fetch(`/api/excercises/${excerciseId}`, requestOptions)
+        const data = await response.json()
+        if (response.status !== HTTP_STATUS.OK) throw new Error(data.message)
+        return { ...data, status: response.status }
+    } catch (error) {
+        throw new Error(error.message)
+    }
+}
+
+export const updateExcercise = async ({ excerciseId, props }) => {
+    try {
+        const requestOptions = {
+            method: 'PUT',
+            body: JSON.stringify(props),
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+        }
+
+        const response = await fetch(`/api/excercises/${excerciseId}`, requestOptions)
         const data = await response.json()
         if (response.status !== HTTP_STATUS.OK) throw new Error(data.message)
         return { ...data, status: response.status }
