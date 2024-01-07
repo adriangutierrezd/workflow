@@ -1,7 +1,8 @@
-import { getExcercises } from './excercisesService.js'
+import { getExcercises, createExcercise } from './excercisesService.js'
 import { createRow, createCell, createFullTd, showTableLoading } from './tablesService.js'
 import { OPTIONS_DOTS, TRASH_ICON, EDIT_ICON, SPINNER, CHART_ICON } from './icons.js'
 import { changeButtonStatus, closeModal, openModal, createDialogDropDownItem, createDialogDropDownContainer, createDialogDroDownBtn, trans } from './utils.js'
+import { HTTP_STATUS } from './constants.js'
 
 
 
@@ -156,7 +157,48 @@ const loadExcercises = async () => {
     }
 }
 
-
 window.addEventListener('DOMContentLoaded', () => {
+
     loadExcercises()
+    document.getElementById('new-excercise-modal')?.addEventListener('submit', async (e) => {
+
+        e.preventDefault()
+
+        const name = document.querySelector('input[name=name]').value
+
+        const submitBtn = document.getElementById('btn-create-excercise')
+        const submitBtnText = submitBtn.innerHTML
+
+        try {
+
+            changeButtonStatus({ button: submitBtn, disabled: true, inner: SPINNER })
+            const { status, message } = await createExcercise({ name })
+
+            if (status === HTTP_STATUS.CREATED) {
+                document.getElementById('new-excercise-modal').reset()
+                closeModal('new-excercise-form-modal')
+            } else {
+                Swal.fire({
+                    title: 'Error!',
+                    text: message,
+                    icon: 'error',
+                    confirmButtonText: trans({ key: 'Okey' })
+                })
+            }
+
+        } catch (error) {
+            Swal.fire({
+                title: 'Error!',
+                text: error.message,
+                icon: 'error',
+                confirmButtonText: trans({ key: 'Okey' })
+            })
+        } finally {
+            changeButtonStatus({ button: submitBtn, disabled: false, inner: submitBtnText })
+            loadExcercises()
+        }
+
+
+    })
+
 })

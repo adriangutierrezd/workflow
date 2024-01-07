@@ -6,6 +6,8 @@ use App\Http\Requests\StoreExcerciseRequest;
 use App\Http\Requests\UpdateExcerciseRequest;
 use App\Models\Excercise;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Database\QueryException;
+use Illuminate\Support\Facades\Log;
 
 class ExcerciseController extends Controller
 {
@@ -41,7 +43,22 @@ class ExcerciseController extends Controller
      */
     public function store(StoreExcerciseRequest $request)
     {
-        //
+
+        try{
+            $excercise = Excercise::create([
+                'name' => $request->name,
+                'user_id' => Auth::user()->id
+            ]);
+        }catch(QueryException $e){
+            Log::error('Error storing excercise: ' . $e->getMessage());
+            return redirect()->back();
+        }
+        
+        return response()->json([
+            'message' => __('Excercise created successfully'),
+            'data' => $excercise
+        ], 201);
+
     }
 
     /**

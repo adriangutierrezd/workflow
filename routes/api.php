@@ -50,6 +50,7 @@ Route::middleware(['auth:sanctum'])->group(function(){
 
 
     Route::get('/excercises', [ExcerciseController::class, 'get'])->name('excercises.get');
+    Route::post('/excercise', [ExcerciseController::class, 'store'])->name('excercises.store');
 
 
 });
