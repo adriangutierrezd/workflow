@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreExcerciseRequest;
 use App\Http\Requests\UpdateExcerciseRequest;
 use App\Models\Excercise;
+use Illuminate\Support\Facades\Auth;
 
 class ExcerciseController extends Controller
 {
@@ -13,7 +14,18 @@ class ExcerciseController extends Controller
      */
     public function index()
     {
-        //
+        return view('excercises.index', ['targetUser' => Auth::user()]);
+    }
+
+    public function get(){
+        $excercises = Excercise::where('public', true)
+        ->orWhere('user_id', Auth::user()->id)
+        ->with('user')->get();
+
+        return response()->json([
+            'excercises' => $excercises,
+            'message' => __('Data successfully obtained')
+        ]);
     }
 
     /**

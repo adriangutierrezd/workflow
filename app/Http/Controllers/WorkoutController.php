@@ -88,7 +88,7 @@ class WorkoutController extends Controller
 
         $this->authorize('view', $workout);
         $workoutStatuses = WorkoutStatus::all();
-        $excercises = Excercise::all();
+        $excercises = Excercise::where('public', true)->orWhere('user_id', Auth::user()->id)->get();
         $clients = [];
         if(Auth::user()->isTrainer()){
             $clients = Auth::user()->clients->map(function($client){

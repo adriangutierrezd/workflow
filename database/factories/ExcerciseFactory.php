@@ -18,7 +18,7 @@ class ExcerciseFactory extends Factory
     {
         return [
             'name' => $this->faker->words(3, true),
-            'public' => false
+            'public' => true
         ];
     }
 }

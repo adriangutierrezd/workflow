@@ -6,6 +6,7 @@ use App\Http\Controllers\WorkoutController;
 use App\Http\Controllers\ClusterController;
 use App\Http\Controllers\StaticsController;
 use App\Http\Controllers\TrainerUserController;
+use App\Http\Controllers\ExcerciseController;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,6 +47,9 @@ Route::middleware(['auth:sanctum'])->group(function(){
     Route::get('statics-per-excercise/{user}/{initialDate?}/{endDate?}', [StaticsController::class, 'staticsPerExcercise'])->name('statics.per-excercise');
     Route::get('statics-excercise-data/{excercise}/{user}/{initialDate?}/{endDate?}', [StaticsController::class, 'getExcerciseData'])->name('statics.excercise-data');
     Route::get('statics-excercise-usage/{excercise}/{user}/{initialDate?}/{endDate?}', [StaticsController::class, 'getExcerciseUsage'])->name('statics.excercise-usage');
+
+
+    Route::get('/excercises', [ExcerciseController::class, 'get'])->name('excercises.get');
 
 
 });

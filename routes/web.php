@@ -5,6 +5,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WorkoutController;
 use App\Http\Controllers\ClusterController;
+use App\Http\Controllers\ExcerciseController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\StaticsController;
 use App\Http\Controllers\MailController;
@@ -49,6 +50,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/excercise-statics/{excercise}/{user?}/{initialDate?}/{endDate?}', [StaticsController::class, 'excerciseStatics'])->name('statics.excercise');
 
     Route::get('/trainers', [TrainerUserController::class, 'trainersIndex'])->name('trainers.index');
+
+
+    Route::get('/excercises', [ExcerciseController::class, 'index'])->name('excercises.index');
 
 
     Route::post('/user-trainer-request', [UserTrainerRequestController::class, 'store'])->name('user-trainer-request.store');
