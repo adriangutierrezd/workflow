@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreExcerciseRequest;
 use App\Http\Requests\UpdateExcerciseRequest;
 use App\Models\Excercise;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Database\QueryException;
+use Illuminate\Support\Facades\Log;
 
 class ExcerciseController extends Controller
 {
@@ -13,7 +16,18 @@ class ExcerciseController extends Controller
      */
     public function index()
     {
-        //
+        return view('excercises.index', ['targetUser' => Auth::user()]);
+    }
+
+    public function get(){
+        $excercises = Excercise::where('public', true)
+        ->orWhere('user_id', Auth::user()->id)
+        ->with('user')->get();
+
+        return response()->json([
+            'excercises' => $excercises,
+            'message' => __('Data successfully obtained')
+        ]);
     }
 
     /**
@@ -29,7 +43,22 @@ class ExcerciseController extends Controller
      */
     public function store(StoreExcerciseRequest $request)
     {
-        //
+
+        try{
+            $excercise = Excercise::create([
+                'name' => $request->name,
+                'user_id' => Auth::user()->id
+            ]);
+        }catch(QueryException $e){
+            Log::error('Error storing excercise: ' . $e->getMessage());
+            return redirect()->back();
+        }
+        
+        return response()->json([
+            'message' => __('Excercise created successfully'),
+            'data' => $excercise
+        ], 201);
+
     }
 
     /**
@@ -53,7 +82,33 @@ class ExcerciseController extends Controller
      */
     public function update(UpdateExcerciseRequest $request, Excercise $excercise)
     {
-        //
+        try{
+            $updateData = $request->only(['name']);
+            $updateData = array_filter($updateData, function ($value) {
+                return $value !== null;
+            });
+
+            $excercise->update($updateData);
+        }catch(QueryException $e){
+            Log::error('Error updating excercise: ' . $e->getMessage());
+            if(isJsonRequest()){
+                return response()->json([
+                    'message' => __('An error ocurred while updating the excercise')
+                ], 500);
+            }else{
+                return redirect()->route('excercises.index');
+            }
+        }
+
+        if(isJsonRequest()){
+            return response()->json([
+                'message' => __('Excercise updated successfully'),
+                'data' => $excercise
+            ]);
+        }
+
+        return redirect()->route('excercises.index');
+
     }
 
     /**
@@ -61,6 +116,35 @@ class ExcerciseController extends Controller
      */
     public function destroy(Excercise $excercise)
     {
-        //
+        if($excercise->user_id != Auth::user()->id){
+            if(isJsonRequest()){
+                return response()->json([
+                    'message' => __('Unauthorized action.')
+                ], 403);
+            }else{
+                abort(403);
+            }
+        }
+
+        try{
+            $excercise->delete();
+        }catch(QueryException $e){
+            Log::error('Error deleting excercise: ' . $e->getMessage());
+            if(isJsonRequest()){
+                return response()->json([
+                    'message' => __('An error ocurred while deleting the excercise')
+                ], 500);
+            }else{
+                return redirect()->route('excercises.index');
+            }
+        }
+
+        if(isJsonRequest()){
+            return response()->json([
+                'message' => __('Excercise deleted successfully')
+            ]);
+        }
+
+        return redirect()->route('excercises.index');
     }
 }

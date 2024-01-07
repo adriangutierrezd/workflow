@@ -469,6 +469,17 @@
     "Resource successfully created": "Recurso creado con éxito",
     "Successfully updated resource": "Recurso actualizado con éxito",
     "Resource successfully removed": "Recurso eliminado con éxito",
-    "Not authorized": "No autorizado"
+    "Not authorized": "No autorizado",
+    "Delete excercise": "Eliminar ejercicio",
+    "Excercises": "Ejericios",
+    "Edit excercise": "Editar ejercicio",
+    "Author": "Autor",
+    "If you continue, this excercise will be erased from all your workouts": "Si continúas, el ejercicio se borrará de todos tus entrenamientos",
+    "Add excercise": "Nuevo ejercicio",
+    "Excercise created successfully": "Ejercicio creado con éxito",
+    "An error ocurred while deleting the excercise": "Ha ocurrido un error eliminando el ejercicio",
+    "Excercise deleted successfully": "Ejercicio eliminado con éxito",
+    "An error ocurred while updating the excercise": "Ha ocurrido un error actualizando el ejercicio",
+    "Excercise updated successfully": "Ejercicio actualizado con éxito"
 
 }

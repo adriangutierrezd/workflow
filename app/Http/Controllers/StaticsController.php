@@ -28,10 +28,10 @@ class StaticsController extends Controller
         return view('statics.index', compact('initialDate', 'endDate', 'targetUser'));
     }
 
-    public function excerciseStatics(Request $request, Excercise $excercise, ?User $user, string $initialDate = null, string $endDate = null)
+    public function excerciseStatics(Request $request, Excercise $excercise, ?User $user = null, string $initialDate = null, string $endDate = null)
     {
 
-        if(!Gate::allows('see-statics', $user)){
+        if($user && !Gate::allows('see-statics', $user)){
             abort(403);
         }
 

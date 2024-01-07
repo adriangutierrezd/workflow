@@ -11,10 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('excercises', function (Blueprint $table) {
-            $table->id();
-            $table->string('name', 100);
-            $table->timestamps();
+        Schema::table('excercises', function (Blueprint $table) {
+            $table->foreignId('user_id')->nullable()->constrained();
         });
     }
 
@@ -23,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('excercises');
+        Schema::table('excercises', function (Blueprint $table) {
+            $table->dropColumn('user_id');
+        });
     }
 };
