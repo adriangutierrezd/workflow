@@ -26,6 +26,10 @@
                             {{ __('Workouts') }}
                         </x-nav-link>
 
+                        <x-nav-link :href="route('excercises.index')" :active="request()->routeIs('excercises.index')">
+                            {{ __('Excercises') }}
+                        </x-nav-link>
+
                         @if(!Auth::user()->isTrainer())
                             <x-nav-link :href="route('trainers.index')" :active="request()->routeIs('trainers.index')">
                                 {{ __('Trainers') }}
@@ -103,6 +107,10 @@
 
             <x-responsive-nav-link :href="route('workouts.index')" :active="request()->routeIs('workouts.index')">
                 {{ __('Workouts') }}
+            </x-responsive-nav-link>
+
+            <x-responsive-nav-link :href="route('excercises.index')" :active="request()->routeIs('excercises.index')">
+                {{ __('Excercises') }}
             </x-responsive-nav-link>
 
             @if(!Auth::user()->isTrainer())
