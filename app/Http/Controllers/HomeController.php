@@ -16,6 +16,8 @@ class HomeController extends Controller
 
         if (!Auth::user()->isTrainer()) {
             return view('user.dashboard', compact('initialDate', 'endDate'));
+        }else{
+            abort(404);
         }
 
         $weekDays = [];
